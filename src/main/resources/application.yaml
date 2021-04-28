@@ -1,0 +1,322 @@
+spring:
+  application:
+    name: axon-initializer
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  task:
+    execution:
+      thread-name-prefix: initializr-
+  web:
+    resources:
+      cache:
+        use-last-modified: false
+
+logging:
+  level:
+    org.springframework.core.env: warn
+    org.springframework.jndi: warn
+
+server:
+  compression:
+    enabled: true
+    mime-types: application/json,text/css,text/html
+    min-response-size: 2048
+  error:
+    include-message: always
+  forward-headers-strategy: native
+
+# Basic initializer configuration
+initializr:
+  name:
+    value: axon
+  description:
+    value: 'An Axon Framework Sample Application'
+  group-id:
+    value: com.example
+    artifact-id:
+      value: demo
+  javaVersions:
+    - id: 11
+      default: true
+    - id: 1.8
+      default: false
+  languages:
+    - name: Java
+      id: java
+      default: true
+    - name: Kotlin
+      id: kotlin
+      default: false
+  packagings:
+    - name: Jar
+      id: jar
+      default: true
+    - name: War
+      id: war
+      default: false
+  bootVersions:
+    - name: Latest SNAPSHOT
+      id: 2.4.5.BUILD-SNAPSHOT
+      default: false
+    - name: 2.4.5.
+      id: 2.4.5
+      default: true
+  types:
+    - name: Maven Project
+      id: maven-project
+      description: Generate a Maven-based project archive
+      tags:
+        build: maven
+        format: project
+      default: true
+      action: /starter.zip
+    - name: Maven POM
+      id: maven-build
+      description: Generate a Maven pom.xml.
+      tags:
+        build: maven
+        format: build
+      default: false
+      action: /pom.xml
+    - name: Gradle Project
+      id: gradle-project
+      description: Generate a Gradle based project archive.
+      tags:
+        build: gradle
+        format: project
+      default: false
+      action: /starter.zip
+    - name: Gradle Config
+      id: gradle-build
+      description: Generate a Gradle build file.
+      tags:
+        build: gradle
+        format: build
+      default: false
+      action: /build.gradle
+  env:
+    boms:
+      axon-bom:
+        groupId: org.axonframework
+        artifactId: axon-bom
+        versionProperty: axon.version
+        mappings:
+          - compatibilityRange: "2.0.0.RELEASE"
+            version: 4.5.0
+    repositories:
+      spring-releases:
+        name: Spring Releases
+        url: https://repo.spring.io/release
+      sonatype-snapshots:
+        name: Sonatype Snapshots
+        url: https://oss.sonatype.org/content/repositories/snapshots/
+        releasesEnabled: false
+        snapshotsEnabled: true
+  dependencies:
+    # AXON
+    - name: Axon
+      content:
+        - name: Axon Framework
+          id: axon-starter
+          groupId: org.axonframework
+          artifactId: axon-spring-boot-starter
+          bom: axon-bom
+          description: Provides Axon Framework - first class support for CQRS and Event Sourcing.
+          links:
+            - rel: axon-starter
+              href: https://github.com/AxonFramework
+              description: The open-source code repository on GitHub
+            - rel: docs
+              href: https://docs.axoniq.io/reference-guide/
+              description: The reference guide on how to use Axon
+            - rel: video-guide
+              href: https://www.youtube.com/watch?v=tqn9p8Duy54&list=PL4O1nDpoa5KQkkApGXjKi3rzUW3II5pjm
+              description: A full getting started tutorial for Axon in small simple steps (YouTube).
+        - name: Axon Test
+          id: axon-test
+          groupId: org.axonframework
+          artifactId: axon-test
+          bom: axon-bom
+          description: Provides Axon Test - Module containing Test Fixture components to test Domain Models in a given-when-then approach.
+          links:
+            - rel: docs
+              href: https://docs.axoniq.io/reference-guide/axon-framework/testing
+              description: The reference guide section on how to use Axon Test module
+    # SPRING - WEB
+    - name: Web
+      content:
+        - name: Spring Web
+          id: web
+          description: Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
+          facets:
+            - web
+            - json
+            - native
+          links:
+            - rel: guide
+              href: https://spring.io/guides/gs/rest-service/
+              description: Building a RESTful Web Service
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-developing-web-applications
+            - rel: guide
+              href: https://spring.io/guides/gs/serving-web-content/
+              description: Serving Web Content with Spring MVC
+            - rel: guide
+              href: https://spring.io/guides/tutorials/bookmarks/
+              description: Building REST services with Spring
+        - name: Spring Reactive Web
+          id: webflux
+          description: Build reactive web applications with Spring WebFlux and Netty.
+          facets:
+            - json
+            - reactive
+            - native
+    # SPRING _ SQL
+    - name: SQL
+      content:
+        - name: JDBC API
+          id: jdbc
+          description: Database Connectivity API that defines how a client may connect and query a database.
+          facets:
+            - native
+          links:
+            - rel: guide
+              href: https://spring.io/guides/gs/relational-data-access/
+              description: Accessing Relational Data using JDBC with Spring
+            - rel: guide
+              href: https://spring.io/guides/gs/managing-transactions/
+              description: Managing Transactions
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-sql
+        - name: Spring Data JPA
+          id: data-jpa
+          description: Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
+          facets:
+            - jpa
+            - native
+          aliases:
+            - jpa
+          links:
+            - rel: guide
+              href: https://spring.io/guides/gs/accessing-data-jpa/
+              description: Accessing Data with JPA
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-jpa-and-spring-data
+        - name: Spring Data JDBC
+          id: data-jdbc
+          description: Persist data in SQL stores with plain JDBC using Spring Data.
+          facets:
+            - native
+          links:
+            - rel: guide
+              href: https://github.com/spring-projects/spring-data-examples/tree/master/jdbc/basics
+              description: Using Spring Data JDBC
+            - rel: reference
+              href: https://docs.spring.io/spring-data/jdbc/docs/current/reference/html/
+        - name: Spring Data R2DBC
+          id: data-r2dbc
+          compatibilityRange: "2.3.0.M3"
+          description: Provides Reactive Relational Database Connectivity to persist data in SQL stores using Spring Data in reactive applications.
+          facets:
+            - reactive
+            - native
+          links:
+            - rel: guide
+              href: https://spring.io/guides/gs/accessing-data-r2dbc/
+              description: Acessing data with R2DBC
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/html/spring-boot-features.html#boot-features-r2dbc
+            - rel: home
+              href: https://r2dbc.io
+              description: R2DBC Homepage
+        - name: Liquibase Migration
+          id: liquibase
+          description: Liquibase database migration and source control library.
+          groupId: org.liquibase
+          artifactId: liquibase-core
+          starter: false
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#howto-execute-liquibase-database-migrations-on-startup
+        - name: Flyway Migration
+          id: flyway
+          description: Version control for your database so you can migrate from any version (incl. an empty database) to the latest version of the schema.
+          groupId: org.flywaydb
+          artifactId: flyway-core
+          starter: false
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#howto-execute-flyway-database-migrations-on-startup
+        - name: IBM DB2 Driver
+          id: db2
+          compatibilityRange: 2.2.0.M6
+          description: A JDBC driver that provides access to IBM DB2.
+          groupId: com.ibm.db2
+          artifactId: jcc
+          scope: runtime
+          starter: false
+        - name: H2 Database
+          id: h2
+          description: Provides a fast in-memory database that supports JDBC API and R2DBC access, with a small (2mb) footprint. Supports embedded and server modes as well as a browser based console application.
+          facets:
+            - native
+          groupId: com.h2database
+          artifactId: h2
+          scope: runtime
+          starter: false
+        - name: HyperSQL Database
+          id: hsql
+          description: Lightweight 100% Java SQL Database Engine.
+          facets:
+            - native
+          groupId: org.hsqldb
+          artifactId: hsqldb
+          scope: runtime
+          starter: false
+        - name: MariaDB Driver
+          id: mariadb
+          description: MariaDB JDBC and R2DBC driver.
+          groupId: org.mariadb.jdbc
+          artifactId: mariadb-java-client
+          scope: runtime
+          starter: false
+        - name: MS SQL Server Driver
+          id: sqlserver
+          description: A JDBC and R2DBC driver that provides access to Microsoft SQL Server and Azure SQL Database from any Java application.
+          groupId: com.microsoft.sqlserver
+          artifactId: mssql-jdbc
+          scope: runtime
+          starter: false
+        - name: MySQL Driver
+          id: mysql
+          description: MySQL JDBC and R2DBC driver.
+          facets:
+            - native
+          groupId: mysql
+          artifactId: mysql-connector-java
+          scope: runtime
+          starter: false
+          links:
+            - rel: guide
+              href: https://spring.io/guides/gs/accessing-data-mysql/
+              description: Accessing data with MySQL
+        - name: Oracle Driver
+          id: oracle
+          description: A JDBC driver that provides access to Oracle.
+          groupId: com.oracle.database.jdbc
+          artifactId: ojdbc8
+          scope: runtime
+          starter: false
+          mappings:
+            - compatibilityRange: "[2.2.0.RELEASE,2.2.8.RELEASE)"
+              groupId: com.oracle.ojdbc
+        - name: PostgreSQL Driver
+          id: postgresql
+          description: A JDBC and R2DBC driver that allows Java programs to connect to a PostgreSQL database using standard, database independent Java code.
+          facets:
+            - native
+          groupId: org.postgresql
+          artifactId: postgresql
+          scope: runtime
+          starter: false
