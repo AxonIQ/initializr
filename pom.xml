@@ -99,7 +99,7 @@
                 <version>3.0.0</version>
                 <configuration>
                     <to>
-                        <image>eu.gcr.io/DevOps/axoniq-initializr</image>
+                        <image>eu.gcr.io/axoniq-devops/axoniq-initializr</image>
                     </to>
                 </configuration>
             </plugin>
