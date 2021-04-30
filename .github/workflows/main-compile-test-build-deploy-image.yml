@@ -1,10 +1,7 @@
 name: Main-Compile-Test-Build-Deploy-Image
 
 on:
-  workflow_dispatch:
-  #push:
-  #  branches:
-  #    - 'main'
+  push:
 
 jobs:
   setup-build-push:
