@@ -2,6 +2,8 @@ name: Main-Compile-Test-Build-Deploy-Image
 
 on:
   push:
+    branches:
+      - 'main'
 
 jobs:
   setup-build-push:
