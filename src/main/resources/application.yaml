@@ -320,3 +320,20 @@ initializr:
           artifactId: postgresql
           scope: runtime
           starter: false
+
+#Kotlin Extension
+    - name: Kotlin
+      content:
+        - name: Kotlin Extension
+          id: axon-kotlin
+          groupId: org.axonframework
+          artifactId: axon-kotlin
+          bom: axon-bom
+          description: Provides Axon Framework Kotlin Integration
+          links:
+            - rel: axon-kotlin
+              href: https://github.com/AxonFramework/extension-kotlin
+              description: The open-source code repository on GitHub
+            - rel: ref-guide
+              href: htps://docs.axoniq.io/reference-guide/extensions/kotlin
+              description: Add some`fun` to your life!
