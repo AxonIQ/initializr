@@ -143,6 +143,16 @@ initializr:
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/axon-framework/testing
               description: The reference guide section on how to use Axon Test module
+        - name: Axon Reactor Extension
+          id: axon-reactor-starter
+          groupId: org.axonframework.extensions.reactor
+          artifactId: axon-reactor-spring-boot-starter
+          bom: axon-bom
+          description: Provides integration with Project Reactor - Extension provides Gateways that utilize Project Reactor's types such as Mono and Flux.
+          links:
+            - rel: docs
+              href: https://docs.axoniq.io/reference-guide/extensions/reactor
+              description: The reference guide section on how to use Axon Reactor extension
     # SPRING - WEB
     - name: Web
       content:
