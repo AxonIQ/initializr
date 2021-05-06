@@ -143,6 +143,21 @@ initializr:
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/axon-framework/testing
               description: The reference guide section on how to use Axon Test module
+        #Kotlin Extension
+        - name: Kotlin Extension
+          id: axon-kotlin
+          groupId: org.axonframework
+          artifactId: axon-kotlin
+          bom: axon-bom
+          description: Provides Axon Framework Kotlin Integration
+          links:
+            - rel: axon-kotlin
+              href: https://github.com/AxonFramework/extension-kotlin
+              description: The open-source code repository on GitHub
+            - rel: ref-guide
+              href: htps://docs.axoniq.io/reference-guide/extensions/kotlin
+              description: Add some`fun` to your life!
+
         - name: Axon Reactor Extension
           id: axon-reactor-starter
           groupId: org.axonframework.extensions.reactor
