@@ -56,12 +56,12 @@ initializr:
       id: war
       default: false
   bootVersions:
-    - name: Latest SNAPSHOT
-      id: 2.4.5.BUILD-SNAPSHOT
-      default: false
     - name: 2.4.5.
       id: 2.4.5
       default: true
+#    - name: Latest SNAPSHOT
+#      id: 2.4.5.BUILD-SNAPSHOT
+#      default: false
   types:
     - name: Maven Project
       id: maven-project
@@ -104,6 +104,12 @@ initializr:
         mappings:
           - compatibilityRange: "2.0.0.RELEASE"
             version: 4.5.0
+    kotlin:
+      mappings:
+        - compatibilityRange: "[1.5.0.RELEASE,2.0.0.M1)"
+          version: 1.2.51
+        - compatibilityRange: "2.0.0.RELEASE"
+          version: 1.5.0
     repositories:
       spring-releases:
         name: Spring Releases
