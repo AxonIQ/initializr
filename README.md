@@ -27,6 +27,11 @@ maven-java project with reactor extension:
 curl http://localhost:8080/starter.zip -d dependencies=axon-starter,axon-reactor-starter,axon-test,web,data-jpa,h2 -o my-project-with-reactor.zip
 ```
 
+maven-java project with kotlin extension:
+```shell
+curl http://localhost:8080/starter.zip -d language=kotlin -d dependencies=axon-starter,axon-kotlin,axon-test,web,data-jpa,h2 -o my-project-with-kotlin.zip
+```
+
 ## References and further reading
 
 - [https://github.com/benwilcock/axon-initializr](https://github.com/benwilcock/axon-initializr)

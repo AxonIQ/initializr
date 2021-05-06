@@ -104,6 +104,12 @@ initializr:
         mappings:
           - compatibilityRange: "2.0.0.RELEASE"
             version: 4.5.0
+    kotlin:
+      mappings:
+        - compatibilityRange: "[1.5.0.RELEASE,2.0.0.M1)"
+          version: 1.2.51
+        - compatibilityRange: "2.0.0.RELEASE"
+          version: 1.5.0
     repositories:
       spring-releases:
         name: Spring Releases
@@ -144,9 +150,9 @@ initializr:
               href: https://docs.axoniq.io/reference-guide/axon-framework/testing
               description: The reference guide section on how to use Axon Test module
         #Kotlin Extension
-        - name: Kotlin Extension
+        - name: Axon Kotlin Extension
           id: axon-kotlin
-          groupId: org.axonframework
+          groupId: org.axonframework.extensions.kotlin
           artifactId: axon-kotlin
           bom: axon-bom
           description: Provides Axon Framework Kotlin Integration
@@ -156,7 +162,7 @@ initializr:
               description: The open-source code repository on GitHub
             - rel: ref-guide
               href: htps://docs.axoniq.io/reference-guide/extensions/kotlin
-              description: Add some`fun` to your life!
+              description: The reference guide section on how to use Axon Kotin extension
 
         - name: Axon Reactor Extension
           id: axon-reactor-starter
