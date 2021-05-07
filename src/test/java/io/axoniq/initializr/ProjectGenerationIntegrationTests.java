@@ -159,14 +159,34 @@ class ProjectGenerationIntegrationTests {
     private ProcessBuilder createProcessBuilder(BuildSystem buildSystem) {
         if (buildSystem.id().equals(new MavenBuildSystem().id())) {
             Path mavenHome = this.mavenHome.get();
-            ProcessBuilder processBuilder = new ProcessBuilder("./mvnw",
-                    "-Dmaven.repo.local=" + mavenHome.resolve("repository").toFile(), "package");
+
+            List<String> commands = new ArrayList<>();
+            if (System.getProperty("os.name").startsWith("Windows")) {
+                commands.add("mvnw.cmd");
+            } else {
+                commands.add("./mvnw");
+            }
+            commands.add("-Dmaven.repo.local=" + mavenHome.resolve("repository").toFile());
+            commands.add("package");
+
+            ProcessBuilder processBuilder = new ProcessBuilder(commands);
             processBuilder.environment().put("MAVEN_USER_HOME", mavenHome.toFile().getAbsolutePath());
             return processBuilder;
         }
         if (buildSystem.id().equals(new GradleBuildSystem().id())) {
             Path gradleHome = this.gradleHome.get();
-            ProcessBuilder processBuilder = new ProcessBuilder("./gradlew", "--no-daemon", "build");
+            List<String> commands = new ArrayList<>();
+            if (System.getProperty("os.name").startsWith("Windows")) {
+                commands.add("cmd.exe");
+                commands.add("/C");
+                commands.add("gradlew.bat");
+            } else {
+                commands.add("./gradlew");
+            }
+            commands.add("--no-daemon");
+            commands.add("build");
+
+            ProcessBuilder processBuilder = new ProcessBuilder(commands);
             processBuilder.environment().put("GRADLE_USER_HOME", gradleHome.toFile().getAbsolutePath());
             return processBuilder;
         }
