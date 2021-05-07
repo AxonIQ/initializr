@@ -149,7 +149,16 @@ initializr:
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/axon-framework/testing
               description: The reference guide section on how to use Axon Test module
-        #Kotlin Extension
+        - name: Axon Micrometer
+          id: axon-micrometer
+          groupId: org.axonframework
+          artifactId: axon-micrometer
+          bom: axon-bom
+          description: Provides Axon Micrometer - Module contains components that provide metrics for standard Axon components using the micrometer library.
+          links:
+            - rel: docs
+              href: https://docs.axoniq.io/reference-guide/axon-framework/monitoring-and-metrics#micrometer
+              description: The reference guide section on how to use Axon Micrometer module
         - name: Axon Kotlin Extension
           id: axon-kotlin
           groupId: org.axonframework.extensions.kotlin
@@ -157,13 +166,12 @@ initializr:
           bom: axon-bom
           description: Provides Axon Framework Kotlin Integration
           links:
-            - rel: axon-kotlin
+            - rel: github-repository
               href: https://github.com/AxonFramework/extension-kotlin
               description: The open-source code repository on GitHub
-            - rel: ref-guide
+            - rel: docs
               href: htps://docs.axoniq.io/reference-guide/extensions/kotlin
               description: The reference guide section on how to use Axon Kotin extension
-
         - name: Axon Reactor Extension
           id: axon-reactor-starter
           groupId: org.axonframework.extensions.reactor
@@ -171,9 +179,25 @@ initializr:
           bom: axon-bom
           description: Provides integration with Project Reactor - Extension provides Gateways that utilize Project Reactor's types such as Mono and Flux.
           links:
+            - rel: github-repository
+              href: https://github.com/AxonFramework/extension-reactor
+              description: The open-source code repository on GitHub
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/extensions/reactor
               description: The reference guide section on how to use Axon Reactor extension
+        - name: Axon Tracing Extension
+          id: axon-tracing-starter
+          groupId: org.axonframework.extensions.tracing
+          artifactId: axon-tracing-spring-boot-starter
+          bom: axon-bom
+          description: Provides implementation of Open Tracing standard - Extension provides functionality to trace command, event and query messages flowing through your Axon application by providing a specific implementation of the CommandGateway, QueryGateway, MessageDispatchInterceptor and MessageHandlerInterceptor.
+          links:
+            - rel: github-repository
+              href: https://github.com/AxonFramework/extension-tracing
+              description: The open-source code repository on GitHub
+            - rel: docs
+              href: https://docs.axoniq.io/reference-guide/extensions/tracing
+              description: The reference guide section on how to use Axon Tracing extension
     # SPRING - WEB
     - name: Web
       content:
