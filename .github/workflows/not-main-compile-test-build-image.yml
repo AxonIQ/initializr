@@ -25,7 +25,7 @@ jobs:
 
       - name: Maven Build
         run: |
-          ./mvnw -B verify
+          ./mvnw -B -X -e -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 verify
 
       - name: Build Docker Image
         run: |
