@@ -145,7 +145,7 @@ class ProjectGenerationIntegrationTests {
         request.setGroupId("com.example");
         request.setArtifactId("demo");
         request.setApplicationName("DemoApplication");
-        request.setDependencies(Arrays.asList("axon-starter", "axon-test", "web", "data-jpa", "h2"));
+        request.setDependencies(Arrays.asList("axon-starter", "axon-test", "axon-kotlin", "axon-reactor-starter", "web", "data-jpa", "h2"));
         Path project = this.invoker.invokeProjectStructureGeneration(request).getRootDirectory();
         ProcessBuilder processBuilder = createProcessBuilder(buildSystem);
         processBuilder.directory(project.toFile());
