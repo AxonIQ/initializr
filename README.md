@@ -6,6 +6,17 @@ Everything starts here ;)
 
 This project is driven using [maven].
 
+### Build and Test?
+
+```shell
+$ ./mvnw clean verify -DskipTests
+```
+or with tests (`it can take some time, please be patient`):
+
+```shell
+$ ./mvnw clean verify
+```
+
 ### Run locally
 
 You can run the following command to start your project locally:

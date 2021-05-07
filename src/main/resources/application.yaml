@@ -56,12 +56,12 @@ initializr:
       id: war
       default: false
   bootVersions:
-    - name: Latest SNAPSHOT
-      id: 2.4.5.BUILD-SNAPSHOT
-      default: false
     - name: 2.4.5.
       id: 2.4.5
       default: true
+#    - name: Latest SNAPSHOT
+#      id: 2.4.5.BUILD-SNAPSHOT
+#      default: false
   types:
     - name: Maven Project
       id: maven-project
