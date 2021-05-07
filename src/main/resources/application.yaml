@@ -104,6 +104,13 @@ initializr:
         mappings:
           - compatibilityRange: "2.0.0.RELEASE"
             version: 4.5.0
+      testcontainers:
+        groupId: org.testcontainers
+        artifactId: testcontainers-bom
+        versionProperty: testcontainers.version
+        mappings:
+          - compatibilityRange: "2.0.0.RELEASE"
+            version: 1.15.3
     kotlin:
       mappings:
         - compatibilityRange: "[1.5.0.RELEASE,2.0.0.M1)"
@@ -120,7 +127,7 @@ initializr:
         releasesEnabled: false
         snapshotsEnabled: true
   dependencies:
-    # AXON
+    # Axon
     - name: Axon
       content:
         - name: Axon Framework
@@ -198,7 +205,7 @@ initializr:
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/extensions/tracing
               description: The reference guide section on how to use Axon Tracing extension
-    # SPRING - WEB
+    # Web
     - name: Web
       content:
         - name: Spring Web
@@ -227,7 +234,78 @@ initializr:
             - json
             - reactive
             - native
-    # SPRING _ SQL
+    # Template Engines
+    - name: Template Engines
+      content:
+        - name: Thymeleaf
+          id: thymeleaf
+          description: A modern server-side Java template engine for both web and standalone environments. Allows HTML to be correctly displayed in browsers and as static prototypes.
+          facets:
+            - native
+          links:
+            - rel: guide
+              href: https://spring.io/guides/gs/handling-form-submission/
+              description: Handling Form Submission
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-spring-mvc-template-engines
+        - name: Apache Freemarker
+          id: freemarker
+          description: Java library to generate text output (HTML web pages, e-mails, configuration files, source code, etc.) based on templates and changing data.
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-spring-mvc-template-engines
+        - name: Mustache
+          id: mustache
+          description: Logic-less Templates. There are no if statements, else clauses, or for loops. Instead there are only tags.
+          facets:
+            - native
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-spring-mvc-template-engines
+    # Security
+    - name: Security
+      content:
+        - name: Spring Security
+          id: security
+          description: Highly customizable authentication and access-control framework for Spring applications.
+          facets:
+            - native
+          links:
+            - rel: guide
+              href: https://spring.io/guides/gs/securing-web/
+              description: Securing a Web Application
+            - rel: guide
+              href: https://spring.io/guides/tutorials/spring-boot-oauth2/
+              description: Spring Boot and OAuth2
+            - rel: guide
+              href: https://spring.io/guides/gs/authenticating-ldap/
+              description: Authenticating a User with LDAP
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-security
+        - name: OAuth2 Client
+          id: oauth2-client
+          description: Spring Boot integration for Spring Security's OAuth2/OpenID Connect client features.
+          facets:
+            - native
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-security-oauth2-client
+        - name: OAuth2 Resource Server
+          id: oauth2-resource-server
+          description: Spring Boot integration for Spring Security's OAuth2 resource server features.
+          facets:
+            - native
+          compatibilityRange: 2.1.0.M2
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-security-oauth2-server
+        - name: Spring LDAP
+          id: data-ldap
+          description: Makes it easier to build Spring based applications that use the Lightweight Directory Access Protocol.
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-ldap
+    # SQL
     - name: SQL
       content:
         - name: JDBC API
@@ -375,3 +453,116 @@ initializr:
           artifactId: postgresql
           scope: runtime
           starter: false
+    # Ops
+    - name: Ops
+      content:
+        - name: Spring Boot Actuator
+          id: actuator
+          description: Supports built in (or custom) endpoints that let you monitor and manage your application - such as application health, metrics, sessions, etc.
+          facets:
+            - native
+          links:
+            - rel: guide
+              href: https://spring.io/guides/gs/actuator-service/
+              description: Building a RESTful Web Service with Spring Boot Actuator
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#production-ready
+    # Developer Tools
+    - name: Developer Tools
+      content:
+        - name: Spring Boot DevTools
+          id: devtools
+          groupId: org.springframework.boot
+          artifactId: spring-boot-devtools
+          scope: runtime
+          description: Provides fast application restarts, LiveReload, and configurations for enhanced development experience.
+          starter: false
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#using-boot-devtools
+        - name: Lombok
+          id: lombok
+          groupId: org.projectlombok
+          artifactId: lombok
+          scope: annotationProcessor
+          description: Java annotation library which helps to reduce boilerplate code.
+          facets:
+            - native
+          starter: false
+        - name: Spring Configuration Processor
+          id: configuration-processor
+          groupId: org.springframework.boot
+          artifactId: spring-boot-configuration-processor
+          scope: annotationProcessor
+          description: Generate metadata for developers to offer contextual help and "code completion" when working with custom configuration keys (ex.application.properties/.yml files).
+          starter: false
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#configuration-metadata-annotation-processor
+    # Testing
+    - name: Testing
+      content:
+        - name: Testcontainers
+          id: testcontainers
+          description: Provide lightweight, throwaway instances of common databases, Selenium web browsers, or anything else that can run in a Docker container.
+          groupId: org.testcontainers
+          artifactId: junit-jupiter
+          bom: testcontainers
+          scope: test
+          starter: false
+          links:
+            - rel: reference
+              href: https://www.testcontainers.org/
+    # Observability
+    - name: Observability
+      content:
+        - name: Datadog
+          id: datadog
+          groupId: io.micrometer
+          artifactId: micrometer-registry-datadog
+          scope: runtime
+          starter: false
+          description: Publish Micrometer metrics to Datadog, a dimensional time-series SaaS with built-in dashboarding and alerting.
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/html/production-ready-features.html#production-ready-metrics-export-datadog
+        - name: Influx
+          id: influx
+          groupId: io.micrometer
+          artifactId: micrometer-registry-influx
+          scope: runtime
+          starter: false
+          description: Publish Micrometer metrics to InfluxDB, a dimensional time-series server that support real-time stream processing of data.
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/html/production-ready-features.html#production-ready-metrics-export-influx
+        - name: Graphite
+          id: graphite
+          groupId: io.micrometer
+          artifactId: micrometer-registry-graphite
+          scope: runtime
+          starter: false
+          description: Publish Micrometer metrics to Graphite, a hierarchical metrics system backed by a fixed-size database.
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/html/production-ready-features.html#production-ready-metrics-export-graphite
+        - name: New Relic
+          id: new-relic
+          groupId: io.micrometer
+          artifactId: micrometer-registry-new-relic
+          scope: runtime
+          starter: false
+          description: Publish Micrometer metrics to New Relic, a SaaS offering with a full UI and a query language called NRQL.
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/html/production-ready-features.html#production-ready-metrics-export-new-relic
+        - name: Prometheus
+          id: prometheus
+          groupId: io.micrometer
+          artifactId: micrometer-registry-prometheus
+          scope: runtime
+          starter: false
+          description: Expose Micrometer metrics in Prometheus format, an in-memory dimensional time series database with a simple built-in UI, a custom query language, and math operations.
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/html/production-ready-features.html#production-ready-metrics-export-prometheus
