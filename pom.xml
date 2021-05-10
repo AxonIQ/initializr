@@ -10,13 +10,12 @@
     </parent>
     <groupId>io.axoniq</groupId>
     <artifactId>initializr</artifactId>
-    <version>${revision}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>initializr</name>
     <description>Initializer project for Axon applications</description>
 
     <properties>
         <java.version>11</java.version>
-        <revision>1.0.0-SNAPSHOT</revision>
     </properties>
 
     <dependencyManagement>
