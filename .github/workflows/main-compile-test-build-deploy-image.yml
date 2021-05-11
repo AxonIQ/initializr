@@ -40,7 +40,7 @@ jobs:
 
       - name: Maven Build
         run: |
-          ./mvnw -B verify
+          ./mvnw -B -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 verify
 
       - name: Publish docker image to eu.gcr.io
         if: github.github.head_ref == null && success()
