@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       releaseTag:
-        description: 'Release TAG (axon-cloud-console-X.X.X)'
+        description: 'Release TAG (axoniq-initializr-X.X.X)'
         required: true
-        default: 'axon-cloud-console-X.X.X'
+        default: 'axoniq-initializr-X.X.X'
       releaseVersion:
         description: 'Release Version (version without SNAPSHOT)'
         required: true
