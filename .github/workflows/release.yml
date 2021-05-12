@@ -59,28 +59,28 @@ jobs:
                            release:prepare
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_TOKEN_ID }}
-          MAVEN_PASSWORD: ${{ secrets.SONATYPE_TOKEN_PASS }}
+          MAVEN_PASSWORD: ${{ secrets.PA_TOKEN_GITHUB }}
           GITHUB_TOKEN: ${{ secrets.PA_TOKEN_GITHUB }}
           RELEASE_TAG: ${{ github.event.inputs.releaseTag }}
           RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
           DEVELOPMENT_VERSION: ${{ github.event.inputs.developmentVersion }}
 
-      - name: Notify success to Slack
-        if: success()
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-        uses: voxmedia/github-action-slack-notify-build@v1.1.2
-        with:
-          channel_id: C01AT0C8LBV
-          status: SUCCESS
-          color: good
-
-      - name: Notify failure to Slack
-        if: failure()
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-        uses: voxmedia/github-action-slack-notify-build@v1.1.2
-        with:
-          channel_id: C01AT0C8LBV
-          status: FAILED
-          color: danger
+#      - name: Notify success to Slack
+#        if: success()
+#        env:
+#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+#        uses: voxmedia/github-action-slack-notify-build@v1.1.2
+#        with:
+#          channel_id: C01AT0C8LBV
+#          status: SUCCESS
+#          color: good
+#
+#      - name: Notify failure to Slack
+#        if: failure()
+#        env:
+#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+#        uses: voxmedia/github-action-slack-notify-build@v1.1.2
+#        with:
+#          channel_id: C01AT0C8LBV
+#          status: FAILED
+#          color: danger

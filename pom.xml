@@ -14,6 +14,13 @@
     <name>initializr</name>
     <description>Initializer project for Axon applications</description>
 
+    <scm>
+        <connection>scm:git:https://github.com/AxonIQ/initializr.git</connection>
+        <developerConnection>scm:git:https://github.com/AxonIQ/initializr.git</developerConnection>
+        <url>https://github.com/AxonIQ/initializr</url>
+        <tag>master</tag>
+    </scm>
+
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -87,11 +94,36 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>axoniq-nexus</id>
+            <url>https://nexus.dev.axoniq.net/repository/products-snapshots</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+        <repository>
+            <id>axoniq-nexus</id>
+            <url>https://nexus.dev.axoniq.net/repository/products-releases</url>
+            <uniqueVersion>true</uniqueVersion>
+        </repository>
+    </distributionManagement>
+
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <mavenExecutorId>forked-path</mavenExecutorId>
+                    <localCheckout>true</localCheckout>
+                    <goals>deploy</goals>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <arguments>-Dmaven.javadoc.skip=true -Dsource.skip=true</arguments>
+                </configuration>
             </plugin>
         </plugins>
     </build>
