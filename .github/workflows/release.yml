@@ -45,22 +45,23 @@ jobs:
       # helper for authentication
       - run: |-
           gcloud --quiet auth configure-docker
+
       - uses: actions/cache@v2.1.3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven
+
       - name: Maven release prepare
         run: |
-          ./mvnw --batch-mode \
-                        -Pdocker release:prepare \
-                        -Dhttp.keepAlive=false \
+          ./mvnw --batch-mode -Dhttp.keepAlive=false \
                         -Dmaven.wagon.http.pool=false \
                         -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
                         -Dtag=$RELEASE_TAG \
                         -DreleaseVersion=$RELEASE_VERSION \
-                        -DdevelopmentVersion=$DEVELOPMENT_VERSION
+                        -DdevelopmentVersion=$DEVELOPMENT_VERSION \
+                        release:prepare
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_TOKEN_ID }}
           MAVEN_PASSWORD: ${{ secrets.PA_TOKEN_GITHUB }}
