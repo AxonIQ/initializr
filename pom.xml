@@ -81,6 +81,12 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- Swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
         <!--Tests-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
