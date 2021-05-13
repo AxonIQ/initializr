@@ -113,27 +113,6 @@
         </repository>
     </distributionManagement>
 
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
-                <configuration>
-                    <mavenExecutorId>forked-path</mavenExecutorId>
-                    <localCheckout>true</localCheckout>
-                    <goals>deploy</goals>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <arguments>-Dmaven.javadoc.skip=true -Dsource.skip=true</arguments>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <profiles>
         <profile>
             <id>docker</id>
@@ -171,6 +150,21 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>2.5.3</version>
+                        <configuration>
+                            <mavenExecutorId>forked-path</mavenExecutorId>
+                            <localCheckout>true</localCheckout>
+                            <goals>deploy</goals>
+                            <autoVersionSubmodules>true</autoVersionSubmodules>
+                            <arguments>-Dmaven.javadoc.skip=true -Dsource.skip=true</arguments>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
