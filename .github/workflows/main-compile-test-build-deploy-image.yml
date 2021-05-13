@@ -45,7 +45,7 @@ jobs:
       - name: Publish docker image to eu.gcr.io
         if: github.github.head_ref == null && success()
         run: |
-          mvn -B -U -Pdocker package -DskipTests -Dimage.version=$SHA8
+          ./mvnw -B -U -Pdocker package -DskipTests -Dimage.version=$SHA8
         env:
           SHA8: ${{ steps.vars.outputs.sha_short }}
 

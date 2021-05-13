@@ -50,7 +50,7 @@ jobs:
           echo ::set-output name=version_from_pom::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
       - name: Publish docker image to eu.gcr.io
         run: |
-          mvn -B -U -Pdocker package -DskipTests -Dgcloud.project.name=axoniq-platform
+          ./mvnw -B -U -Pdocker package -DskipTests -Dgcloud.project.name=axoniq-platform
 
     outputs:
       image_version: ${{ steps.vars.outputs.version_from_pom }}

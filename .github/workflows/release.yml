@@ -18,7 +18,7 @@ on:
 
 jobs:
   setup-build-push:
-    name: Test, Build and push to Docker Registry
+    name: Test, Build, Tag and Release
     runs-on: ubuntu-latest
 
     steps:
@@ -53,15 +53,14 @@ jobs:
             ${{ runner.os }}-maven
       - name: Maven release prepare
         run: |
-          mvn --batch-mode \
+          ./mvnw --batch-mode \
+                        -Pdocker release:prepare \
                         -Dhttp.keepAlive=false \
                         -Dmaven.wagon.http.pool=false \
                         -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
                         -Dtag=$RELEASE_TAG \
                         -DreleaseVersion=$RELEASE_VERSION \
-                        -DdevelopmentVersion=$DEVELOPMENT_VERSION \
-                        -Pdocker \
-                        release:prepare
+                        -DdevelopmentVersion=$DEVELOPMENT_VERSION
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_TOKEN_ID }}
           MAVEN_PASSWORD: ${{ secrets.PA_TOKEN_GITHUB }}
