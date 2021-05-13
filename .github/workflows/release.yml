@@ -56,10 +56,11 @@ jobs:
           mvn --batch-mode \
                         -Dhttp.keepAlive=false \
                         -Dmaven.wagon.http.pool=false \
-                        -Dmaven.wagon.httpconnectionManager.ttlSeconds=120
+                        -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
                         -Dtag=$RELEASE_TAG \
                         -DreleaseVersion=$RELEASE_VERSION \
                         -DdevelopmentVersion=$DEVELOPMENT_VERSION \
+                        -Pdocker \
                         release:prepare
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_TOKEN_ID }}
