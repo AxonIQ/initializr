@@ -17,7 +17,7 @@
         <connection>scm:git:https://github.com/AxonIQ/initializr.git</connection>
         <developerConnection>scm:git:https://github.com/AxonIQ/initializr.git</developerConnection>
         <url>https://github.com/AxonIQ/initializr</url>
-        <tag>master</tag>
+        <tag>axoniq-initializr-0.0.1</tag>
     </scm>
 
     <properties>
