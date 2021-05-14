@@ -41,7 +41,7 @@ curl http://localhost:8080/starter.zip -d dependencies=axon-reactor-starter,web,
 
 maven-java project with kotlin:
 ```shell
-curl http://localhost:8080/starter.zip -d language=kotlin -d dependencies=axon-kotlin,web,data-jpa,h2 -o my-project-with-kotlin.zip
+curl http://localhost:8080/starter.zip -d language=kotlin -d dependencies=web,data-jpa,h2 -o my-project-with-kotlin.zip
 ```
 
 ## References and further reading
