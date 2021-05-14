@@ -25,22 +25,23 @@ You can run the following command to start your project locally:
 $ ./mvnw spring-boot:run
 ```
 
-Then, in a separate terminal, use cURL to access
-the [initializr help](https://docs.spring.io/initializr/docs/current/reference/html/#configuration-access):
+### CURL the generator
+
+In a separate terminal, use cURL to access the generator
 
 maven-java project:
 ```shell
-curl http://localhost:8080/starter.zip -d dependencies=axon-starter,axon-test,web,data-jpa,h2 -o my-project.zip
+curl http://localhost:8080/starter.zip -d dependencies=web,data-jpa,h2 -o my-project.zip
 ```
 
 maven-java project with reactor extension:
 ```shell
-curl http://localhost:8080/starter.zip -d dependencies=axon-starter,axon-reactor-starter,axon-test,web,data-jpa,h2 -o my-project-with-reactor.zip
+curl http://localhost:8080/starter.zip -d dependencies=axon-reactor-starter,web,data-jpa,h2 -o my-project-with-reactor.zip
 ```
 
-maven-java project with kotlin extension:
+maven-java project with kotlin:
 ```shell
-curl http://localhost:8080/starter.zip -d language=kotlin -d dependencies=axon-starter,axon-kotlin,axon-test,web,data-jpa,h2 -o my-project-with-kotlin.zip
+curl http://localhost:8080/starter.zip -d language=kotlin -d dependencies=web,data-jpa,h2 -o my-project-with-kotlin.zip
 ```
 
 ## References and further reading
