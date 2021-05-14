@@ -38,7 +38,7 @@ jobs:
         with:
           version: '297.0.1'
           service_account_key: ${{ secrets.GKE_SA_KEY }}
-          project_id: 'axoniq-devops'
+          project_id: 'axoniq-platform'
           export_default_credentials: true
 
       # Configure Docker to use the gcloud command-line tool as a credential
