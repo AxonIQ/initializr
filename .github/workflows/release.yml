@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       releaseTag:
-        description: 'Release TAG (axon-cloud-console-X.X.X)'
+        description: 'Release TAG (axoniq-initializr-X.X.X)'
         required: true
-        default: 'axon-cloud-console-X.X.X'
+        default: 'axoniq-initializr-X.X.X'
       releaseVersion:
         description: 'Release Version (version without SNAPSHOT)'
         required: true
@@ -18,7 +18,7 @@ on:
 
 jobs:
   setup-build-push:
-    name: Test, Build and push to Docker Registry
+    name: Test, Build, Tag and Release
     runs-on: ubuntu-latest
 
     steps:
@@ -45,42 +45,47 @@ jobs:
       # helper for authentication
       - run: |-
           gcloud --quiet auth configure-docker
+
       - uses: actions/cache@v2.1.3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven
+
       - name: Maven release prepare
         run: |
-          mvn --batch-mode -Dtag=$RELEASE_TAG \
-                           -DreleaseVersion=$RELEASE_VERSION \
-                           -DdevelopmentVersion=$DEVELOPMENT_VERSION \
-                           release:prepare
+          ./mvnw --batch-mode -Dhttp.keepAlive=false \
+                        -Dmaven.wagon.http.pool=false \
+                        -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
+                        -Dtag=$RELEASE_TAG \
+                        -DreleaseVersion=$RELEASE_VERSION \
+                        -DdevelopmentVersion=$DEVELOPMENT_VERSION \
+                        release:prepare
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_TOKEN_ID }}
-          MAVEN_PASSWORD: ${{ secrets.SONATYPE_TOKEN_PASS }}
+          MAVEN_PASSWORD: ${{ secrets.PA_TOKEN_GITHUB }}
           GITHUB_TOKEN: ${{ secrets.PA_TOKEN_GITHUB }}
           RELEASE_TAG: ${{ github.event.inputs.releaseTag }}
           RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
           DEVELOPMENT_VERSION: ${{ github.event.inputs.developmentVersion }}
 
-      - name: Notify success to Slack
-        if: success()
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-        uses: voxmedia/github-action-slack-notify-build@v1.1.2
-        with:
-          channel_id: C01AT0C8LBV
-          status: SUCCESS
-          color: good
-
-      - name: Notify failure to Slack
-        if: failure()
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-        uses: voxmedia/github-action-slack-notify-build@v1.1.2
-        with:
-          channel_id: C01AT0C8LBV
-          status: FAILED
-          color: danger
+#      - name: Notify success to Slack
+#        if: success()
+#        env:
+#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+#        uses: voxmedia/github-action-slack-notify-build@v1.1.2
+#        with:
+#          channel_id: C01AT0C8LBV
+#          status: SUCCESS
+#          color: good
+#
+#      - name: Notify failure to Slack
+#        if: failure()
+#        env:
+#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+#        uses: voxmedia/github-action-slack-notify-build@v1.1.2
+#        with:
+#          channel_id: C01AT0C8LBV
+#          status: FAILED
+#          color: danger

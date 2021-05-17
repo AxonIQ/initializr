@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.4.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.axoniq</groupId>
     <artifactId>initializr</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>initializr</name>
     <description>Initializer project for Axon applications</description>
+
+    <scm>
+        <connection>scm:git:https://github.com/AxonIQ/initializr.git</connection>
+        <developerConnection>scm:git:https://github.com/AxonIQ/initializr.git</developerConnection>
+        <url>https://github.com/AxonIQ/initializr</url>
+        <tag>axoniq-initializr-0.0.1</tag>
+    </scm>
 
     <properties>
         <java.version>11</java.version>
@@ -93,14 +99,18 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>axoniq-nexus</id>
+            <url>https://nexus.dev.axoniq.net/repository/products-snapshots</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+        <repository>
+            <id>axoniq-nexus</id>
+            <url>https://nexus.dev.axoniq.net/repository/products-releases</url>
+            <uniqueVersion>true</uniqueVersion>
+        </repository>
+    </distributionManagement>
 
     <profiles>
         <profile>
@@ -112,6 +122,17 @@
             </properties>
             <build>
                 <plugins>
+                    <plugin>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>2.5.3</version>
+                        <configuration>
+                            <mavenExecutorId>forked-path</mavenExecutorId>
+                            <localCheckout>true</localCheckout>
+                            <goals>deploy</goals>
+                            <autoVersionSubmodules>true</autoVersionSubmodules>
+                            <arguments>-Dmaven.javadoc.skip=true -Dsource.skip=true</arguments>
+                        </configuration>
+                    </plugin>
                     <!--Docker-->
                     <plugin>
                         <groupId>com.google.cloud.tools</groupId>
@@ -176,5 +197,13 @@
         </profile>
     </profiles>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
