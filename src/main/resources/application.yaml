@@ -205,6 +205,72 @@ initializr:
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/extensions/tracing
               description: The reference guide section on how to use Axon Tracing extension
+        - name: Axon AMQP Extension
+          id: axon-amqp-starter
+          groupId: org.axonframework.extensions.amqp
+          artifactId: axon-amqp-spring-boot-starter
+          bom: axon-bom
+          description: Provides integration with AMQP-based message brokers - Extension provides components that allow you to leverage an AMQP-based message broker as an Event Message distribution mechanism.
+          links:
+            - rel: github-repository
+              href: https://github.com/AxonFramework/extension-amqp
+              description: The open-source code repository on GitHub
+            - rel: docs
+              href: https://docs.axoniq.io/reference-guide/extensions/spring-amqp
+              description: The reference guide section on how to use Axon Spring AMQP extension
+        - name: Axon Kafka Extension
+          id: axon-kafka-starter
+          groupId: org.axonframework.extensions.kafka
+          artifactId: axon-kafka-spring-boot-starter
+          bom: axon-bom
+          description: Provides integration with Kafka - Extension provides components that allow you to leverage an Kafka message broker as an Event Message distribution mechanism. Kafka is a distributed message streaming platform.
+          links:
+            - rel: github-repository
+              href: https://github.com/AxonFramework/extension-kafka
+              description: The open-source code repository on GitHub
+            - rel: docs
+              href: https://docs.axoniq.io/reference-guide/extensions/kafka
+              description: The reference guide section on how to use Axon Kafka extension
+        - name: Axon JGroups Extension
+          id: axon-jgroups-starter
+          groupId: org.axonframework.extensions.jgroups
+          artifactId: axon-jgroups-spring-boot-starter
+          bom: axon-bom
+          description: Provides integration with JGroups - Extension provides components that allow you to leverage JGroups for command distribution.
+          links:
+            - rel: github-repository
+              href: https://github.com/AxonFramework/extension-jgroups
+              description: The open-source code repository on GitHub
+            - rel: docs
+              href: https://docs.axoniq.io/reference-guide/extensions/jgroups
+              description: The reference guide section on how to use Axon JGroups extension
+        - name: Axon Spring Cloud Extension
+          id: axon-springcloud-starter
+          groupId: org.axonframework.extensions.springcloud
+          artifactId: axon-springcloud-spring-boot-starter
+          bom: axon-bom
+          description: Provides integration with Spring Cloud - Extension provides components that allow you to leverage Spring Cloud for command distribution. Spring Cloud provides an API for common distributed system patterns.
+          links:
+            - rel: github-repository
+              href: https://github.com/AxonFramework/extension-springcloud
+              description: The open-source code repository on GitHub
+            - rel: docs
+              href: https://docs.axoniq.io/reference-guide/extensions/spring-cloud
+              description: The reference guide section on how to use Axon Spring Cloud extension
+        - name: Axon Mongo Extension
+          id: axon-mongo
+          groupId: org.axonframework.extensions.mongo
+          artifactId: axon-mongo
+          bom: axon-bom
+          description: Provides event and saga store implementations - MongoDB is a document based NoSQL database.
+          links:
+            - rel: github-repository
+              href: https://github.com/AxonFramework/extension-mongo
+              description: The open-source code repository on GitHub
+            - rel: docs
+              href: https://docs.axoniq.io/reference-guide/extensions/mongo
+              description: The reference guide section on how to use Axon Mongo extension
+
     # Web
     - name: Web
       content:
@@ -262,7 +328,49 @@ initializr:
           links:
             - rel: reference
               href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-spring-mvc-template-engines
-    # Security
+    # Messaging
+    - name: Messaging
+      content:
+        - name: Spring Integration
+          id: integration
+          description: Adds support for Enterprise Integration Patterns. Enables lightweight messaging and supports integration with external systems via declarative adapters.
+          links:
+            - rel: guide
+              href: https://spring.io/guides/gs/integration/
+              description: Integrating Data
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-integration
+        - name: Spring for RabbitMQ
+          id: amqp
+          description: Gives your applications a common platform to send and receive messages, and your messages a safe place to live until received.
+          links:
+            - rel: guide
+              href: https://spring.io/guides/gs/messaging-rabbitmq/
+              description: Messaging with RabbitMQ
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-amqp
+        - name: Spring for Apache Kafka
+          id: kafka
+          description: Publish, subscribe, store, and process streams of records.
+          facets:
+            - native
+          groupId: org.springframework.kafka
+          artifactId: spring-kafka
+          starter: false
+          links:
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-kafka
+        - name: Kafka Clients
+          id: kafka-clients
+          description: Publish, subscribe, store, and process streams of records.
+          groupId: org.apache.kafka
+          artifactId: kafka-clients
+          version: 2.8.0
+          starter: false
+          links:
+            - rel: reference
+              href: https://kafka.apache.org
+        # Security
     - name: Security
       content:
         - name: Spring Security
