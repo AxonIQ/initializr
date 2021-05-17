@@ -24,4 +24,15 @@ public class DependencyProjectGenerationConfiguration {
     public KotlinBuildCustomizer axonKotlinBuildCustomizer() {
         return new KotlinBuildCustomizer();
     }
+
+    @Bean
+    public AMQPBuildCustomizer axonAMQPBuildCustomizer() {
+        return new AMQPBuildCustomizer();
+    }
+
+    @Bean
+    public KafkaBuildCustomizer axonKafkaBuildCustomizer() {
+        return new KafkaBuildCustomizer();
+    }
+
 }
