@@ -37,7 +37,7 @@ jobs:
       - uses: google-github-actions/setup-gcloud@master
         with:
           version: '297.0.1'
-          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          service_account_key: ${{ secrets.GKE_DEVOPS_SA_KEY }}
           project_id: 'axoniq-devops'
           export_default_credentials: true
 
