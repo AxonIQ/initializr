@@ -37,8 +37,8 @@ jobs:
       - uses: google-github-actions/setup-gcloud@master
         with:
           version: '297.0.1'
-          service_account_key: ${{ secrets.GKE_SA_KEY }}
-          project_id: 'axoniq-platform'
+          service_account_key: ${{ secrets.GKE_DEVOPS_SA_KEY }}
+          project_id: 'axoniq-devops'
           export_default_credentials: true
 
       # Configure Docker to use the gcloud command-line tool as a credential
@@ -53,7 +53,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven
 
-      - name: Maven release prepare
+      - name: Maven Build and Test
+        run: |
+          ./mvnw -B -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 verify
+
+      - name: Maven release prepare no tests
         run: |
           ./mvnw --batch-mode -Dhttp.keepAlive=false \
                         -Dmaven.wagon.http.pool=false \
@@ -61,6 +65,7 @@ jobs:
                         -Dtag=$RELEASE_TAG \
                         -DreleaseVersion=$RELEASE_VERSION \
                         -DdevelopmentVersion=$DEVELOPMENT_VERSION \
+                        -DpreparationGoals=clean \
                         release:prepare
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_TOKEN_ID }}
@@ -69,23 +74,3 @@ jobs:
           RELEASE_TAG: ${{ github.event.inputs.releaseTag }}
           RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
           DEVELOPMENT_VERSION: ${{ github.event.inputs.developmentVersion }}
-
-#      - name: Notify success to Slack
-#        if: success()
-#        env:
-#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-#        uses: voxmedia/github-action-slack-notify-build@v1.1.2
-#        with:
-#          channel_id: C01AT0C8LBV
-#          status: SUCCESS
-#          color: good
-#
-#      - name: Notify failure to Slack
-#        if: failure()
-#        env:
-#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-#        uses: voxmedia/github-action-slack-notify-build@v1.1.2
-#        with:
-#          channel_id: C01AT0C8LBV
-#          status: FAILED
-#          color: danger
