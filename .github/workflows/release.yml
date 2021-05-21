@@ -20,8 +20,6 @@ jobs:
   setup-build-push:
     name: Test, Build, Tag and Release
     runs-on: ubuntu-latest
-    env:
-      MAVEN_OPTS: "-Dmaven.repo.local=${{ github.workspace }}/repository"
 
     steps:
       - name: Checkout code
@@ -55,7 +53,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven
 
-      - name: Maven release prepare
+      - name: Maven Build and Test
+        run: |
+          ./mvnw clean verify
+
+      - name: Maven release prepare no tests
         run: |
           ./mvnw --batch-mode -Dhttp.keepAlive=false \
                         -Dmaven.wagon.http.pool=false \
