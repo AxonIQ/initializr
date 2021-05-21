@@ -63,6 +63,7 @@ jobs:
                         -Dtag=$RELEASE_TAG \
                         -DreleaseVersion=$RELEASE_VERSION \
                         -DdevelopmentVersion=$DEVELOPMENT_VERSION \
+                        -DskipTests \
                         release:prepare
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_TOKEN_ID }}
