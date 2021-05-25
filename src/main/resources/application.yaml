@@ -17,13 +17,17 @@ logging:
     org.springframework.core.env: warn
     org.springframework.jndi: warn
 management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
   endpoint:
     metrics:
       enabled: true
   endpoints:
     web:
       exposure:
-        include: "info,health,metrics"
+        include: "info,health,metrics,prometheus"
 server:
   compression:
     enabled: true
