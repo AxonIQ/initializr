@@ -16,7 +16,6 @@ logging:
   level:
     org.springframework.core.env: warn
     org.springframework.jndi: warn
-
 management:
   endpoint:
     metrics:
@@ -24,7 +23,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "metrics"
+        include: "info,health,metrics"
 server:
   compression:
     enabled: true

@@ -48,6 +48,8 @@ public class ProjectGenerationMonitor {
             tags.add(Tag.of("client", document.getClient().getId()));
         if (document.getClient() != null && document.getClient().getCountry() != null)
             tags.add(Tag.of("clientCountry", document.getClient().getCountry()));
+        if (document.getClient() != null && document.getClient().getIp() != null)
+            tags.add(Tag.of("clientIP", document.getClient().getIp()));
         return tags;
     }
 
