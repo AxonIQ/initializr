@@ -1,30 +1,23 @@
 <script lang="ts">
-	export let name: string;
+import BaseButton from "./components/BaseButton/BaseButton.svelte";
+import Typography from "./components/Typography/Typography.svelte";
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<Typography size="s">Hello from typography</Typography>
+	<Typography size="m">Hello from typography</Typography>
+	<Typography size="l">Hello from typography</Typography>
+	<div style="display: flex; justify-content: center;">
+		<BaseButton text="Download" />
+		<BaseButton variant="secondary" text="Preview" />
+		<BaseButton variant="secondary" text="Share"/>
+	</div>
 </main>
 
-<style lang="scss">
+<style type="scss">
 	main {
 		text-align: center;
 		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
 	}
 </style>
