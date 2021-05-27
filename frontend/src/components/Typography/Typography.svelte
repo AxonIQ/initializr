@@ -12,7 +12,7 @@
         'typography',
         size ? `typography-size--${size}` : '',
         weight && `typography-weight--${weight}`,
-        italic && `typography-weight--${italic}`,
+        italic && `typography--italic`,
         uppercase && `typography--uppercase`,
         center && `typography--center`,
         inline && `typography--inline`,
