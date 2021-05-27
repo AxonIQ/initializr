@@ -11,7 +11,11 @@ spring:
     resources:
       cache:
         use-last-modified: false
-
+  security:
+    user:
+      name: ben
+      password: runchey
+      roles: ["METRICSADMIN"]
 logging:
   level:
     org.springframework.core.env: warn
