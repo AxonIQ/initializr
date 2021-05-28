@@ -17,6 +17,21 @@ logging:
     org.springframework.core.env: warn
     org.springframework.jndi: warn
 
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "info,health,metrics,prometheus"
+  server:
+    port: 8081
+
 server:
   compression:
     enabled: true
