@@ -1,6 +1,7 @@
 package io.axoniq.initializr.extension.dependency;
 
 import io.spring.initializr.generator.condition.ConditionalOnLanguage;
+import io.spring.initializr.generator.condition.ConditionalOnRequestedDependency;
 import io.spring.initializr.generator.language.kotlin.KotlinLanguage;
 import io.spring.initializr.generator.project.ProjectGenerationConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -43,6 +44,18 @@ public class DependencyProjectGenerationConfiguration {
     @Bean
     public ThymeleafBuildCustomizer axonThymeleafBuildCustomizer() {
         return new ThymeleafBuildCustomizer();
+    }
+
+    @Bean
+    @ConditionalOnRequestedDependency("flyway")
+    public FlywayProjectContributor flywayProjectContributor() {
+        return new FlywayProjectContributor();
+    }
+
+    @Bean
+    @ConditionalOnRequestedDependency("liquibase")
+    public LiquibaseProjectContributor liquibaseProjectContributor() {
+        return new LiquibaseProjectContributor();
     }
 
 }
