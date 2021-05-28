@@ -35,4 +35,9 @@ public class DependencyProjectGenerationConfiguration {
         return new KafkaBuildCustomizer();
     }
 
+    @Bean
+    public ObservabilityBuildCustomizer axonObservabilityBuildCustomizer() {
+        return new ObservabilityBuildCustomizer();
+    }
+
 }
