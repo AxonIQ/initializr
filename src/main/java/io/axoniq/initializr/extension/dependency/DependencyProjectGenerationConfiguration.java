@@ -40,4 +40,9 @@ public class DependencyProjectGenerationConfiguration {
         return new ObservabilityBuildCustomizer();
     }
 
+    @Bean
+    public ThymeleafBuildCustomizer axonThymeleafBuildCustomizer() {
+        return new ThymeleafBuildCustomizer();
+    }
+
 }
