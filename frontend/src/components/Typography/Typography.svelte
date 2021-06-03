@@ -77,7 +77,7 @@
             font-size: 24px;
         }
         &.typography-weight--bold {
-            font-weight: bold;
+            font-weight: 900;
         }
         &.typography-weight--light {
             font-weight: 300;
