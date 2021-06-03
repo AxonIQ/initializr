@@ -1,17 +1,22 @@
 <script lang="ts">
+import Header from "./components/Header/Header.svelte";
+
 import Button from "./components/Button/Button.svelte";
 import Radio from "./components/Radio/Radio.svelte";
 import Colors from "./components/Colors/Colors.svelte";
 import Typography from "./components/Typography/Typography.svelte";
 import Card from "./components/Card/Card.svelte";
 import IconButton from "./components/IconButton/IconButton.svelte";
+import Input from "./components/Input/Input.svelte";
 
 let group1 = "";
 let group2 = "Java";
 let group3 = "Snapshot";
 
+let textExample = 'Please change me'
 </script>
 
+<Header />
 <main>
 	<div class="app_row">
 		<Colors />
@@ -74,28 +79,59 @@ let group3 = "Snapshot";
 		</div>
 	</div>
 	<hr />
-	<div class="app_row" style="display: flex; flex-direction: row; justify-content: center;">
-		<div style="margin-right: 30px;">
-			<IconButton>
-				<span class="icon-wrapper">
-					<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M16.1446 1.375H11.9258L11.5743 0.742188C11.4336 0.460938 11.1524 0.25 10.836 0.25H6.79301C6.4766 0.25 6.19535 0.460938 6.05473 0.742188L5.73832 1.375H1.51957C1.20317 1.375 0.957073 1.65625 0.957073 1.9375V3.0625C0.957073 3.37891 1.20317 3.625 1.51957 3.625H16.1446C16.4258 3.625 16.7071 3.37891 16.7071 3.0625V1.9375C16.7071 1.65625 16.4258 1.375 16.1446 1.375ZM2.82035 16.668C2.85551 17.582 3.59379 18.25 4.50785 18.25H13.1211C14.0352 18.25 14.7735 17.582 14.8086 16.668L15.5821 4.75H2.08207L2.82035 16.668Z" fill="white"/>
+	<div class="app_row" style="display: flex; flex-direction: column; align-items: center;">
+		<div style="display: flex; margin-bottom: 20px;">
+			<div style="margin-right: 30px;">
+				<IconButton onClick={() => alert("You clicked the trash button!")}>
+					<span class="icon-wrapper">
+						<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M16.1446 1.375H11.9258L11.5743 0.742188C11.4336 0.460938 11.1524 0.25 10.836 0.25H6.79301C6.4766 0.25 6.19535 0.460938 6.05473 0.742188L5.73832 1.375H1.51957C1.20317 1.375 0.957073 1.65625 0.957073 1.9375V3.0625C0.957073 3.37891 1.20317 3.625 1.51957 3.625H16.1446C16.4258 3.625 16.7071 3.37891 16.7071 3.0625V1.9375C16.7071 1.65625 16.4258 1.375 16.1446 1.375ZM2.82035 16.668C2.85551 17.582 3.59379 18.25 4.50785 18.25H13.1211C14.0352 18.25 14.7735 17.582 14.8086 16.668L15.5821 4.75H2.08207L2.82035 16.668Z" fill="white"/>
+						</svg>
+					</span>
+				</IconButton>
+			</div>
+			<div>
+				<IconButton disabled onClick={() => alert("You clicked the trash button!")}>
+					<span class="icon-wrapper">
+						<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M16.1446 1.375H11.9258L11.5743 0.742188C11.4336 0.460938 11.1524 0.25 10.836 0.25H6.79301C6.4766 0.25 6.19535 0.460938 6.05473 0.742188L5.73832 1.375H1.51957C1.20317 1.375 0.957073 1.65625 0.957073 1.9375V3.0625C0.957073 3.37891 1.20317 3.625 1.51957 3.625H16.1446C16.4258 3.625 16.7071 3.37891 16.7071 3.0625V1.9375C16.7071 1.65625 16.4258 1.375 16.1446 1.375ZM2.82035 16.668C2.85551 17.582 3.59379 18.25 4.50785 18.25H13.1211C14.0352 18.25 14.7735 17.582 14.8086 16.668L15.5821 4.75H2.08207L2.82035 16.668Z" fill="white"/>
+						</svg>
+					</span>
+				</IconButton>
+			</div>
+		</div>
+		<div style="display: flex; margin-bottom: 20px;">
+			<div style="margin-right: 30px;">
+				<IconButton color="peacock" onClick={() => alert("You clicked the plus button!")}>
+					<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M14.7619 6.5625H9.69942V1.5C9.69942 0.902344 9.17208 0.375 8.57442 0.375H7.44942C6.81661 0.375 6.32442 0.902344 6.32442 1.5V6.5625H1.26192C0.62911 6.5625 0.136923 7.08984 0.136923 7.6875V8.8125C0.136923 9.44531 0.62911 9.9375 1.26192 9.9375H6.32442V15C6.32442 15.6328 6.81661 16.125 7.44942 16.125H8.57442C9.17208 16.125 9.69942 15.6328 9.69942 15V9.9375H14.7619C15.3596 9.9375 15.8869 9.44531 15.8869 8.8125V7.6875C15.8869 7.08984 15.3596 6.5625 14.7619 6.5625Z" fill="white"/>
 					</svg>
-				</span>
-			</IconButton>
+				</IconButton>
+			</div>
+			<div>
+				<IconButton disabled color="peacock" onClick={() => alert("You clicked the plus button!")}>
+					<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M14.7619 6.5625H9.69942V1.5C9.69942 0.902344 9.17208 0.375 8.57442 0.375H7.44942C6.81661 0.375 6.32442 0.902344 6.32442 1.5V6.5625H1.26192C0.62911 6.5625 0.136923 7.08984 0.136923 7.6875V8.8125C0.136923 9.44531 0.62911 9.9375 1.26192 9.9375H6.32442V15C6.32442 15.6328 6.81661 16.125 7.44942 16.125H8.57442C9.17208 16.125 9.69942 15.6328 9.69942 15V9.9375H14.7619C15.3596 9.9375 15.8869 9.44531 15.8869 8.8125V7.6875C15.8869 7.08984 15.3596 6.5625 14.7619 6.5625Z" fill="white"/>
+					</svg>
+				</IconButton>
+			</div>
 		</div>
-		<div style="margin-right: 30px;">
-			<IconButton color="peacock">
-				<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M14.7619 6.5625H9.69942V1.5C9.69942 0.902344 9.17208 0.375 8.57442 0.375H7.44942C6.81661 0.375 6.32442 0.902344 6.32442 1.5V6.5625H1.26192C0.62911 6.5625 0.136923 7.08984 0.136923 7.6875V8.8125C0.136923 9.44531 0.62911 9.9375 1.26192 9.9375H6.32442V15C6.32442 15.6328 6.81661 16.125 7.44942 16.125H8.57442C9.17208 16.125 9.69942 15.6328 9.69942 15V9.9375H14.7619C15.3596 9.9375 15.8869 9.44531 15.8869 8.8125V7.6875C15.8869 7.08984 15.3596 6.5625 14.7619 6.5625Z" fill="white"/>
-				</svg>
- 			</IconButton>
+		<div style="display: flex">
+			<div style="margin-right: 30px;">
+				<IconButton color="seal" onClick={() => alert("You clicked the grey trash button!")}>
+					<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M16.1446 1.375H11.9258L11.5743 0.742188C11.4336 0.460938 11.1524 0.25 10.836 0.25H6.79301C6.4766 0.25 6.19535 0.460938 6.05473 0.742188L5.73832 1.375H1.51957C1.20317 1.375 0.957073 1.65625 0.957073 1.9375V3.0625C0.957073 3.37891 1.20317 3.625 1.51957 3.625H16.1446C16.4258 3.625 16.7071 3.37891 16.7071 3.0625V1.9375C16.7071 1.65625 16.4258 1.375 16.1446 1.375ZM2.82035 16.668C2.85551 17.582 3.59379 18.25 4.50785 18.25H13.1211C14.0352 18.25 14.7735 17.582 14.8086 16.668L15.5821 4.75H2.08207L2.82035 16.668Z" fill="#434A56"/>
+					</svg>
+				</IconButton>
+			</div>
+			<div>
+				<IconButton color="seal" disabled onClick={() => alert("You clicked the grey trash button!")}>
+					<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M16.1446 1.375H11.9258L11.5743 0.742188C11.4336 0.460938 11.1524 0.25 10.836 0.25H6.79301C6.4766 0.25 6.19535 0.460938 6.05473 0.742188L5.73832 1.375H1.51957C1.20317 1.375 0.957073 1.65625 0.957073 1.9375V3.0625C0.957073 3.37891 1.20317 3.625 1.51957 3.625H16.1446C16.4258 3.625 16.7071 3.37891 16.7071 3.0625V1.9375C16.7071 1.65625 16.4258 1.375 16.1446 1.375ZM2.82035 16.668C2.85551 17.582 3.59379 18.25 4.50785 18.25H13.1211C14.0352 18.25 14.7735 17.582 14.8086 16.668L15.5821 4.75H2.08207L2.82035 16.668Z" fill="#434A56"/>
+					</svg>
+				</IconButton>
+			</div>
 		</div>
-		<IconButton color="seal">
-			<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M16.1446 1.375H11.9258L11.5743 0.742188C11.4336 0.460938 11.1524 0.25 10.836 0.25H6.79301C6.4766 0.25 6.19535 0.460938 6.05473 0.742188L5.73832 1.375H1.51957C1.20317 1.375 0.957073 1.65625 0.957073 1.9375V3.0625C0.957073 3.37891 1.20317 3.625 1.51957 3.625H16.1446C16.4258 3.625 16.7071 3.37891 16.7071 3.0625V1.9375C16.7071 1.65625 16.4258 1.375 16.1446 1.375ZM2.82035 16.668C2.85551 17.582 3.59379 18.25 4.50785 18.25H13.1211C14.0352 18.25 14.7735 17.582 14.8086 16.668L15.5821 4.75H2.08207L2.82035 16.668Z" fill="#434A56"/>
-			</svg>				
-		</IconButton>
 	</div>
 	<hr />
 	<div class="app_row" style="display: flex; flex-direction: column; align-items: center;">
@@ -110,13 +146,28 @@ let group3 = "Snapshot";
 			</Card>
 		</div>
 	</div>
+	<hr />
+	<div class="app_row" style="display: flex; flex-direction: column; align-items: center;">
+		<div style="width: 300px; margin-bottom: 10px;">
+			<Input placeholder="Placeholder example"/>
+		</div>
+		<div style="width: 300px; margin-bottom: 10px;">
+			<Input disabled placeholder="Disabled example"/>
+		</div>
+		<div style="width: 300px; margin-bottom: 10px;">
+			<Input placeholder="com.example" bind:value={textExample}/>
+		</div>
+		<Typography size="l" weight="bold">{textExample}</Typography>
+	</div>
 </main>
-
+<div class="footer">Hello from footer</div>
 <style type="scss">
 	main {
-		padding: 1em;
-		margin: 0 auto;
+		display: grid;
+		// align-items: center;
+		grid-template-rows: repeat(3, 1fr);
 	}
+	
 	.app_row {
 		margin-bottom: 20px;
 		margin-top: 20px;
@@ -124,10 +175,4 @@ let group3 = "Snapshot";
 	.app__button-wrapper {
 		margin-right: 20px;
 	}
-	// .trash-icon {
-	// 	background-image: url(/assets/trash.svg);
-	// 	background-repeat: no-repeat;
-	// 	width: 24px;
-	// 	height: 24px;
-	// }
 </style>
