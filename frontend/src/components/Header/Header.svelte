@@ -2,7 +2,6 @@
 import GradientDivider from "../GradientDivider/GradientDivider.svelte";
 
 </script>
-<div class="header__wrapper">
     <div class="header">
         <div class="header__content">
             <img src="/assets/header-logo.png" alt="Logo" />
@@ -10,16 +9,14 @@ import GradientDivider from "../GradientDivider/GradientDivider.svelte";
         </div>
     </div>
     <GradientDivider />
-</div>
 <style lang="scss">
     @use "../Colors/colors.scss";
 
-    .header__wrapper {
-        background-color: colors.$dove;
-    }
     .header {
+        background-color: colors.$dove;
         display: flex;
         justify-content: center;
+        padding-bottom: 10px;
     }
     .header__content {
         display: flex;
