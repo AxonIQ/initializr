@@ -19,10 +19,10 @@
         @use "../Colors/colors.scss";
     
         .footer {
-            padding-top: 10px;
             background-color: colors.$dove;
             display: flex;
             justify-content: center;
+            padding-top: 10px;
             height: 100px;
         }
         .footer__content {
