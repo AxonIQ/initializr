@@ -15,8 +15,6 @@ import GradientDivider from "../GradientDivider/GradientDivider.svelte";
     @use "../Colors/colors.scss";
 
     .header__wrapper {
-        position: sticky;
-        top: 0;
         background-color: colors.$dove;
     }
     .header {
