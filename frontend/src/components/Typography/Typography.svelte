@@ -1,7 +1,8 @@
 <script lang="ts">
     export let tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div" | "span" | "p" = 'div';
-    export let size: 's' | 'm' | 'l' = 'm';
+    export let size: 's' | 'm' | 'l' | 'xl' = 'm';
     export let weight: null | 'lighter' | 'light' | 'bold' = null;
+    export let color: 'rhino' | 'dove' = 'rhino';
     export let italic = false;
     export let uppercase = false;
     export let center = false;
@@ -10,6 +11,7 @@
 
     $: classesToUse = [
         'typography',
+        `typography--${color}`,
         size ? `typography-size--${size}` : '',
         weight && `typography-weight--${weight}`,
         italic && `typography--italic`,
@@ -49,8 +51,16 @@
     </h3>
 {/if}
 <style lang="scss">
+    @use "../Colors/colors.scss";
+
     .typography {
         font-family: 'Lato', sans-serif;
+        &.typography--rhino {
+            color: colors.$rhino
+        }
+        &.typography--dove {
+            color: colors.$dove
+        }
         &.typography--margin {
             margin-bottom: 10px;
         }
@@ -61,6 +71,9 @@
             font-size: 16px;
         }
         &.typography-size--l {
+            font-size: 18px;
+        }
+        &.typography-size--xl {
             font-size: 24px;
         }
         &.typography-weight--bold {

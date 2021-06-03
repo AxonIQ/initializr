@@ -4,11 +4,12 @@ import Typography from "../Typography/Typography.svelte";
     export let disabled = false;
     export let variant: "primary" | "secondary" = "primary";
     export let text: string;
+    export let onClick: () => void = () => {};
 
     $: classesToUse = [
-        'base-button',
-        `base-button--${variant}`,
-        disabled && 'base-button--disabled',
+        'button',
+        `button--${variant}`,
+        disabled && 'button--disabled',
     ]
     .filter(value => value)
     .join(' ');
@@ -16,15 +17,17 @@ import Typography from "../Typography/Typography.svelte";
 
 <button
     class={classesToUse}
-    disabled={disabled}>
+    disabled={disabled}
+    on:click={() => onClick()}>
     {#if text}
         <Typography
             center
             removeMargin
+            color={variant === 'primary' ? 'dove' : 'rhino'}
             size="m"
             weight="bold">
             {#if disabled}
-                <span class="base-button__text--disabled">{text}</span>
+                <span class="button__text--disabled">{text}</span>
             {:else}
                 {text}
             {/if}
@@ -33,10 +36,11 @@ import Typography from "../Typography/Typography.svelte";
         <slot />    
     {/if}
 </button>
+
 <style lang="scss">
     @use "../Colors/colors.scss";
 
-    .base-button {
+    .button {
         height: 36px;
         min-width: 130px;
         border-radius: 50px;
@@ -45,52 +49,54 @@ import Typography from "../Typography/Typography.svelte";
         filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.15));
         &:hover {
             cursor: pointer;
+            opacity: 0.75;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
         }
         &:active {
             background-color: inherit;
             color: inherit;
+            opacity: 0.5;
+            filter: drop-shadow(0px 5px 3px rgba(0, 0, 0, 0.1));
+        }
+        &:focus {
+            box-shadow: 0 0 0 2px #fff, 0 0 4px 3px colors.$rhino;
+            outline: 0;
         }
     }
 
-    .base-button--primary {
+    .button--primary {
         background-color: colors.$peacock;
         color: colors.$dove;
         &:hover {
             background-color: colors.$peacock;
             color: colors.$dove;
-            opacity: 0.75;
-            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
         }
         &:active {
             background-color: colors.$peacock;
             color: colors.$dove;
-            opacity: 0.5;
-            filter: drop-shadow(0px 5px 3px rgba(0, 0, 0, 0.1));
+            
         }
     }
-    .base-button--secondary {
+    .button--secondary {
         background-color: colors.$dove;
         color: colors.$rhino;
-        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.15));
         &:hover {
             background-color: colors.$dove;
             color: colors.$rhino;
-            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
         }
         &:active {
             background-color: colors.$dove;
             color: colors.$rhino;
-            filter: drop-shadow(0px 5px 3px rgba(0, 0, 0, 0.1));
         }
     }
-    .base-button--disabled {
+    .button--disabled {
         opacity: 0.5;
         pointer-events: none;
         &:hover {
             cursor: default
         }
     }
-    .base-button__text--disabled {
+    .button__text--disabled {
         opacity: 0.5
     }
 </style>
