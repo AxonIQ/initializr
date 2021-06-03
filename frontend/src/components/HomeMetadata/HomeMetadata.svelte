@@ -4,7 +4,7 @@
     import Input from "../Input/Input.svelte";
 </script>
 
-<div>
+<div class="home-metadata">
     <div class="home-metadata__heading">
         <Typography size="xl" weight="bold">Application metadata</Typography>
     </div>
@@ -30,6 +30,9 @@
 </div>
 
 <style lang="scss">
+    .home-metadata {
+        margin-bottom: 32px;
+    }
     .home-metadata__heading {
         margin-bottom: 20px;
     }

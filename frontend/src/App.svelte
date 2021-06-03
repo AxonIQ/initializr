@@ -3,6 +3,7 @@ import Header from "./components/Header/Header.svelte";
 import Footer from "./components/Footer/Footer.svelte";
 import Typography from "./components/Typography/Typography.svelte";
 import HomeMetadata from "./components/HomeMetadata/HomeMetadata.svelte";
+import HomeSettings from "./components/HomeSettings/HomeSettings.svelte";
 </script>
 <div class="app">
 	<header>
@@ -12,7 +13,10 @@ import HomeMetadata from "./components/HomeMetadata/HomeMetadata.svelte";
 	</header>
 	<main>
 		<section class="app__content">
-			<HomeMetadata />
+			<div>
+				<HomeMetadata />
+				<HomeSettings />
+			</div>
 			<div>
 				<Typography size="xl" weight="bold">Dependencies</Typography>
 			</div>
@@ -62,13 +66,13 @@ import HomeMetadata from "./components/HomeMetadata/HomeMetadata.svelte";
 			display: grid;
 			grid-template-rows: 1fr;
 			grid-template-columns: auto 1fr;
-			// grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 			grid-gap: 32px;
 		}
 		.app__header {
 			grid-area: 1 / 1 / 1 / 4;
 		}
 		.app__content-footer {
+			margin-top: 26px;
 			grid-area: 2 / 1 / 2 / 4;
 		}
 
