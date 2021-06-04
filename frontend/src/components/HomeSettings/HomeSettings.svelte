@@ -18,27 +18,45 @@
             
             <Typography removeMargin size="s">Project</Typography>
             <div>
-                <Radio value="Maven" label="Maven" bind:group={projectType} name="projectType" />
-				<Radio value="Gradle" label="Gradle" bind:group={projectType} name="projectType" />
+                <div class="home-settings__radio-wrapper">
+                    <Radio value="Maven" label="Maven" bind:group={projectType} name="projectType" />
+                </div>
+                <div>
+				    <Radio value="Gradle" label="Gradle" bind:group={projectType} name="projectType" />
+                </div>
             </div>
 
             <Typography removeMargin size="s">Language</Typography>
             <div>
-                <Radio value="Java" label="Java" bind:group={projectLanguage} name="projectLanguage"/>
-				<Radio value="Java & Kotlin" label="Java & Kotlin" bind:group={projectLanguage} name="projectLanguage"/>
+                <div class="home-settings__radio-wrapper">
+                    <Radio value="Java" label="Java" bind:group={projectLanguage} name="projectLanguage"/>
+                </div>
+                <div>
+                    <Radio value="Java & Kotlin" label="Java & Kotlin" bind:group={projectLanguage} name="projectLanguage"/>
+                </div>
             </div>
 
             <Typography removeMargin size="s">Axon</Typography>
             <div>
-                <Radio value="Latest" label="Latest" bind:group={projectAxonVersion} name="projectAxonVersion"/>
-				<Radio value="Snapshot" label="Snapshot" bind:group={projectAxonVersion} name="projectAxonVersion"/>
+                <div class="home-settings__radio-wrapper">
+                    <Radio value="Latest" label="Latest" bind:group={projectAxonVersion} name="projectAxonVersion"/>
+                </div>
+                <div>
+                    <Radio value="Snapshot" label="Snapshot" bind:group={projectAxonVersion} name="projectAxonVersion"/>
+                </div>
             </div>
 
             <Typography removeMargin size="s">Java</Typography>
             <div>
-                <Radio value="16" label="16" bind:group={projectJavaVersion} name="projectJavaVersion"/>
-				<Radio value="11" label="11" bind:group={projectJavaVersion} name="projectJavaVersion"/>
-				<Radio value="8" label="8" bind:group={projectJavaVersion} name="projectJavaVersion"/>
+                <div class="home-settings__radio-wrapper">
+                    <Radio value="16" label="16" bind:group={projectJavaVersion} name="projectJavaVersion"/>
+                </div>
+                <div class="home-settings__radio-wrapper">
+                    <Radio value="11" label="11" bind:group={projectJavaVersion} name="projectJavaVersion"/>
+                </div>
+                <div>
+                    <Radio value="8" label="8" bind:group={projectJavaVersion} name="projectJavaVersion"/>
+                </div>
             </div>
         </div>
     </Card>
@@ -55,5 +73,8 @@
         row-gap: 30px;
 
         justify-content: center;
+    }
+    .home-settings__radio-wrapper {
+        margin-bottom: 10px;
     }
 </style>
