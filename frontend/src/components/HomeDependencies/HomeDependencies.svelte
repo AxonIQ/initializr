@@ -6,7 +6,7 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
 </script>
 <div>
     <div class="home-dependencies__heading">
-        <Typography size="xl" weight="bold">Dependencies</Typography>
+        <Typography size="xl" weight="bold" removeMargin>Dependencies</Typography>
         <IconButtonPlus onClick={() => alert('Add dependencies')}/>
     </div>
     <div class="home-dependencies__item-wrapper">
@@ -73,7 +73,7 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
 
 <style lang="scss">
     .home-dependencies__heading {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;

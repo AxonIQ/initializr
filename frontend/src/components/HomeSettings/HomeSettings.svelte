@@ -11,7 +11,7 @@
 
 <div>
     <div class="home-settings__heading">
-        <Typography size="xl" weight="bold">Settings</Typography>
+        <Typography size="xl" weight="bold" removeMargin>Settings</Typography>
     </div>
     <Card>
         <div class="home-settings__items">
@@ -64,7 +64,10 @@
 
 <style lang="scss">
     .home-settings__heading {
-        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        height: 48px;
+        margin-bottom: 10px;
     }
     .home-settings__items {
         display: grid;

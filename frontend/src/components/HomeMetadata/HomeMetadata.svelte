@@ -6,7 +6,7 @@
 
 <div class="home-metadata">
     <div class="home-metadata__heading">
-        <Typography size="xl" weight="bold">Application metadata</Typography>
+        <Typography size="xl" weight="bold" removeMargin>Application metadata</Typography>
     </div>
     <Card>
         <div class="home-metadata__items">
@@ -30,11 +30,14 @@
 </div>
 
 <style lang="scss">
+    .home-metadata__heading {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        margin-bottom: 10px;
+    }
     .home-metadata {
         margin-bottom: 32px;
-    }
-    .home-metadata__heading {
-        margin-bottom: 20px;
     }
     .home-metadata__items {
         display: grid;

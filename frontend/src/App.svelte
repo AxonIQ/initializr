@@ -61,6 +61,7 @@ import HomeDependencies from "./components/HomeDependencies/HomeDependencies.sve
 		
 		.app__content {
 			margin-top: 26px;
+			margin-bottom: 26px;
 			grid-area: 1 / 2 / 1 / 3;
 			
 			display: grid;
@@ -72,7 +73,6 @@ import HomeDependencies from "./components/HomeDependencies/HomeDependencies.sve
 			grid-area: 1 / 1 / 1 / 4;
 		}
 		.app__content-footer {
-			margin-top: 26px;
 			grid-area: 2 / 1 / 2 / 4;
 		}
 
