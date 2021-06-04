@@ -74,6 +74,8 @@ import HomeDependencies from "./components/HomeDependencies/HomeDependencies.sve
 			grid-template-rows: 1fr;
 			grid-template-columns: auto 1fr;
 			grid-gap: 32px;
+			padding-left: 10px;
+			padding-right: 10px;
 		}
 		.app__header {
 			grid-area: 1 / 1 / 1 / 4;

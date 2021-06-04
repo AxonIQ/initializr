@@ -26,7 +26,7 @@ import Toggle from "../Toggle/Toggle.svelte";
         background-color: colors.$dove;
         display: flex;
         justify-content: center;
-        padding-bottom: 10px;
+        padding: 10px;
     }
     .header__content {
         display: flex;

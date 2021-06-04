@@ -12,7 +12,7 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
     <div class="home-dependencies__item-wrapper">
         <Card>
             <div class="home-dependencies__item">
-                <div>
+                <div class="home-dependencies__item-text">
                     <Typography weight="bold">Title</Typography>
                     <Typography size="s">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
@@ -27,7 +27,7 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
     <div class="home-dependencies__item-wrapper">
         <Card>
             <div class="home-dependencies__item">
-                <div>
+                <div class="home-dependencies__item-text">
                     <Typography weight="bold">Title</Typography>
                     <Typography size="s">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
@@ -42,7 +42,7 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
     <div class="home-dependencies__item-wrapper">
         <Card>
             <div class="home-dependencies__item">
-                <div>
+                <div class="home-dependencies__item-text">
                     <Typography weight="bold">Title</Typography>
                     <Typography size="s">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
@@ -57,7 +57,7 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
     <div class="home-dependencies__item-wrapper">
         <Card>
             <div class="home-dependencies__item">
-                <div>
+                <div class="home-dependencies__item-text">
                     <Typography weight="bold">Title</Typography>
                     <Typography size="s">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
@@ -85,5 +85,8 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+    .home-dependencies__item-text {
+        margin-right: 10px;
     }
 </style>

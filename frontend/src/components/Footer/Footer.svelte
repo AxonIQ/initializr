@@ -24,6 +24,7 @@
             justify-content: center;
             padding-top: 10px;
             height: 100px;
+            padding: 10px;
         }
         .footer__content {
             display: flex;
