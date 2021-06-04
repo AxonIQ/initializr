@@ -40,7 +40,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-auto-flow: row;
-        row-gap: 30px;
+        row-gap: 24px;
 
         align-items: center;
         justify-content: center;
