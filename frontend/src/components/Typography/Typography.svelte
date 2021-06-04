@@ -55,6 +55,8 @@
 
     .typography {
         font-family: 'Lato', sans-serif;
+        line-height: 24px;
+        word-wrap: break-word;
         &.typography--rhino {
             color: colors.$rhino
         }

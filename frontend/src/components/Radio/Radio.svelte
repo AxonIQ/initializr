@@ -35,6 +35,7 @@ import Typography from "../Typography/Typography.svelte";
         display: grid;
         grid-template-columns: min-content auto;
         grid-gap: 10px;
+        align-items: baseline;
     }
     .radio__input {
         display: flex;
@@ -69,6 +70,5 @@ import Typography from "../Typography/Typography.svelte";
     }
     .radio__label {
         line-height: 1;
-        margin-bottom: 20px;
     }
 </style>
