@@ -1,9 +1,9 @@
 <script lang="ts">
 import Header from "./components/Header/Header.svelte";
 import Footer from "./components/Footer/Footer.svelte";
-import Typography from "./components/Typography/Typography.svelte";
 import HomeMetadata from "./components/HomeMetadata/HomeMetadata.svelte";
 import HomeSettings from "./components/HomeSettings/HomeSettings.svelte";
+import HomeDependencies from "./components/HomeDependencies/HomeDependencies.svelte";
 </script>
 <div class="app">
 	<header>
@@ -18,7 +18,7 @@ import HomeSettings from "./components/HomeSettings/HomeSettings.svelte";
 				<HomeSettings />
 			</div>
 			<div>
-				<Typography size="xl" weight="bold">Dependencies</Typography>
+				<HomeDependencies />
 			</div>
 		</section>
 		<div class="app__content-footer">
