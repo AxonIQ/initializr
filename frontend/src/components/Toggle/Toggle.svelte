@@ -1,7 +1,11 @@
+<script lang="ts">
+    export let value = false;
+</script>
+
 <div class="toggle__wrapper">
     <slot name="off-label"></slot>
     <label class="toggle">
-        <input class="toggle__input" type="checkbox">
+        <input class="toggle__input" type="checkbox" bind:checked={value}>
         <span class="toggle__slider toggle__slider--round"></span>
     </label>
     <slot name="on-label"></slot>
@@ -42,7 +46,7 @@
     .toggle__slider {
         cursor: pointer;
         display: flex;
-        padding-left: 1px;
+        padding-left: 2px;
         align-items: center;
         transition: transform .4s;
 
@@ -56,7 +60,7 @@
             width: 12px;
             height: 12px;
             box-shadow: inset 10px 10px colors.$rhino;
-            border-radius: 8px;
+            border-radius: 50%;
             transition: 180ms transform ease-in-out;
         }
     }
