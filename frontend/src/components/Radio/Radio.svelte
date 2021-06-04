@@ -55,7 +55,7 @@ import Typography from "../Typography/Typography.svelte";
             &:checked + .radio__control::before {
                 transform: scale(1);
             }
-            &:focus + .radio__control {
+            &:focus-visible + .radio__control {
                 box-shadow: 0 0 0 2px #fff, 0 0 4px 3px colors.$rhino;
             }
         }

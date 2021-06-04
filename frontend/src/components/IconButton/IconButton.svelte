@@ -43,7 +43,7 @@
             filter: drop-shadow(0px 5px 3px rgba(0, 0, 0, 0.1));
             opacity: 0.5;
         }
-        &:focus {
+        &:focus-visible {
             box-shadow: 0 0 0 2px #fff, 0 0 4px 3px colors.$rhino;
             outline: 0;
         }
