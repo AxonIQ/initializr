@@ -32,9 +32,15 @@ import HomeDependencies from "./components/HomeDependencies/HomeDependencies.sve
 	</footer>
 </div>
 <style type="scss">
+	@use "./components/Colors/colors.scss";
+
 	// Heavily relied on https://css-tricks.com/how-to-use-css-grid-for-sticky-headers-and-footers/ for building the grid
 	.app {
 		height: 100vh;
+		background-image: url(/assets/grid-bg.svg);
+		background-repeat: no-repeat;
+		background-color: colors.$seal;
+		background-position: 1300px 85px;
 
 		display: grid;
 		grid-template-columns: 1fr;
