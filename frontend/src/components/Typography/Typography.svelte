@@ -7,7 +7,6 @@
     export let uppercase = false;
     export let center = false;
     export let inline = false;
-    export let removeMargin = false;
 
     $: classesToUse = [
         'typography',
@@ -18,7 +17,6 @@
         uppercase && `typography--uppercase`,
         center && `typography--center`,
         inline && `typography--inline`,
-        !removeMargin && "typography--margin"
     ]
     // Filters out all the 'false' values.
     .filter(value => value)
@@ -62,9 +60,6 @@
         }
         &.typography--dove {
             color: colors.$dove
-        }
-        &.typography--margin {
-            margin-bottom: 10px;
         }
         &.typography-size--s {
             font-size: 14px;

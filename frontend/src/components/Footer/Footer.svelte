@@ -11,7 +11,7 @@
                     <img src="/assets/logo-axoniq.png" alt="Logo" />
                 </div>
                 <div class="footer__banner">
-                    <Typography size="l" weight="bold" removeMargin>Banner here</Typography>
+                    <Typography size="l" weight="bold">Banner here</Typography>
                 </div>
             </div>
         </div>

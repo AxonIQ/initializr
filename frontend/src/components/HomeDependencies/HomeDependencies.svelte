@@ -6,7 +6,7 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
 </script>
 <div>
     <div class="home-dependencies__heading">
-        <Typography size="xl" weight="bold" removeMargin>Dependencies</Typography>
+        <Typography size="xl" weight="bold">Dependencies</Typography>
         <IconButtonPlus onClick={() => alert('Add dependencies')}/>
     </div>
     <div class="home-dependencies__item-wrapper">

@@ -22,7 +22,6 @@ import Typography from "../Typography/Typography.svelte";
     {#if text}
         <Typography
             center
-            removeMargin
             color={variant === 'primary' ? 'dove' : 'rhino'}
             size="m"
             weight="bold">

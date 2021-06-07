@@ -6,24 +6,24 @@
 
 <div class="home-metadata">
     <div class="home-metadata__heading">
-        <Typography size="xl" weight="bold" removeMargin>Application metadata</Typography>
+        <Typography size="xl" weight="bold">Application metadata</Typography>
     </div>
     <Card>
         <div class="home-metadata__items">
             
-            <Typography removeMargin size="s">GroupID</Typography>
+            <Typography size="s">GroupID</Typography>
             <Input placeholder="com.example" />
             
-            <Typography removeMargin size="s">ArtifactID</Typography>
+            <Typography size="s">ArtifactID</Typography>
             <Input placeholder="Axon Demo" />
             
-            <Typography removeMargin size="s">Name</Typography>
+            <Typography size="s">Name</Typography>
             <Input placeholder="Axon Demo" />
             
-            <Typography removeMargin size="s">Description</Typography>
+            <Typography size="s">Description</Typography>
             <Input placeholder="Demo project for Axon" />
             
-            <Typography removeMargin size="s">Package</Typography>
+            <Typography size="s">Package</Typography>
             <Input placeholder="com.example.axon" />
     </div>
     </Card>

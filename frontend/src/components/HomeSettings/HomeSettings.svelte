@@ -11,12 +11,12 @@
 
 <div>
     <div class="home-settings__heading">
-        <Typography size="xl" weight="bold" removeMargin>Settings</Typography>
+        <Typography size="xl" weight="bold">Settings</Typography>
     </div>
     <Card>
         <div class="home-settings__items">
             
-            <Typography removeMargin size="s">Project</Typography>
+            <Typography size="s">Project</Typography>
             <div>
                 <div class="home-settings__radio-wrapper">
                     <Radio value="Maven" label="Maven" bind:group={projectType} name="projectType" />
@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <Typography removeMargin size="s">Language</Typography>
+            <Typography size="s">Language</Typography>
             <div>
                 <div class="home-settings__radio-wrapper">
                     <Radio value="Java" label="Java" bind:group={projectLanguage} name="projectLanguage"/>
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <Typography removeMargin size="s">Axon</Typography>
+            <Typography size="s">Axon</Typography>
             <div>
                 <div class="home-settings__radio-wrapper">
                     <Radio value="Latest" label="Latest" bind:group={projectAxonVersion} name="projectAxonVersion"/>
@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <Typography removeMargin size="s">Java</Typography>
+            <Typography size="s">Java</Typography>
             <div>
                 <div class="home-settings__radio-wrapper">
                     <Radio value="16" label="16" bind:group={projectJavaVersion} name="projectJavaVersion"/>
