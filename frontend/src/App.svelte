@@ -40,7 +40,7 @@ import HomeDependencies from "./components/HomeDependencies/HomeDependencies.sve
 		background-image: url(/assets/grid-bg.svg);
 		background-repeat: no-repeat;
 		background-color: colors.$seal;
-		background-position: 70vw 9vh;
+		background-position: 60vw 9vh;
 
 		display: grid;
 		grid-template-columns: 1fr;

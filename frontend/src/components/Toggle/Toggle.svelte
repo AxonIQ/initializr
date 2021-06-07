@@ -6,7 +6,7 @@
     <slot name="off-label"></slot>
     <label class="toggle">
         <input class="toggle__input" type="checkbox" bind:checked={value}>
-        <span class="toggle__slider toggle__slider--round"></span>
+        <span class="toggle__slider"></span>
     </label>
     <slot name="on-label"></slot>
 </div>
@@ -46,12 +46,14 @@
     .toggle__slider {
         cursor: pointer;
         display: flex;
-        padding-left: 2px;
+        padding: 2px;
         align-items: center;
         transition: transform .4s;
 
-        width: 26px;
-        height: 16px;
+        // In Figma the width is 28px, and the height is 16px, because an outline is used instead of a border.
+        // The border is 2px thick, so it needs at least 4px inside an element with box-sizing: border-box
+        width: 32px;
+        height: 20px;
         border: 2px solid colors.$rhino;
         border-radius: 32px;
 
