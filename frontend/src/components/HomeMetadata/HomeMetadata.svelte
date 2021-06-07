@@ -41,9 +41,9 @@
     }
     .home-metadata__items {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr auto;
         grid-auto-flow: row;
-        row-gap: 24px;
+        grid-gap: 24px;
 
         align-items: center;
         justify-content: center;
