@@ -1,19 +1,59 @@
 <script lang="ts">
-    import Typography from '../Typography/Typography.svelte';
-    import Card from "../Card/Card.svelte";
+import Typography from '../Typography/Typography.svelte';
+import Card from "../Card/Card.svelte";
+import Dialog from "../Dialog/Dialog.svelte";
+import Input from "../Input/Input.svelte";
+import Button from "../Button/Button.svelte";
 import IconButtonPlus from '../IconButtonPlus/IconButtonPlus.svelte';
 import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
+
+let addDependenciesDialogVisible = false;
+
 </script>
 <div>
     <div class="home-dependencies__heading">
         <Typography size="xl" weight="bold">Dependencies</Typography>
-        <IconButtonPlus onClick={() => alert('Add dependencies')}/>
+        <IconButtonPlus onClick={() => addDependenciesDialogVisible = true}/>
+
+        <Dialog
+            open={addDependenciesDialogVisible}
+            onClose={() => addDependenciesDialogVisible = false}
+        >
+            <div style="margin-bottom: 24px">
+                <Typography size="xl" weight="bold">Add dependancies</Typography>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 24px">
+                <div style="margin-right: 10px; width: 100%">
+                    <Input placeholder="Web, Security, JPA, Actuator, Devtools..." />
+                </div>
+                <Button text="Search"/>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <Card>
+                    <div class="home-dependencies__item">
+                        <div class="home-dependencies__item-text">
+                            <div class="home-depenencies__item-title">
+                                <Typography weight="bold">Title</Typography>
+                            </div>
+                            <Typography size="s">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                            </Typography>
+                        </div>
+                        <div>
+                            <IconButtonPlus />
+                        </div>
+                    </div>
+                </Card>
+            </div>
+        </Dialog>
     </div>
     <div class="home-dependencies__item-wrapper">
         <Card>
             <div class="home-dependencies__item">
                 <div class="home-dependencies__item-text">
-                    <Typography weight="bold">Title</Typography>
+                    <div class="home-depenencies__item-title">
+                        <Typography weight="bold">Title</Typography>
+                    </div>
                     <Typography size="s">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
                     </Typography>
@@ -28,7 +68,9 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
         <Card>
             <div class="home-dependencies__item">
                 <div class="home-dependencies__item-text">
-                    <Typography weight="bold">Title</Typography>
+                    <div class="home-depenencies__item-title">
+                        <Typography weight="bold">Title</Typography>
+                    </div>
                     <Typography size="s">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
                     </Typography>
@@ -43,7 +85,9 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
         <Card>
             <div class="home-dependencies__item">
                 <div class="home-dependencies__item-text">
-                    <Typography weight="bold">Title</Typography>
+                    <div class="home-depenencies__item-title">
+                        <Typography weight="bold">Title</Typography>
+                    </div>
                     <Typography size="s">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
                     </Typography>
@@ -58,7 +102,9 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
         <Card>
             <div class="home-dependencies__item">
                 <div class="home-dependencies__item-text">
-                    <Typography weight="bold">Title</Typography>
+                    <div class="home-depenencies__item-title">
+                        <Typography weight="bold">Title</Typography>
+                    </div>
                     <Typography size="s">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
                     </Typography>
@@ -88,5 +134,8 @@ import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
     }
     .home-dependencies__item-text {
         margin-right: 10px;
+    }
+    .home-depenencies__item-title {
+        margin-bottom: 10px;
     }
 </style>

@@ -34,6 +34,7 @@
         position: fixed;
         left: 0;
         top: 0;
+        z-index: 1;
 
         width: 100vw;
         height: 100vh;
@@ -45,7 +46,7 @@
         align-items: center;
     }
     .dialog {
-        max-width: 730px;
+        width: 730px;
         border: 0;
         padding: 32px;
         background-color: colors.$seal;
