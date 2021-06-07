@@ -71,9 +71,9 @@
     }
     .home-settings__items {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: auto 1fr;
         grid-auto-flow: row;
-        row-gap: 30px;
+        grid-gap: 24px;
 
         justify-content: center;
     }
