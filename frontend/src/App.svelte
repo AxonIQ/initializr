@@ -40,7 +40,7 @@ import HomeDependencies from "./components/HomeDependencies/HomeDependencies.sve
 		background-image: url(/assets/grid-bg.svg);
 		background-repeat: no-repeat;
 		background-color: colors.$seal;
-		background-position: 1300px 85px;
+		background-position: 70vw 9vh;
 
 		display: grid;
 		grid-template-columns: 1fr;
@@ -58,7 +58,7 @@ import HomeDependencies from "./components/HomeDependencies/HomeDependencies.sve
 			overflow: auto;
 
 			display: grid;
-			grid-template-columns: 1fr 1024px 1fr;
+			grid-template-columns: minmax(20px, 1fr) fit-content(1024px) minmax(20px, 1fr);
 			grid-template-rows: 1fr auto;
 		}
 		footer {
@@ -72,10 +72,8 @@ import HomeDependencies from "./components/HomeDependencies/HomeDependencies.sve
 			
 			display: grid;
 			grid-template-rows: 1fr;
-			grid-template-columns: auto 1fr;
+			grid-template-columns: fit-content(320px) 1fr;
 			grid-gap: 32px;
-			padding-left: 10px;
-			padding-right: 10px;
 		}
 		.app__header {
 			grid-area: 1 / 1 / 1 / 4;
