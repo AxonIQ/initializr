@@ -1,16 +1,25 @@
 <script lang="ts">
+import ActionFooterShareDialog from "../ActionFooterShareDialog/ActionFooterShareDialog.svelte";
 import Button from "../Button/Button.svelte";
+
+let shareVisible = false;
+
 </script>
-    <div class="action-footer__download">
+    <div class="action-footer">
         <Button text="Download" />
+        <Button
+            text="Share"
+            onClick={() => shareVisible = true}
+            variant="secondary" />
     </div>
-    <Button text="Share" variant="secondary" />
+    <ActionFooterShareDialog bind:visible={shareVisible}/>
 
 <style lang="scss">
     @use "../Colors/colors.scss";
 
-    .action-footer__download {
-        display: inline-block;
-        margin-right: 40px;
+    .action-footer {
+        display: flex;
+        align-items: center;
+        gap: 40px;
     }
 </style>
