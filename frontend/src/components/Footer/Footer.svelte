@@ -3,11 +3,12 @@
     import Typography from "../Typography/Typography.svelte";
     
     </script>
+
         <GradientDivider />
         <div class="footer">
             <div class="footer__content">
                 <div class="footer__content-logos">
-                    <img class="footer__academy-logo" src="/assets/logo-academy.png" alt="Logo" />
+                    <img src="/assets/logo-academy.png" alt="Logo" />
                     <img src="/assets/logo-axoniq.png" alt="Logo" />
                 </div>
                 <div class="footer__banner">
@@ -15,30 +16,31 @@
                 </div>
             </div>
         </div>
+        
     <style lang="scss">
         @use "../Colors/colors.scss";
     
         .footer {
-            background-color: colors.$dove;
-            display: flex;
+            display: grid;
+            grid-template-columns: minmax(20px, 1fr) minmax(auto, 1024px) minmax(20px, 1fr);
+			background-color: colors.$dove;
+
             justify-content: center;
             height: 100px;
-            padding: 10px 20px;
+            padding: 10px 0;
         }
         .footer__content {
+            grid-column: 2;
+            
             display: flex;
-            width: 100%;
             justify-content: space-between;
             align-items: center;
-            max-width: 1024px;
         }
         .footer__content-logos {
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        .footer__academy-logo {
-            margin-right: 40px;
+            gap: 40px;
         }
         .footer__banner {
             width: 320px;

@@ -1,21 +1,15 @@
 <script lang="ts">
-import Header from "./components/Header/Header.svelte";
+import ActionFooter from "./components/ActionFooter/ActionFooter.svelte";
+import { isActionFooterVisible } from "./components/ActionFooter/actionFooterStore";
 import Footer from "./components/Footer/Footer.svelte";
+import Header from "./components/Header/Header.svelte";
+import HomeDependencies from "./components/HomeDependencies/HomeDependencies.svelte";
 import HomeMetadata from "./components/HomeMetadata/HomeMetadata.svelte";
 import HomeSettings from "./components/HomeSettings/HomeSettings.svelte";
-import HomeDependencies from "./components/HomeDependencies/HomeDependencies.svelte";
-import ActionFooter from "./components/ActionFooter/ActionFooter.svelte";
-import GradientDivider from "./components/GradientDivider/GradientDivider.svelte";
-import { isActionFooterVisible } from "./components/ActionFooter/actionFooterStore";
 </script>
 <div class="app">
 	<header>
-		<section class="app__header">
-			<Header />
-		</section>
-		<section class="app__header-divider">
-			<GradientDivider />
-		</section>
+		<Header />
 	</header>
 	<main>
 		<section class="app__content">
@@ -60,16 +54,6 @@ import { isActionFooterVisible } from "./components/ActionFooter/actionFooterSto
 
 		header {
 			grid-area: header;
-
-			display: grid;
-			grid-template-columns: minmax(20px, 1fr) minmax(auto, 1024px) minmax(20px, 1fr);
-			background-color: colors.$dove;
-		}
-		.app__header {
-			grid-area: 1 / 2 / 1 / 3;
-		}
-		.app__header-divider {
-			grid-row: 2;
 			grid-column: 1 / span 4;
 		}
 		
