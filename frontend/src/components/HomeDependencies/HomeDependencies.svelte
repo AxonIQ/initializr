@@ -18,60 +18,44 @@ let addDependanciesVisible = false;
     <div class="home-dependencies">
         <Card>
             <div class="home-dependencies__item">
-                <div class="home-dependencies__item-text">
-                    <div class="home-depenencies__item-title">
-                        <Typography weight="bold">Title</Typography>
-                    </div>
-                    <Typography size="s">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                    </Typography>
-                </div>
-                <div>
+                <Typography weight="bold">Title</Typography>
+                <Typography size="s">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                </Typography>
+                <div class="home-dependencies__remove-button">
                     <IconButtonTrash disabled />
                 </div>
             </div>
         </Card>
         <Card>
             <div class="home-dependencies__item">
-                <div class="home-dependencies__item-text">
-                    <div class="home-depenencies__item-title">
-                        <Typography weight="bold">Title</Typography>
-                    </div>
-                    <Typography size="s">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                    </Typography>
-                </div>
-                <div>
+                <Typography weight="bold">Title</Typography>
+                <Typography size="s">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                </Typography>
+                <div class="home-dependencies__remove-button">
                     <IconButtonTrash />
                 </div>
             </div>
         </Card>
         <Card>
             <div class="home-dependencies__item">
-                <div class="home-dependencies__item-text">
-                    <div class="home-depenencies__item-title">
-                        <Typography weight="bold">Title</Typography>
-                    </div>
-                    <Typography size="s">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                    </Typography>
-                </div>
-                <div>
+                <Typography weight="bold">Title</Typography>
+                <Typography size="s">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                </Typography>
+                <div class="home-dependencies__remove-button">
                     <IconButtonTrash />
                 </div>
             </div>
         </Card>
         <Card>
             <div class="home-dependencies__item">
-                <div class="home-dependencies__item-text">
-                    <div class="home-depenencies__item-title">
-                        <Typography weight="bold">Title</Typography>
-                    </div>
-                    <Typography size="s">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                    </Typography>
-                </div>
-                <div>
+                <Typography weight="bold">Title</Typography>
+                <Typography size="s">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                </Typography>
+                <div class="home-dependencies__remove-button">
                     <IconButtonTrash />
                 </div>
             </div>
@@ -93,14 +77,13 @@ let addDependanciesVisible = false;
         row-gap: 10px;
     }
     .home-dependencies__item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-gap: 10px;
     }
-    .home-dependencies__item-text {
-        margin-right: 10px;
-    }
-    .home-depenencies__item-title {
-        margin-bottom: 10px;
+    .home-dependencies__remove-button {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        align-self: center;
     }
 </style>

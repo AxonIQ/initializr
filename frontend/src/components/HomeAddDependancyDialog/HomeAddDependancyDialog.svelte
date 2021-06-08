@@ -18,37 +18,31 @@ export let visible = false;
         <div class="home-add-dependancy-dialog__title">
             <Typography size="xl" weight="bold">Add dependancies</Typography>
         </div>
+        
         <div class="home-add-dependancy-dialog__search-input">
             <Input placeholder="Web, Security, JPA, Actuator, Devtools..." />
         </div>
         <Button text="Search"/>
+
         <div class="home-add-dependancy-dialog__search-result">
             <Card>
                 <div class="home-add-dependancy-dialog__search-result-item">
-                    <div class="home-add-dependancy-dialog__search-result-item-text">
-                        <div class="home-add-dependancy-dialog__search-result-item-title">
-                            <Typography weight="bold">Title</Typography>
-                        </div>
-                        <Typography size="s">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                        </Typography>
-                    </div>
-                    <div>
+                    <Typography weight="bold">Title</Typography>
+                    <Typography size="s">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                    </Typography>
+                    <div class="home-add-dependancy-dialog__add-button">
                         <IconButtonPlus />
                     </div>
                 </div>
             </Card>
             <Card>
                 <div class="home-add-dependancy-dialog__search-result-item">
-                    <div class="home-add-dependancy-dialog__search-result-item-text">
-                        <div class="home-add-dependancy-dialog__search-result-item-title">
-                            <Typography weight="bold">Title</Typography>
-                        </div>
-                        <Typography size="s">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                        </Typography>
-                    </div>
-                    <div>
+                    <Typography weight="bold">Title</Typography>
+                    <Typography size="s">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                    </Typography>
+                    <div class="home-add-dependancy-dialog__add-button">
                         <IconButtonPlus />
                     </div>
                 </div>
@@ -79,14 +73,12 @@ export let visible = false;
         grid-template-rows: 1fr;
     }
     .home-add-dependancy-dialog__search-result-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        display: grid;
+        grid-gap: 10px;
     }
-    .home-add-dependancy-dialog__search-result-item-text {
-        margin-right: 10px;
-    }
-    .home-add-dependancy-dialog__search-result-item-title {
-        margin-bottom: 10px;
+    .home-add-dependancy-dialog__add-button {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        align-self: center;
     }
 </style>

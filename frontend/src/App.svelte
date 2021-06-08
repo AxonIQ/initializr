@@ -66,7 +66,8 @@ import GradientDivider from "./components/GradientDivider/GradientDivider.svelte
 			grid-area: 1 / 2 / 1 / 3;
 		}
 		.app__header-divider {
-			grid-area: 2 / 1 / 2 / 4;
+			grid-row: 2;
+			grid-column: 1 / span 4;
 		}
 		
 		main {
