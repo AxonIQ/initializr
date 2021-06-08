@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer.svelte";
 import HomeMetadata from "./components/HomeMetadata/HomeMetadata.svelte";
 import HomeSettings from "./components/HomeSettings/HomeSettings.svelte";
 import HomeDependencies from "./components/HomeDependencies/HomeDependencies.svelte";
+import ActionFooter from "./components/ActionFooter/ActionFooter.svelte";
 </script>
 <div class="app">
 	<header>
@@ -26,8 +27,8 @@ import HomeDependencies from "./components/HomeDependencies/HomeDependencies.sve
 		</div>
 	</main>
 	<footer>
-		<section class="full">
-			<!-- <Footer /> -->
+		<section class="app__action-footer">
+			<ActionFooter />
 		</section>
 	</footer>
 </div>
@@ -63,8 +64,18 @@ import HomeDependencies from "./components/HomeDependencies/HomeDependencies.sve
 		}
 		footer {
 			grid-area: action-footer;
+			
+			display: grid;
+			grid-template-columns: minmax(20px, 1fr) minmax(auto, 1024px) minmax(20px, 1fr);
+			background-color: colors.$dove;
+			height: 100px;
+			align-items: center;
+			box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4), 0px 5px 4px rgba(0, 0, 0, 0.1);
+			z-index: 1;
 		}
-		
+		.app__action-footer {
+			grid-area: 1 / 2 / 1 / 3;
+		}
 		.app__content {
 			margin-top: 26px;
 			margin-bottom: 26px;
