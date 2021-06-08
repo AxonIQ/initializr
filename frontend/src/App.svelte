@@ -6,6 +6,7 @@ import HomeSettings from "./components/HomeSettings/HomeSettings.svelte";
 import HomeDependencies from "./components/HomeDependencies/HomeDependencies.svelte";
 import ActionFooter from "./components/ActionFooter/ActionFooter.svelte";
 import GradientDivider from "./components/GradientDivider/GradientDivider.svelte";
+import { isActionFooterVisible } from "./components/ActionFooter/actionFooterStore";
 </script>
 <div class="app">
 	<header>
@@ -30,11 +31,13 @@ import GradientDivider from "./components/GradientDivider/GradientDivider.svelte
 			<Footer />
 		</div>
 	</main>
-	<footer>
-		<section class="app__action-footer">
-			<ActionFooter />
-		</section>
-	</footer>
+	{#if $isActionFooterVisible}
+		<footer>
+			<section class="app__action-footer">
+				<ActionFooter />
+			</section>
+		</footer>
+	{/if}
 </div>
 <style type="scss">
 	@use "./components/Colors/colors.scss";
