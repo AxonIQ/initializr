@@ -14,63 +14,65 @@ export let visible = false;
     open={visible}
     onClose={() => visible = false}
 >
-    <div class="home-add-dependancy-dialog__title">
-        <Typography size="xl" weight="bold">Add dependancies</Typography>
-    </div>
-    <div class="home-add-dependancy-dialog__search-wrapper">
+    <div class="home-add-dependancy-dialog">
+        <div class="home-add-dependancy-dialog__title">
+            <Typography size="xl" weight="bold">Add dependancies</Typography>
+        </div>
         <div class="home-add-dependancy-dialog__search-input">
             <Input placeholder="Web, Security, JPA, Actuator, Devtools..." />
         </div>
         <Button text="Search"/>
-    </div>
-    <div class="home-add-dependancy-dialog__search-result">
-        <Card>
-            <div class="home-add-dependancy-dialog__search-result-item">
-                <div class="home-add-dependancy-dialog__search-result-item-text">
-                    <div class="home-add-dependancy-dialog__search-result-item-title">
-                        <Typography weight="bold">Title</Typography>
+        <div class="home-add-dependancy-dialog__search-result">
+            <Card>
+                <div class="home-add-dependancy-dialog__search-result-item">
+                    <div class="home-add-dependancy-dialog__search-result-item-text">
+                        <div class="home-add-dependancy-dialog__search-result-item-title">
+                            <Typography weight="bold">Title</Typography>
+                        </div>
+                        <Typography size="s">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                        </Typography>
                     </div>
-                    <Typography size="s">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                    </Typography>
-                </div>
-                <div>
-                    <IconButtonPlus />
-                </div>
-            </div>
-        </Card>
-        <Card>
-            <div class="home-add-dependancy-dialog__search-result-item">
-                <div class="home-add-dependancy-dialog__search-result-item-text">
-                    <div class="home-add-dependancy-dialog__search-result-item-title">
-                        <Typography weight="bold">Title</Typography>
+                    <div>
+                        <IconButtonPlus />
                     </div>
-                    <Typography size="s">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                    </Typography>
                 </div>
-                <div>
-                    <IconButtonPlus />
+            </Card>
+            <Card>
+                <div class="home-add-dependancy-dialog__search-result-item">
+                    <div class="home-add-dependancy-dialog__search-result-item-text">
+                        <div class="home-add-dependancy-dialog__search-result-item-title">
+                            <Typography weight="bold">Title</Typography>
+                        </div>
+                        <Typography size="s">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                        </Typography>
+                    </div>
+                    <div>
+                        <IconButtonPlus />
+                    </div>
                 </div>
-            </div>
-        </Card>
+            </Card>
+        </div>
     </div>
 </Dialog>
 
 <style lang="scss">
-    .home-add-dependancy-dialog__title {
-        margin-bottom: 24px;
-    }
-    .home-add-dependancy-dialog__search-wrapper {
-        display: flex;
+    .home-add-dependancy-dialog {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        row-gap: 24px;
         align-items: center;
-        margin-bottom: 24px;
+    }
+    .home-add-dependancy-dialog__title {
+        grid-column: 1 / span 2;
     }
     .home-add-dependancy-dialog__search-input {
         margin-right: 10px;
-        width: 100%;
     }
     .home-add-dependancy-dialog__search-result {
+        grid-column: 1 / span 2;
+
         display: grid;
         row-gap: 10px;
         grid-template-columns: 1fr;
