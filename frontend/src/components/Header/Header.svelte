@@ -1,14 +1,10 @@
 <script>
-import { isActionFooterVisible } from "../ActionFooter/actionFooterStore";
 import GradientDivider from "../GradientDivider/GradientDivider.svelte";
 // import IconMoon from "../IconMoon/IconMoon.svelte";
 // import IconSun from "../IconSun/IconSun.svelte";
 // import Toggle from "../Toggle/Toggle.svelte";
 
 let darkMode = false;
-
-$: isActionFooterVisible.set(darkMode)
-
 </script>
 
     <div class="header">

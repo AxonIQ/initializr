@@ -1,6 +1,5 @@
 <script lang="ts">
 import ActionFooter from "./components/ActionFooter/ActionFooter.svelte";
-import { isActionFooterVisible } from "./components/ActionFooter/actionFooterStore";
 import Footer from "./components/Footer/Footer.svelte";
 import Header from "./components/Header/Header.svelte";
 import HomeDependencies from "./components/HomeDependencies/HomeDependencies.svelte";
@@ -25,13 +24,11 @@ import HomeSettings from "./components/HomeSettings/HomeSettings.svelte";
 			<Footer />
 		</div>
 	</main>
-	{#if $isActionFooterVisible}
-		<footer>
-			<section class="app__action-footer">
-				<ActionFooter />
-			</section>
-		</footer>
-	{/if}
+	<footer>
+		<section class="app__action-footer">
+			<ActionFooter />
+		</section>
+	</footer>
 </div>
 <style type="scss">
 	@use "./components/Colors/colors.scss";
