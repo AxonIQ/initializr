@@ -2,10 +2,12 @@
     export let color: "fox" | "peacock" | "seal" = "fox";
     export let onClick: () => void = () => {};
     export let disabled = false;
+    export let size: "s" | " m" = "m";
 
     $: classesToUse = [
         'icon-button',
         `icon-button--${color}`,
+        `icon-button--${size}`,
         disabled && 'icon-button--disabled',
     ]
     .filter(value => value)
@@ -16,7 +18,7 @@
     class={classesToUse}
     disabled={disabled}
     on:click={() => onClick()}>
-    <span class={disabled && "icon-button__content--disabled"}>
+    <span class={disabled ? "icon-button__content--disabled" : ''}>
         <slot />
     </span>
 </button>
@@ -25,8 +27,8 @@
     @use "../Colors/colors.scss";
 
     .icon-button {
-        width: 48px;
-        height: 48px;
+        padding: 0;
+
         display: flex;
         align-items: center;
         justify-content: center;
@@ -51,6 +53,14 @@
         border-radius: 50px;
         background-color: colors.$fox;
         cursor: pointer;
+    }
+    .icon-button--m {
+        min-width: 48px;
+        min-height: 48px;
+    }
+    .icon-button--s {
+        min-width: 36px;
+        min-height: 36px;
     }
     .icon-button--fox {
         background-color: colors.$fox;

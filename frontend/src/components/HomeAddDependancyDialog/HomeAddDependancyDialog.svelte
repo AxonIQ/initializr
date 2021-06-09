@@ -2,6 +2,7 @@
 import Button from "../Button/Button.svelte";
 import Card from "../Card/Card.svelte";
 import Dialog from "../Dialog/Dialog.svelte";
+import IconButtonRefresh from "../IconButonRefresh/IconButtonRefresh.svelte";
 import IconButtonPlus from '../IconButtonPlus/IconButtonPlus.svelte';
 import Input from "../Input/Input.svelte";
 import Typography from '../Typography/Typography.svelte';
@@ -15,14 +16,13 @@ export let visible = false;
     onClose={() => visible = false}
 >
     <div class="home-add-dependancy-dialog">
-        <div class="home-add-dependancy-dialog__title">
-            <Typography size="xl" weight="bold">Add dependancies</Typography>
-        </div>
+        <Typography size="xl" weight="bold">Add dependancies</Typography>
         
         <div class="home-add-dependancy-dialog__search-input">
             <Input placeholder="Web, Security, JPA, Actuator, Devtools..." />
+            <Button text="Search"/>
+            <IconButtonRefresh />
         </div>
-        <Button text="Search"/>
 
         <div class="home-add-dependancy-dialog__search-result">
             <Card>
@@ -53,23 +53,21 @@ export let visible = false;
 
 <style lang="scss">
     .home-add-dependancy-dialog {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        row-gap: 24px;
-        align-items: center;
-    }
-    .home-add-dependancy-dialog__title {
-        grid-column: 1 / span 2;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
     }
     .home-add-dependancy-dialog__search-input {
-        margin-right: 10px;
+        display: flex;
+        flex-shrink: 0;
+        gap: 10px;
+        align-items: center;
     }
     .home-add-dependancy-dialog__search-result {
-        grid-column: 1 / span 2;
+        display: flex;
+        flex-direction: column;
 
-        display: grid;
         row-gap: 10px;
-        grid-template-columns: 1fr;
         grid-template-rows: 1fr;
     }
     .home-add-dependancy-dialog__search-result-item {

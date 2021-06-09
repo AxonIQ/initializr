@@ -40,6 +40,8 @@ import Typography from "../Typography/Typography.svelte";
     @use "../Colors/colors.scss";
 
     .button {
+        padding: 0;
+        
         height: 36px;
         min-width: 130px;
         border-radius: 50px;

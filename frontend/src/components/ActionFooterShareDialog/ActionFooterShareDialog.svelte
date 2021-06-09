@@ -5,8 +5,7 @@
     import Typography from '../Typography/Typography.svelte';
     
     export let visible = false;
-    
-    </script>
+</script>
     
     <Dialog
         open={visible}
@@ -22,15 +21,15 @@
         </div>
     </Dialog>
     
-    <style lang="scss">
-        .action-footer-share-dialog {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-        .action-footer-share-dialog__input {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-    </style>
+<style lang="scss">
+    .action-footer-share-dialog {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .action-footer-share-dialog__input {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+</style>
