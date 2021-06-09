@@ -1,9 +1,9 @@
 <script>
 import { isActionFooterVisible } from "../ActionFooter/actionFooterStore";
 import GradientDivider from "../GradientDivider/GradientDivider.svelte";
-import IconMoon from "../IconMoon/IconMoon.svelte";
-import IconSun from "../IconSun/IconSun.svelte";
-import Toggle from "../Toggle/Toggle.svelte";
+// import IconMoon from "../IconMoon/IconMoon.svelte";
+// import IconSun from "../IconSun/IconSun.svelte";
+// import Toggle from "../Toggle/Toggle.svelte";
 
 let darkMode = false;
 
@@ -14,10 +14,10 @@ $: isActionFooterVisible.set(darkMode)
     <div class="header">
         <div class="header__content">
             <img src="/assets/header-logo.png" alt="Logo" />
-            <Toggle bind:value={darkMode}>
+            <!-- <Toggle bind:value={darkMode}>
                 <IconSun slot="off-label" />
                 <IconMoon slot="on-label" />
-            </Toggle>
+            </Toggle> -->
         </div>
     </div>
     <GradientDivider />
