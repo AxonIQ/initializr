@@ -5,31 +5,57 @@ import Header from "./components/Header/Header.svelte";
 import HomeDependencies from "./components/HomeDependencies/HomeDependencies.svelte";
 import HomeMetadata from "./components/HomeMetadata/HomeMetadata.svelte";
 import HomeSettings from "./components/HomeSettings/HomeSettings.svelte";
+import type { InitializerData } from "./dataTypes";
+
+async function preloadData(): Promise<InitializerData> {
+    const response = await fetch("http://localhost:8080/");
+    if (!response.ok) {
+        throw new Error('Bad response');
+    }
+    return await response.json();
+}
+
 </script>
-<div class="app">
-	<header>
-		<Header />
-	</header>
-	<main>
-		<section class="app__content">
-			<div>
-				<HomeMetadata />
-				<HomeSettings />
+{#await preloadData()}
+	<div>Loading...</div>
+{:then data}
+	<div class="app">
+		<header>
+			<Header />
+		</header>
+		<main>
+			<section class="app__content">
+				<div>
+					<HomeMetadata
+						groupId={data.groupId.default}
+						artifactId={data.artifactId.default}
+						name={data.name.default}
+						description={data.description.default}
+						packageName={data.packageName.default}
+					/>
+					<HomeSettings
+						projectTypeData={data.type}
+						projectLanguageData={data.language}
+						projectAxonVersionData={data.bootVersion}
+						projectJavaVersionData={data.javaVersion}
+					/>
+				</div>
+				<div>
+					<HomeDependencies />
+				</div>
+			</section>
+			<div class="app__content-footer">
+				<Footer />
 			</div>
-			<div>
-				<HomeDependencies />
-			</div>
-		</section>
-		<div class="app__content-footer">
-			<Footer />
-		</div>
-	</main>
-	<footer>
-		<section class="app__action-footer">
-			<ActionFooter />
-		</section>
-	</footer>
-</div>
+		</main>
+		<footer>
+			<section class="app__action-footer">
+				<ActionFooter />
+			</section>
+		</footer>
+	</div>
+{/await}
+
 <style type="scss">
 	@use "./components/Colors/colors.scss";
 

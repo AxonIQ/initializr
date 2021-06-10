@@ -2,11 +2,19 @@
     import Typography from "../Typography/Typography.svelte";
     import Card from "../Card/Card.svelte";
     import Radio from "../Radio/Radio.svelte";
+import type { DataType, SettingsItem } from "../../dataTypes";
 
-    let projectType = 'Maven';
-    let projectLanguage = 'Java & Kotlin';
-    let projectAxonVersion = 'Latest';
-    let projectJavaVersion = '11';
+    export let projectTypeData: DataType;
+    let projectType = projectTypeData.default;
+
+    export let projectLanguageData: SettingsItem;
+    let projectLanguage = projectLanguageData.default;
+
+    export let projectAxonVersionData: SettingsItem;
+    let projectAxonVersion = projectAxonVersionData.default;
+    
+    export let projectJavaVersionData: SettingsItem;
+    let projectJavaVersion = projectJavaVersionData.default;
 </script>
 
 <div>
@@ -17,46 +25,51 @@
         <div class="home-settings__items">
             
             <Typography size="s">Project</Typography>
-            <div>
-                <div class="home-settings__radio-wrapper">
-                    <Radio value="Maven" label="Maven" bind:group={projectType} name="projectType" />
-                </div>
-                <div>
-				    <Radio value="Gradle" label="Gradle" bind:group={projectType} name="projectType" />
-                </div>
+            <div class="home-settings__radio-wrapper">
+                {#each projectTypeData.values as projectTypeItem (projectTypeItem.id) }
+                    <Radio
+                        value={projectTypeItem.id}
+                        label={projectTypeItem.name}
+                        name="projectType"
+                        bind:group={projectType}
+                    />
+                {/each}
             </div>
 
             <Typography size="s">Language</Typography>
-            <div>
-                <div class="home-settings__radio-wrapper">
-                    <Radio value="Java" label="Java" bind:group={projectLanguage} name="projectLanguage"/>
-                </div>
-                <div>
-                    <Radio value="Java & Kotlin" label="Java & Kotlin" bind:group={projectLanguage} name="projectLanguage"/>
-                </div>
+            <div class="home-settings__radio-wrapper">
+                {#each projectLanguageData.values as projectLanguageItem (projectLanguageItem.id) }
+                    <Radio
+                        value={projectLanguageItem.id}
+                        label={projectLanguageItem.name}
+                        name="projectLanguage"
+                        bind:group={projectLanguage}
+                    />
+                {/each}
             </div>
 
-            <Typography size="s">Axon</Typography>
-            <div>
-                <div class="home-settings__radio-wrapper">
-                    <Radio value="Latest" label="Latest" bind:group={projectAxonVersion} name="projectAxonVersion"/>
-                </div>
-                <div>
-                    <Radio value="Snapshot" label="Snapshot" bind:group={projectAxonVersion} name="projectAxonVersion"/>
-                </div>
+            <Typography size="s">Axon Version</Typography>
+            <div class="home-settings__radio-wrapper">
+                {#each projectAxonVersionData.values as projectAxonVersionItem (projectAxonVersionItem.id) }
+                    <Radio
+                        value={projectAxonVersionItem.id}
+                        label={projectAxonVersionItem.name}
+                        name="projectAxonVersion"
+                        bind:group={projectAxonVersion}
+                    />
+                {/each}
             </div>
 
             <Typography size="s">Java</Typography>
-            <div>
-                <div class="home-settings__radio-wrapper">
-                    <Radio value="16" label="16" bind:group={projectJavaVersion} name="projectJavaVersion"/>
-                </div>
-                <div class="home-settings__radio-wrapper">
-                    <Radio value="11" label="11" bind:group={projectJavaVersion} name="projectJavaVersion"/>
-                </div>
-                <div>
-                    <Radio value="8" label="8" bind:group={projectJavaVersion} name="projectJavaVersion"/>
-                </div>
+            <div class="home-settings__radio-wrapper">
+                {#each projectJavaVersionData.values as projectJavaVersionItem (projectJavaVersionItem.id) }
+                    <Radio
+                        value={projectJavaVersionItem.id}
+                        label={projectJavaVersionItem.name}
+                        name="projectJavaVersion"
+                        bind:group={projectJavaVersion}
+                    />
+                {/each}
             </div>
         </div>
     </Card>
@@ -78,6 +91,8 @@
         justify-content: center;
     }
     .home-settings__radio-wrapper {
-        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 </style>

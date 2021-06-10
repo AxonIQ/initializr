@@ -2,6 +2,12 @@
     import Typography from "../Typography/Typography.svelte";
     import Card from "../Card/Card.svelte";
     import Input from "../Input/Input.svelte";
+
+    export let groupId = '';
+    export let artifactId = '';
+    export let name = '';
+    export let description = '';
+    export let packageName = '';
 </script>
 
 <div class="home-metadata">
@@ -12,19 +18,19 @@
         <div class="home-metadata__items">
             
             <Typography size="s">GroupID</Typography>
-            <Input placeholder="com.example" />
+            <Input placeholder="com.example" bind:value={groupId} />
             
             <Typography size="s">ArtifactID</Typography>
-            <Input placeholder="Axon Demo" />
+            <Input placeholder="Axon Demo" bind:value={artifactId}/>
             
             <Typography size="s">Name</Typography>
-            <Input placeholder="Axon Demo" />
+            <Input placeholder="Axon Demo" bind:value={name}/>
             
             <Typography size="s">Description</Typography>
-            <Input placeholder="Demo project for Axon" />
+            <Input placeholder="Demo project for Axon" bind:value={description} />
             
             <Typography size="s">Package</Typography>
-            <Input placeholder="com.example.axon" />
+            <Input placeholder="com.example.axon" bind:value={packageName}/>
     </div>
     </Card>
 </div>
