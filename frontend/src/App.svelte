@@ -41,7 +41,9 @@ async function preloadData(): Promise<InitializerData> {
 					/>
 				</div>
 				<div>
-					<HomeDependencies />
+					<HomeDependencies
+						dependencyData={data.dependencies}
+					/>
 				</div>
 			</section>
 			<div class="app__content-footer">

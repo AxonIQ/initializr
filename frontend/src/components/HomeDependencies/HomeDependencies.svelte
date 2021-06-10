@@ -1,19 +1,26 @@
 <script lang="ts">
+import type { DataDependencies } from "../../dataTypes";
+
 import Card from "../Card/Card.svelte";
-import HomeAddDependancyDialog from '../HomeAddDependancyDialog/HomeAddDependancyDialog.svelte';
+import HomeAddDependancyDialog from '../HomeAddDependencyDialog/HomeAddDependancyDialog.svelte';
 import IconButtonPlus from '../IconButtonPlus/IconButtonPlus.svelte';
 import IconButtonTrash from '../IconButtonTrash/IconButtonTrash.svelte';
 import Typography from '../Typography/Typography.svelte';
 
-let addDependanciesVisible = false;
+export let dependencyData: DataDependencies;
+
+let addDependenciesVisible = false;
 
 </script>
 <div>
     <div class="home-dependencies__heading">
         <Typography size="xl" weight="bold">Dependencies</Typography>
-        <IconButtonPlus onClick={() => addDependanciesVisible = true}/>
+        <IconButtonPlus onClick={() => addDependenciesVisible = true}/>
 
-        <HomeAddDependancyDialog bind:visible={addDependanciesVisible}/>
+        <HomeAddDependancyDialog
+            {dependencyData}
+            bind:visible={addDependenciesVisible}
+        />
     </div>
     <div class="home-dependencies">
         <Card>
