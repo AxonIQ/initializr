@@ -11,7 +11,6 @@ import Typography from '../Typography/Typography.svelte';
 
 export let visible = false;
 export let dependencyData: DataDependencies;
-console.log(dependencyData);
 
 </script>
 
@@ -28,10 +27,37 @@ console.log(dependencyData);
             <IconButtonRefresh />
         </div>
 
-        <div class="home-add-dependency-dialog__search-result">
+        <div class="home-add-dependency-dialog__search-result-group">
+            <Typography weight="bold">Group Title</Typography>
             <Card>
                 <div class="home-add-dependency-dialog__search-result-item">
                     <Typography weight="bold">Title</Typography>
+                    <Typography size="s">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                    </Typography>
+                    <div class="home-add-dependency-dialog__add-button">
+                        <IconButtonPlus />
+                    </div>
+                </div>
+            </Card>
+            <Card>
+                <div class="home-add-dependency-dialog__search-result-item">
+                    <Typography weight="bold">Title</Typography>
+                    <Typography size="s">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                    </Typography>
+                    <div class="home-add-dependency-dialog__add-button">
+                        <IconButtonPlus />
+                    </div>
+                </div>
+            </Card>
+        </div>
+            
+        <div class="home-add-dependency-dialog__search-result-group">
+            <Typography weight="bold">Group Title</Typography>
+            <Card>
+                <div class="home-add-dependency-dialog__search-result-item">
+                    <Typography weight="bold">Group Title</Typography>
                     <Typography size="s">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
                     </Typography>
@@ -66,13 +92,19 @@ console.log(dependencyData);
         flex-shrink: 0;
         gap: 10px;
         align-items: center;
+
     }
     .home-add-dependency-dialog__search-result {
         display: flex;
         flex-direction: column;
-
-        row-gap: 10px;
-        grid-template-rows: 1fr;
+    }
+    .home-add-dependency-dialog__search-result-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        &:not(:last-of-type) {
+            margin-bottom: 18px;
+        }
     }
     .home-add-dependency-dialog__search-result-item {
         display: grid;
