@@ -28,26 +28,30 @@ export let dependencyData: DataDependencies;
         </div>
     </div>
 
-    <div class="home-add-dependency-dialog__result-wrapper">
+    <ul class="home-add-dependency-dialog__group-list">
         {#each dependencyData.values as dependencyDataItem (dependencyDataItem.name) }
-            <div class="home-add-dependency-dialog__search-result-group">
+            <li class="home-add-dependency-dialog__group-item">
                 <Typography weight="bold">{dependencyDataItem.name}</Typography>
-                {#each dependencyDataItem.values as dependencyItem (dependencyItem.id)}
-                    <Card>
-                        <div class="home-add-dependency-dialog__search-result-item">
-                            <Typography weight="bold">{dependencyItem.name}</Typography>
-                            <Typography size="s">
-                                {dependencyItem.description}
-                            </Typography>
-                            <div class="home-add-dependency-dialog__add-button">
-                                <IconButtonPlus />
-                            </div>
-                        </div>
-                    </Card>
-                {/each}
-            </div>
+                <ul class="home-add-dependency-dialog__item-list">
+                    {#each dependencyDataItem.values as dependencyItem (dependencyItem.id)}
+                        <li>
+                            <Card>
+                                <div class="home-add-dependency-dialog__item-card">
+                                    <Typography weight="bold">{dependencyItem.name}</Typography>
+                                    <Typography size="s">
+                                        {dependencyItem.description}
+                                    </Typography>
+                                    <div class="home-add-dependency-dialog__add-button">
+                                        <IconButtonPlus />
+                                    </div>
+                                </div>
+                            </Card>
+                        </li>
+                    {/each}
+                </ul>
+            </li>
         {/each}
-    </div>
+    </ul>
 </Dialog>
 
 <style lang="scss">
@@ -64,7 +68,7 @@ export let dependencyData: DataDependencies;
         gap: 10px;
         align-items: center;
     }
-    .home-add-dependency-dialog__result-wrapper {
+    .home-add-dependency-dialog__group-list {
         margin-top: 24px;
         display: flex;
         flex-direction: column;
@@ -72,17 +76,23 @@ export let dependencyData: DataDependencies;
         overflow: auto;
         max-height: 640px;
     }
-    .home-add-dependency-dialog__search-result-group {
+    .home-add-dependency-dialog__group-item {
         display: flex;
         flex-direction: column;
         gap: 10px;
         margin-left: 1px;
         margin-right: 1px;
+        margin-bottom: 1px;
         &:not(:last-of-type) {
             margin-bottom: 18px;
         }
     }
-    .home-add-dependency-dialog__search-result-item {
+    .home-add-dependency-dialog__item-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .home-add-dependency-dialog__item-card {
         display: grid;
         grid-gap: 10px;
     }
