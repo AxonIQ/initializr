@@ -27,12 +27,14 @@ import type { DataType, SettingsItem } from "../../dataTypes";
             <Typography size="s">Project</Typography>
             <div class="home-settings__radio-wrapper">
                 {#each projectTypeData.values as projectTypeItem (projectTypeItem.id) }
-                    <Radio
-                        value={projectTypeItem.id}
-                        label={projectTypeItem.name}
-                        name="projectType"
-                        bind:group={projectType}
-                    />
+                    {#if projectTypeItem.tags.format === "project"}
+                        <Radio
+                            value={projectTypeItem.id}
+                            label={projectTypeItem.name}
+                            name="projectType"
+                            bind:group={projectType}
+                        />
+                    {/if}
                 {/each}
             </div>
 
