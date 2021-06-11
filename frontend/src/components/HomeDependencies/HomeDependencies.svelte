@@ -22,52 +22,60 @@ let addDependenciesVisible = false;
             bind:visible={addDependenciesVisible}
         />
     </div>
-    <div class="home-dependencies">
-        <Card>
-            <div class="home-dependencies__item">
-                <Typography weight="bold">Title</Typography>
-                <Typography size="s">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                </Typography>
-                <div class="home-dependencies__remove-button">
-                    <IconButtonTrash disabled />
+    <ul class="home-dependencies__list">
+        <li>
+            <Card>
+                <div class="home-dependencies__item">
+                    <Typography weight="bold">Title</Typography>
+                    <Typography size="s">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                    </Typography>
+                    <div class="home-dependencies__remove-button">
+                        <IconButtonTrash disabled />
+                    </div>
                 </div>
-            </div>
-        </Card>
-        <Card>
-            <div class="home-dependencies__item">
-                <Typography weight="bold">Title</Typography>
-                <Typography size="s">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                </Typography>
-                <div class="home-dependencies__remove-button">
-                    <IconButtonTrash />
+            </Card>
+        </li>
+        <li>
+            <Card>
+                <div class="home-dependencies__item">
+                    <Typography weight="bold">Title</Typography>
+                    <Typography size="s">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                    </Typography>
+                    <div class="home-dependencies__remove-button">
+                        <IconButtonTrash />
+                    </div>
                 </div>
-            </div>
-        </Card>
-        <Card>
-            <div class="home-dependencies__item">
-                <Typography weight="bold">Title</Typography>
-                <Typography size="s">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                </Typography>
-                <div class="home-dependencies__remove-button">
-                    <IconButtonTrash />
+            </Card>
+        </li>
+        <li>
+            <Card>
+                <div class="home-dependencies__item">
+                    <Typography weight="bold">Title</Typography>
+                    <Typography size="s">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                    </Typography>
+                    <div class="home-dependencies__remove-button">
+                        <IconButtonTrash />
+                    </div>
                 </div>
-            </div>
-        </Card>
-        <Card>
-            <div class="home-dependencies__item">
-                <Typography weight="bold">Title</Typography>
-                <Typography size="s">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                </Typography>
-                <div class="home-dependencies__remove-button">
-                    <IconButtonTrash />
+            </Card>
+        </li>
+        <li>
+            <Card>
+                <div class="home-dependencies__item">
+                    <Typography weight="bold">Title</Typography>
+                    <Typography size="s">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
+                    </Typography>
+                    <div class="home-dependencies__remove-button">
+                        <IconButtonTrash />
+                    </div>
                 </div>
-            </div>
-        </Card>
-    </div>
+            </Card>
+        </li>
+    </ul>
 </div>
 
 <style lang="scss">
@@ -77,7 +85,7 @@ let addDependenciesVisible = false;
         justify-content: space-between;
         align-items: center;
     }
-    .home-dependencies {
+    .home-dependencies__list {
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
