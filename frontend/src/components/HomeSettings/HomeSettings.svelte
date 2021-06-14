@@ -15,6 +15,9 @@ import type { DataType, SettingsItem } from "../../dataTypes";
     
     export let projectJavaVersionData: SettingsItem;
     let projectJavaVersion = projectJavaVersionData.default;
+
+    export let projectPackagingData: SettingsItem;
+    let projectPackaging = projectPackagingData.default;
 </script>
 
 <div>
@@ -70,6 +73,18 @@ import type { DataType, SettingsItem } from "../../dataTypes";
                         label={projectJavaVersionItem.name}
                         name="projectJavaVersion"
                         bind:group={projectJavaVersion}
+                    />
+                {/each}
+            </div>
+
+            <Typography size="s">Packaging</Typography>
+            <div class="home-settings__radio-wrapper">
+                {#each projectPackagingData.values as projectPackagingItem (projectPackagingItem.id) }
+                    <Radio
+                        value={projectPackagingItem.id}
+                        label={projectPackagingItem.name}
+                        name="projectPackaging"
+                        bind:group={projectPackaging}
                     />
                 {/each}
             </div>

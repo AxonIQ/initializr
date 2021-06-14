@@ -38,6 +38,7 @@ async function preloadData(): Promise<InitializerData> {
 						projectLanguageData={data.language}
 						projectAxonVersionData={data.bootVersion}
 						projectJavaVersionData={data.javaVersion}
+						projectPackagingData={data.packaging}
 					/>
 				</div>
 				<div>
