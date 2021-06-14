@@ -1,6 +1,5 @@
 <script lang="ts">
-import type { DataDependencies } from "../../dataTypes";
-
+import type { DataDependencies,DependenciesValue } from "../../dataTypes";
 import Card from "../Card/Card.svelte";
 import HomeAddDependancyDialog from '../HomeAddDependencyDialog/HomeAddDependancyDialog.svelte';
 import IconButtonPlus from '../IconButtonPlus/IconButtonPlus.svelte';
@@ -10,73 +9,39 @@ import Typography from '../Typography/Typography.svelte';
 export let dependencyData: DataDependencies;
 
 let addDependenciesVisible = false;
+let addedDependencies: DependenciesValue[] = [];
 
 </script>
-<div>
-    <div class="home-dependencies__heading">
-        <Typography size="xl" weight="bold">Dependencies</Typography>
-        <IconButtonPlus onClick={() => addDependenciesVisible = true}/>
+<div class="home-dependencies__heading">
+    <Typography size="xl" weight="bold">Dependencies</Typography>
+    <IconButtonPlus onClick={() => addDependenciesVisible = true}/>
 
-        <HomeAddDependancyDialog
-            {dependencyData}
-            bind:visible={addDependenciesVisible}
-        />
-    </div>
-    <ul class="home-dependencies__list">
-        <li>
-            <Card>
-                <div class="home-dependencies__item">
-                    <Typography weight="bold">Title</Typography>
-                    <Typography size="s">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                    </Typography>
-                    <div class="home-dependencies__remove-button">
-                        <IconButtonTrash disabled />
-                    </div>
-                </div>
-            </Card>
-        </li>
-        <li>
-            <Card>
-                <div class="home-dependencies__item">
-                    <Typography weight="bold">Title</Typography>
-                    <Typography size="s">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                    </Typography>
-                    <div class="home-dependencies__remove-button">
-                        <IconButtonTrash />
-                    </div>
-                </div>
-            </Card>
-        </li>
-        <li>
-            <Card>
-                <div class="home-dependencies__item">
-                    <Typography weight="bold">Title</Typography>
-                    <Typography size="s">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                    </Typography>
-                    <div class="home-dependencies__remove-button">
-                        <IconButtonTrash />
-                    </div>
-                </div>
-            </Card>
-        </li>
-        <li>
-            <Card>
-                <div class="home-dependencies__item">
-                    <Typography weight="bold">Title</Typography>
-                    <Typography size="s">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pulvinar odio. Sed dictum mi felis, et rhoncus augue rutrum eu.
-                    </Typography>
-                    <div class="home-dependencies__remove-button">
-                        <IconButtonTrash />
-                    </div>
-                </div>
-            </Card>
-        </li>
-    </ul>
+    <HomeAddDependancyDialog
+        {dependencyData}
+        {addedDependencies}
+        onAddDependency={(dependencyItem) => {addedDependencies = [...addedDependencies, dependencyItem]}}
+        bind:visible={addDependenciesVisible}
+    />
 </div>
+<ul class="home-dependencies__list">
+    {#each addedDependencies as addedDep (addedDep.id)}
+        <li>
+            <Card>
+                <div class="home-dependencies__item">
+                    <Typography weight="bold">{addedDep.name}</Typography>
+                    <Typography size="s">
+                        {addedDep.description}
+                    </Typography>
+                    <div class="home-dependencies__remove-button">
+                        <IconButtonTrash onClick={() => {
+                            addedDependencies = addedDependencies.filter(dep => dep.id !== addedDep.id);
+                        }}/>
+                    </div>
+                </div>
+            </Card>
+        </li>
+    {/each}
+</ul>
 
 <style lang="scss">
     .home-dependencies__heading {

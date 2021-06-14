@@ -97,7 +97,7 @@ async function preloadData(): Promise<InitializerData> {
 			
 			display: grid;
 			grid-template-rows: 1fr;
-			grid-template-columns: fit-content(320px) 1fr;
+			grid-template-columns: fit-content(320px) minmax(auto, 672px);
 			grid-gap: 32px;
 		}
 		.app__content-footer {

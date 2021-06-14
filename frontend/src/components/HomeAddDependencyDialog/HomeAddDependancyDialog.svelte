@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { DataDependencies } from "../../dataTypes";
+import type { DataDependencies, DependenciesValue } from "../../dataTypes";
 
 import Card from "../Card/Card.svelte";
 import Dialog from "../Dialog/Dialog.svelte";
@@ -11,6 +11,8 @@ import Fuse from 'fuse.js';
 
 export let visible = false;
 export let dependencyData: DataDependencies;
+export let addedDependencies: DependenciesValue[];
+export let onAddDependency: (dependencyItem: DependenciesValue) => void;
 
 let searchResult = dependencyData.values;
 let searchInput = '';
@@ -39,6 +41,11 @@ $: {
             }
         });
     }
+}
+
+$: dependencyAlreadyAdded = (dependencyItem: DependenciesValue) => {
+    const dependencyObject = addedDependencies.find(addedDep => addedDep.id === dependencyItem.id);
+    return !!(dependencyObject && dependencyObject.id);
 }
 
 </script>
@@ -73,7 +80,10 @@ $: {
                                         {dependencyItem.description}
                                     </Typography>
                                     <div class="home-add-dependency-dialog__add-button">
-                                        <IconButtonPlus />
+                                        <IconButtonPlus
+                                            disabled={dependencyAlreadyAdded(dependencyItem)}
+                                            onClick={() => onAddDependency(dependencyItem)}
+                                        />
                                     </div>
                                 </div>
                             </Card>
