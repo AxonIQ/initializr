@@ -1,16 +1,45 @@
 <script lang="ts">
 import type { DataDependencies } from "../../dataTypes";
 
-import Button from "../Button/Button.svelte";
 import Card from "../Card/Card.svelte";
 import Dialog from "../Dialog/Dialog.svelte";
 import IconButtonRefresh from "../IconButonRefresh/IconButtonRefresh.svelte";
 import IconButtonPlus from '../IconButtonPlus/IconButtonPlus.svelte';
 import Input from "../Input/Input.svelte";
 import Typography from '../Typography/Typography.svelte';
+import Fuse from 'fuse.js';
 
 export let visible = false;
 export let dependencyData: DataDependencies;
+
+let searchResult = dependencyData.values;
+let searchInput = '';
+
+const searchOptions = {
+    includeMatches: true,
+    includeScore: true,
+    keys: ['values.name'],
+}
+const fuse = new Fuse(dependencyData.values, searchOptions)
+
+$: {
+    if (searchInput.length === 0) {
+        searchResult = dependencyData.values;
+    } else {
+        const fuseSearchResult = fuse.search(searchInput);
+        searchResult = [];
+        searchResult = fuseSearchResult.map(fuseResult => {
+            const values = [];
+            fuseResult.matches.forEach(match => {
+                values.push(fuseResult.item.values[match.refIndex]);
+            });
+            return {
+                name: fuseResult.item.name,
+                values,
+            }
+        });
+    }
+}
 
 </script>
 
@@ -22,18 +51,20 @@ export let dependencyData: DataDependencies;
         <Typography size="xl" weight="bold">Add dependencies</Typography>
         
         <div class="home-add-dependency-dialog__search-input">
-            <Input placeholder="Web, Security, JPA, Actuator, Devtools..." />
-            <Button text="Search"/>
-            <IconButtonRefresh />
+            <Input
+                placeholder="Web, Security, JPA, Actuator, Devtools..."
+                bind:value={searchInput}
+            />
+            <IconButtonRefresh onClick={() => searchInput = ''}/>
         </div>
     </div>
 
     <ul class="home-add-dependency-dialog__group-list">
-        {#each dependencyData.values as dependencyDataItem (dependencyDataItem.name) }
+        {#each searchResult as dependencyDataItemWithName (dependencyDataItemWithName.name) }
             <li class="home-add-dependency-dialog__group-item">
-                <Typography weight="bold">{dependencyDataItem.name}</Typography>
+                <Typography weight="bold">{dependencyDataItemWithName.name}</Typography>
                 <ul class="home-add-dependency-dialog__item-list">
-                    {#each dependencyDataItem.values as dependencyItem (dependencyItem.id)}
+                    {#each dependencyDataItemWithName.values as dependencyItem (dependencyItem.id)}
                         <li>
                             <Card>
                                 <div class="home-add-dependency-dialog__item-card">
@@ -74,6 +105,7 @@ export let dependencyData: DataDependencies;
         flex-direction: column;
         gap: 24px;
         overflow: auto;
+        min-height: 640px;
         max-height: 640px;
     }
     .home-add-dependency-dialog__group-item {
