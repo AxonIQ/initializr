@@ -9,7 +9,7 @@ import { onMount } from "svelte";
     import Typography from '../Typography/Typography.svelte';
     
     export let visible = false;
-    let shareableLink = `${location.origin}?${new URLSearchParams($userSelection).toString()}`
+    $: shareableLink = `${location.origin}?${new URLSearchParams($userSelection).toString()}`
 </script>
     
     <Dialog
