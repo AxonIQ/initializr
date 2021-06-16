@@ -1,4 +1,6 @@
 <script lang="ts">
+import { userSelection } from "../../userSelectionStore";
+
 import ActionFooterShareDialog from "../ActionFooterShareDialog/ActionFooterShareDialog.svelte";
 import Button from "../Button/Button.svelte";
 
@@ -9,38 +11,8 @@ defaultHeaders.append("Content-Type", "application/zip");
 defaultHeaders.append("Content-Disposition", "attachment");
 
 async function download() {
-    const response = await fetch(
-        'http://localhost:8080/starter.zip',
-        {
-            method: 'POST',
-            headers: defaultHeaders,
-            body: JSON.stringify({
-                applicationName: '',
-                artifactId: '',
-                // ???
-                // baseDir: '',
-                bootVersion: '',
-                dependencies: [],
-                description: '',
-                groupId: '',
-                javaVersion: '',
-                language: '',
-                name: '',
-                packageName: '',
-                packaging: '',
-                type: '',
-                version: ''
-            }),
-        }
-    );
-    response.headers.forEach(console.log);
-    // console.log(response.headers.get('content-disposition'));
-    const blob = await response.blob();
-    const file = window.URL.createObjectURL(blob);
-    
     const fileLink = document.createElement('a');
-    fileLink.href = file;
-    fileLink.download = 'axon';
+    fileLink.href = `http://localhost:8080/starter.zip?${new URLSearchParams($userSelection).toString()}`;
     fileLink.click();
 }
 

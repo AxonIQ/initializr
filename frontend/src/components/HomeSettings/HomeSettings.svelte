@@ -5,19 +5,16 @@
 import type { DataType, SettingsItem } from "../../dataTypes";
 
     export let projectTypeData: DataType;
-    let projectType = projectTypeData.default;
+    export let projectTypeSelected = '';
 
     export let projectLanguageData: SettingsItem;
-    let projectLanguage = projectLanguageData.default;
-
-    export let projectAxonVersionData: SettingsItem;
-    let projectAxonVersion = projectAxonVersionData.default;
+    export let projectLanguageSelected = '';
     
     export let projectJavaVersionData: SettingsItem;
-    let projectJavaVersion = projectJavaVersionData.default;
+    export let projectJavaVersionSelected = '';
 
     export let projectPackagingData: SettingsItem;
-    let projectPackaging = projectPackagingData.default;
+    export let projectPackagingSelected = '';
 </script>
 
 <div>
@@ -35,7 +32,7 @@ import type { DataType, SettingsItem } from "../../dataTypes";
                             value={projectTypeItem.id}
                             label={projectTypeItem.name}
                             name="projectType"
-                            bind:group={projectType}
+                            bind:group={projectTypeSelected}
                         />
                     {/if}
                 {/each}
@@ -48,19 +45,7 @@ import type { DataType, SettingsItem } from "../../dataTypes";
                         value={projectLanguageItem.id}
                         label={projectLanguageItem.name}
                         name="projectLanguage"
-                        bind:group={projectLanguage}
-                    />
-                {/each}
-            </div>
-
-            <Typography size="s">Axon Version</Typography>
-            <div class="home-settings__radio-wrapper">
-                {#each projectAxonVersionData.values as projectAxonVersionItem (projectAxonVersionItem.id) }
-                    <Radio
-                        value={projectAxonVersionItem.id}
-                        label={projectAxonVersionItem.name}
-                        name="projectAxonVersion"
-                        bind:group={projectAxonVersion}
+                        bind:group={projectLanguageSelected}
                     />
                 {/each}
             </div>
@@ -72,7 +57,7 @@ import type { DataType, SettingsItem } from "../../dataTypes";
                         value={projectJavaVersionItem.id}
                         label={projectJavaVersionItem.name}
                         name="projectJavaVersion"
-                        bind:group={projectJavaVersion}
+                        bind:group={projectJavaVersionSelected}
                     />
                 {/each}
             </div>
@@ -84,7 +69,7 @@ import type { DataType, SettingsItem } from "../../dataTypes";
                         value={projectPackagingItem.id}
                         label={projectPackagingItem.name}
                         name="projectPackaging"
-                        bind:group={projectPackaging}
+                        bind:group={projectPackagingSelected}
                     />
                 {/each}
             </div>

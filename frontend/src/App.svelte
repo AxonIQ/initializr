@@ -5,20 +5,41 @@ import Header from "./components/Header/Header.svelte";
 import HomeDependencies from "./components/HomeDependencies/HomeDependencies.svelte";
 import HomeMetadata from "./components/HomeMetadata/HomeMetadata.svelte";
 import HomeSettings from "./components/HomeSettings/HomeSettings.svelte";
+import { userSelection } from './userSelectionStore';
+
+import { onMount } from "svelte";
+import { getInitialData } from "./services/getInitialData";
 import type { InitializerData } from "./dataTypes";
 
-async function preloadData(): Promise<InitializerData> {
-    const response = await fetch("http://localhost:8080/");
-    if (!response.ok) {
-        throw new Error('Bad response');
-    }
-    return await response.json();
-}
+let dataLoaded = false;
+let initialData: InitializerData;
+
+onMount(async() => {
+	initialData = await getInitialData();
+	userSelection.set({
+		groupId: initialData.groupId.default,
+		artifactId: initialData.artifactId.default,
+		baseDir: initialData.artifactId.default,
+		name: initialData.name.default,
+		description: initialData.description.default,
+		packageName: initialData.packageName.default,
+
+		type: initialData.type.default,
+		language: initialData.language.default,
+		javaVersion: initialData.javaVersion.default,
+		packaging: initialData.packaging.default,
+
+		dependencies: [],
+	});
+	dataLoaded = true;
+});
+
+$: $userSelection.baseDir = $userSelection.artifactId;
 
 </script>
-{#await preloadData()}
+{#if !dataLoaded}
 	<div>Loading...</div>
-{:then data}
+{:else}
 	<div class="app">
 		<header>
 			<Header />
@@ -27,23 +48,29 @@ async function preloadData(): Promise<InitializerData> {
 			<section class="app__content">
 				<div>
 					<HomeMetadata
-						groupId={data.groupId.default}
-						artifactId={data.artifactId.default}
-						name={data.name.default}
-						description={data.description.default}
-						packageName={data.packageName.default}
+						bind:groupId={$userSelection.groupId}
+						bind:artifactId={$userSelection.artifactId}
+						bind:name={$userSelection.name}
+						bind:description={$userSelection.description}
+						bind:packageName={$userSelection.packageName}
 					/>
 					<HomeSettings
-						projectTypeData={data.type}
-						projectLanguageData={data.language}
-						projectAxonVersionData={data.bootVersion}
-						projectJavaVersionData={data.javaVersion}
-						projectPackagingData={data.packaging}
+						projectTypeData={initialData.type}
+						projectLanguageData={initialData.language}
+						projectJavaVersionData={initialData.javaVersion}
+						projectPackagingData={initialData.packaging}
+
+						bind:projectTypeSelected={$userSelection.type}
+						bind:projectLanguageSelected={$userSelection.language}
+						bind:projectJavaVersionSelected={$userSelection.javaVersion}
+						bind:projectPackagingSelected={$userSelection.packaging}
 					/>
 				</div>
 				<div>
 					<HomeDependencies
-						dependencyData={data.dependencies}
+						dependencyData={initialData.dependencies}
+
+						bind:addedDependencyIds={$userSelection.dependencies}
 					/>
 				</div>
 			</section>
@@ -57,7 +84,7 @@ async function preloadData(): Promise<InitializerData> {
 			</section>
 		</footer>
 	</div>
-{/await}
+{/if}
 
 <style type="scss">
 	@use "./components/Colors/colors.scss";

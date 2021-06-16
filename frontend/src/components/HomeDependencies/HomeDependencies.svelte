@@ -11,6 +11,9 @@ export let dependencyData: DataDependencies;
 let addDependenciesVisible = false;
 let addedDependencies: DependenciesValue[] = [];
 
+export let addedDependencyIds: string[] = [];
+$: addedDependencyIds = addedDependencies.map(dep => dep.id);
+
 </script>
 <div class="home-dependencies__heading">
     <Typography size="xl" weight="bold">Dependencies</Typography>
