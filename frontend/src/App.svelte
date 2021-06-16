@@ -1,42 +1,52 @@
 <script lang="ts">
+import { onMount } from "svelte";
 import ActionFooter from "./components/ActionFooter/ActionFooter.svelte";
 import Footer from "./components/Footer/Footer.svelte";
 import Header from "./components/Header/Header.svelte";
 import HomeDependencies from "./components/HomeDependencies/HomeDependencies.svelte";
 import HomeMetadata from "./components/HomeMetadata/HomeMetadata.svelte";
 import HomeSettings from "./components/HomeSettings/HomeSettings.svelte";
-import { userSelection } from './userSelectionStore';
-
-import { onMount } from "svelte";
+import type { DependenciesValue,InitializerData } from "./dataTypes";
 import { getInitialData } from "./services/getInitialData";
-import type { InitializerData } from "./dataTypes";
+import { userSelection } from './userSelectionStore';
 
 let dataLoaded = false;
 let initialData: InitializerData;
+let addedDependencies: DependenciesValue[] = [];
 
 onMount(async() => {
 	initialData = await getInitialData();
+
+	const urlSearchParams = new URLSearchParams(window.location.search);
+	const params = Object.fromEntries(urlSearchParams.entries());
+	history.replaceState && history.replaceState(null, '', location.pathname);
+
 	userSelection.set({
-		groupId: initialData.groupId.default,
-		artifactId: initialData.artifactId.default,
-		baseDir: initialData.artifactId.default,
-		name: initialData.name.default,
-		description: initialData.description.default,
-		packageName: initialData.packageName.default,
+		groupId: params.groupId || initialData.groupId.default,
+		artifactId: params.artifactId || initialData.artifactId.default,
+		baseDir: params.baseDir || initialData.artifactId.default,
+		name: params.name || initialData.name.default,
+		description: params.description || initialData.description.default,
+		packageName: params.packageName || initialData.packageName.default,
 
-		type: initialData.type.default,
-		language: initialData.language.default,
-		javaVersion: initialData.javaVersion.default,
-		packaging: initialData.packaging.default,
+		type: params.type || initialData.type.default,
+		language: params.language || initialData.language.default,
+		javaVersion: params.javaVersion || initialData.javaVersion.default,
+		packaging: params.packaging || initialData.packaging.default,
 
-		dependencies: [],
+		dependencies: (params.dependencies && params.dependencies.split(',')) || [],
 	});
+	let allDependencies = [];
+	initialData.dependencies.values.forEach(depWithName => allDependencies = [...allDependencies, ...depWithName.values]);
+	addedDependencies = allDependencies.filter(dep => $userSelection.dependencies.indexOf(dep.id) > -1);
+
 	dataLoaded = true;
 });
 
 $: $userSelection.baseDir = $userSelection.artifactId;
-
+$: $userSelection.dependencies = addedDependencies.map(dep => dep.id);
 </script>
+
 {#if !dataLoaded}
 	<div>Loading...</div>
 {:else}
@@ -70,7 +80,7 @@ $: $userSelection.baseDir = $userSelection.artifactId;
 					<HomeDependencies
 						dependencyData={initialData.dependencies}
 
-						bind:addedDependencyIds={$userSelection.dependencies}
+						bind:addedDependencies={addedDependencies}
 					/>
 				</div>
 			</section>

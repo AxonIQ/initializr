@@ -3,7 +3,7 @@ import type { DataDependencies, DependenciesValue } from "../../dataTypes";
 
 import Card from "../Card/Card.svelte";
 import Dialog from "../Dialog/Dialog.svelte";
-import IconButtonRefresh from "../IconButonRefresh/IconButtonRefresh.svelte";
+import IconButtonClear from "../IconButonClear/IconButtonClear.svelte";
 import IconButtonPlus from '../IconButtonPlus/IconButtonPlus.svelte';
 import Input from "../Input/Input.svelte";
 import Typography from '../Typography/Typography.svelte';
@@ -62,7 +62,7 @@ $: dependencyAlreadyAdded = (dependencyItem: DependenciesValue) => {
                 placeholder="Web, Security, JPA, Actuator, Devtools..."
                 bind:value={searchInput}
             />
-            <IconButtonRefresh onClick={() => searchInput = ''}/>
+            <IconButtonClear onClick={() => searchInput = ''}/>
         </div>
     </div>
 
