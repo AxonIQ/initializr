@@ -3,7 +3,9 @@ package io.axoniq.initializr.extension.dependency;
 import io.spring.initializr.generator.condition.ConditionalOnLanguage;
 import io.spring.initializr.generator.condition.ConditionalOnRequestedDependency;
 import io.spring.initializr.generator.language.kotlin.KotlinLanguage;
+import io.spring.initializr.generator.project.ProjectDescription;
 import io.spring.initializr.generator.project.ProjectGenerationConfiguration;
+import io.spring.initializr.metadata.InitializrMetadata;
 import org.springframework.context.annotation.Bean;
 
 
@@ -18,6 +20,11 @@ public class DependencyProjectGenerationConfiguration {
     @Bean
     public AxonBuildCustomizer axonBuildCustomizer() {
         return new AxonBuildCustomizer();
+    }
+
+    @Bean
+    public AxonHelpDocumentCustomizer axonHelpDocumentCustomizer(InitializrMetadata metadata, ProjectDescription description) {
+        return new AxonHelpDocumentCustomizer(metadata, description);
     }
 
     @Bean

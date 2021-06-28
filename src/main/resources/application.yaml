@@ -151,6 +151,7 @@ initializr:
           artifactId: axon-spring-boot-starter
           bom: axon-bom
           description: Provides Axon Framework - first class support for CQRS and Event Sourcing.
+          starter: false
           links:
             - rel: axon-starter
               href: https://github.com/AxonFramework
@@ -167,6 +168,8 @@ initializr:
           artifactId: axon-test
           bom: axon-bom
           description: Provides Axon Test - Module containing Test Fixture components to test Domain Models in a given-when-then approach.
+          starter: false
+          scope: test
           links:
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/axon-framework/testing
