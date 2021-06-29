@@ -1,5 +1,6 @@
 package io.axoniq.initializr.extension.dependency;
 
+import io.axoniq.initializr.extension.dependency.axon.AxonHelpDocumentCustomizer;
 import io.spring.initializr.generator.buildsystem.Dependency;
 import io.spring.initializr.generator.io.template.MustacheTemplateRenderer;
 import io.spring.initializr.generator.project.ProjectDescription;
@@ -17,6 +18,9 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class AxonHelpDocumentCustomerTests {
+
+    private static final String AXON_STARTER = "axon-starter";
+    private static final String AXON_TEST = "axon-test";
 
     @Autowired
     private InitializrMetadataProvider metadataProvider;
@@ -37,8 +41,10 @@ public class AxonHelpDocumentCustomerTests {
         axonHelpDocCustomizer.customize(helpDocument);
 
         //assert
-        assertEquals(helpDocument.gettingStarted().additionalLinks().getItems().size(),
-                this.metadataProvider.get().getDependencies().get("axon-starter").getLinks().size());
+        var totalLinks = getDependencyLinkCount(AXON_STARTER) +
+                getDependencyLinkCount(AXON_TEST);
+
+        assertEquals(totalLinks, helpDocument.gettingStarted().additionalLinks().getItems().size());
     }
 
     @Test
@@ -47,7 +53,10 @@ public class AxonHelpDocumentCustomerTests {
         HelpDocument helpDocument = new HelpDocument(renderer);
 
         ProjectDescription description = mock(ProjectDescription.class);
-        Map<String, Dependency> requestedDependencies = Map.of("axon-starter", Dependency.withCoordinates("org.axonframework", "axon-spring-boot-starter").build());
+        Map<String, Dependency> requestedDependencies = Map.of(
+                AXON_STARTER, Dependency.withCoordinates("org.axonframework", "axon-spring-boot-starter").build(),
+                AXON_TEST, Dependency.withCoordinates("org.axonframework", "axon-test").build()
+        );
         when(description.getRequestedDependencies()).thenReturn(requestedDependencies);
 
         var axonHelpDocCustomizer = new AxonHelpDocumentCustomizer(this.metadataProvider.get(), description);
@@ -60,5 +69,8 @@ public class AxonHelpDocumentCustomerTests {
 
     }
 
+    private int getDependencyLinkCount(String dependencyId) {
+        return this.metadataProvider.get().getDependencies().get(dependencyId).getLinks().size();
+    }
 
 }

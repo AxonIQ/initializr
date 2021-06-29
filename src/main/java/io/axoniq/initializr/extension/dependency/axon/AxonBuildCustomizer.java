@@ -1,4 +1,4 @@
-package io.axoniq.initializr.extension.dependency;
+package io.axoniq.initializr.extension.dependency.axon;
 
 import io.spring.initializr.generator.buildsystem.Build;
 import io.spring.initializr.generator.spring.build.BuildCustomizer;
@@ -11,8 +11,8 @@ import io.spring.initializr.generator.spring.build.BuildCustomizer;
  */
 public class AxonBuildCustomizer implements BuildCustomizer<Build> {
 
-    public static final String AXON_STARTER = "axon-starter";
-    public static final String AXON_TEST = "axon-test";
+    private static final String AXON_STARTER = "axon-starter";
+    private static final String AXON_TEST = "axon-test";
 
     @Override
     public void customize(Build build) {

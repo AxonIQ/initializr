@@ -1,6 +1,7 @@
 package io.axoniq.initializr.extension.dependency;
 
 
+import io.axoniq.initializr.extension.dependency.axon.AxonBuildCustomizer;
 import io.spring.initializr.generator.buildsystem.Build;
 import io.spring.initializr.generator.buildsystem.DependencyContainer;
 import org.junit.jupiter.api.Test;
@@ -9,9 +10,8 @@ import static org.mockito.Mockito.*;
 
 public class AxonBuildCustomizerTests {
 
-
-    public static final String AXON_STARTER = "axon-starter";
-    public static final String AXON_TEST = "axon-test";
+    private static final String AXON_STARTER = "axon-starter";
+    private static final String AXON_TEST = "axon-test";
 
     @Test
     void axonStarterAndTestAreAddedByDefault() {
