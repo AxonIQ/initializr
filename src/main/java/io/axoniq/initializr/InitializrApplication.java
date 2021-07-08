@@ -19,6 +19,11 @@ public class InitializrApplication {
     }
 
     @Bean
+    public HomeController homeController() {
+        return new HomeController();
+    }
+
+    @Bean
     ProjectGenerationMonitor projectGenerationMonitor(MeterRegistry meterRegistry) {
         return new ProjectGenerationMonitor(new AxonProjectRequestDocumentFactory(), meterRegistry);
     }
