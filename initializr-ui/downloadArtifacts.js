@@ -9,13 +9,13 @@ const octokit = new Octokit({
 
 async function getArtifacts () {
     const response = await octokit.rest.actions.listArtifactsForRepo({
-        owner: 'noblica',
+        owner: 'AxonIQ',
         repo: 'product-ui'
       });
 
     const initializrArtifcat = response.data.artifacts.find(artifact => artifact.name === 'initializr');
     const file = await octokit.rest.actions.downloadArtifact({
-        owner: 'noblica',
+        owner: 'AxonIQ',
         repo: 'product-ui',
         artifact_id: initializrArtifcat.id,
         archive_format: 'zip'
