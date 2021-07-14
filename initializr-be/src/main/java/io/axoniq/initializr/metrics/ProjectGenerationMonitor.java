@@ -23,7 +23,7 @@ public class ProjectGenerationMonitor {
 
     private final AxonProjectRequestDocumentFactory documentFactory;
     private final MeterRegistry meterRegistry;
-    private static final String GENERATED_PROJECTS_COUNTER = "axon.io.axoniq.initializr.counter";
+    private static final String GENERATED_PROJECTS_COUNTER = "axon.initializr.counter";
 
     public ProjectGenerationMonitor(AxonProjectRequestDocumentFactory documentFactory, MeterRegistry meterRegistry) {
         this.documentFactory = documentFactory;
