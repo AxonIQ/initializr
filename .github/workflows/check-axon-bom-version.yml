@@ -1,1 +1,18 @@
 name: 'Check for latest axon-bom'
+
+on:
+  workflow_dispatch:
+#  schedule:
+#    - cron '0 * * * *'
+
+jobs:
+  setup-build-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install packages
+        run: |
+          sudo apt-get -y install jq
