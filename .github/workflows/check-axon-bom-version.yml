@@ -23,6 +23,6 @@ jobs:
       - name: get current known version of axon-bom
         id: versions
         run: |
-          echo ::set-output name=knownVersion::$(yq e '.initializr.env.boms.axon-bom.mappings[0].version' src/main/resources/application.yaml)
+          echo ::set-output name=knownVersion::$(yq e '.initializr.env.boms.axon-bom.mappings[0].version' initializr-be/src/main/resources/application.yaml)
           echo ::set-output name=latestPublishedVersion::$(curl -s https://search.maven.org/classic/solrsearch/select?q=g:org.axonframework+AND+a:axon-bom | jq -r '.response.docs[0].latestVersion')
 
