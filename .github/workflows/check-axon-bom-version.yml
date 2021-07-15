@@ -26,3 +26,8 @@ jobs:
           echo ::set-output name=knownVersion::$(yq e '.initializr.env.boms.axon-bom.mappings[0].version' initializr-be/src/main/resources/application.yaml)
           echo ::set-output name=latestPublishedVersion::$(curl -s https://search.maven.org/classic/solrsearch/select?q=g:org.axonframework+AND+a:axon-bom | jq -r '.response.docs[0].latestVersion')
 
+      - name: print known versions
+        id: echo versions
+        run: |
+          echo "The last known version is ${{ steps.versions.knownVersion }}"
+          echo "The last released version is ${{ steps.versions.latestPublishedVersion }}"
