@@ -31,3 +31,17 @@ jobs:
         run: |
           echo "The last known version is ${{ steps.versions.outputs.knownVersion }}"
           echo "The last released version is ${{ steps.versions.outputs.latestPublishedVersion }}"
+
+      - name: Update axon-bom in application.yaml
+        if: ${{ steps.versions.outputs.knownVersion != steps.versions.outputs.latestPublishedVersion }}
+        run: |
+          export latestVersion = {{ steps.versions.outputs.latestPublishedVersion }}
+          yq e '.initializr.env.boms.axon-bom.mappings[0].version=env(latestVersion)' -i initializr-be/src/main/resources/application.yaml
+
+      - name: Create PR for latest axon-bom version
+        uses: peter-evans/create-pull-request@v3
+        if: success() && ${{ steps.versions.outputs.knownVersion != steps.versions.outputs.latestPublishedVersion }}
+        with:
+          commit-message: update axon-bom to version ${{ steps.versions.outputs.latestPublishedVersion }}
+          title: Update Axon-BOM to version ${{ steps.versions.outputs.latestPublishedVersion }}
+          assignees: idugalic, brunchey
