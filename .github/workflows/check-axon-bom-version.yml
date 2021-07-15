@@ -29,5 +29,5 @@ jobs:
       - name: print known versions
         id: echo-versions
         run: |
-          echo "The last known version is ${{ steps.versions.knownVersion }}"
-          echo "The last released version is ${{ steps.versions.latestPublishedVersion }}"
+          echo "The last known version is ${{ steps.versions.outputs.knownVersion }}"
+          echo "The last released version is ${{ steps.versions.outputs.latestPublishedVersion }}"
