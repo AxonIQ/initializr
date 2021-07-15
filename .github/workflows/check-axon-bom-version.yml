@@ -35,7 +35,7 @@ jobs:
       - name: Update axon-bom in application.yaml
         if: steps.versions.outputs.knownVersion != steps.versions.outputs.latestPublishedVersion
         run: |
-          export latestVersion = {{ steps.versions.outputs.latestPublishedVersion }}
+          export latestVersion = ${{ steps.versions.outputs.latestPublishedVersion }}
           yq e '.initializr.env.boms.axon-bom.mappings[0].version=env(latestVersion)' -i initializr-be/src/main/resources/application.yaml
 
       - name: Create PR for latest axon-bom version
