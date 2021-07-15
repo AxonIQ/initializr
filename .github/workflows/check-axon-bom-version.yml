@@ -13,6 +13,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Install packages
+      - name: Install yq package
         run: |
-          sudo apt-get -y install jq
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64
+          sudo add-apt-repository ppa:rmescandon/yq
+          sudo apt update
+          sudo apt install yq -y
+
+      - name: show utitlity versions
+        run: |
+          jq --version
+          yq --version
