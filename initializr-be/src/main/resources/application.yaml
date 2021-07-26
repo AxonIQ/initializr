@@ -11,12 +11,10 @@ spring:
     resources:
       cache:
         use-last-modified: false
-
 logging:
   level:
     org.springframework.core.env: warn
     org.springframework.jndi: warn
-
 management:
   metrics:
     export:
@@ -31,7 +29,6 @@ management:
         include: "info,health,metrics,prometheus"
   server:
     port: 8081
-
 server:
   compression:
     enabled: true
@@ -40,7 +37,6 @@ server:
   error:
     include-message: always
   forward-headers-strategy: native
-
 # Basic initializer configuration
 initializr:
   name:
@@ -74,9 +70,9 @@ initializr:
     - name: 2.4.5.
       id: 2.4.5
       default: true
-#    - name: Latest SNAPSHOT
-#      id: 2.4.5.BUILD-SNAPSHOT
-#      default: false
+      #    - name: Latest SNAPSHOT
+      #      id: 2.4.5.BUILD-SNAPSHOT
+      #      default: false
   types:
     - name: Maven Project
       id: maven-project
@@ -118,7 +114,7 @@ initializr:
         versionProperty: axon.version
         mappings:
           - compatibilityRange: "2.0.0.RELEASE"
-            version: 4.5.0
+            version: 4.5.3
       testcontainers:
         groupId: org.testcontainers
         artifactId: testcontainers-bom
@@ -288,7 +284,6 @@ initializr:
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/extensions/mongo
               description: The reference guide section on how to use Axon Mongo extension
-
     # Web
     - name: Web
       content:
@@ -388,7 +383,7 @@ initializr:
           links:
             - rel: reference
               href: https://kafka.apache.org
-        # Security
+              # Security
     - name: Security
       content:
         - name: Spring Security
