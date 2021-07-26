@@ -1,9 +1,9 @@
 name: 'Check for latest axon-bom'
 
+#run every 6 hours to see if there is a new version released.
 on:
   schedule:
-    #run every 6 hours to see if there is a new version released.
-    - cron '0 0,6,12,18 * * *'
+    - cron: '0 0,6,12,18 * * *'
 
 jobs:
   setup-build-push:
