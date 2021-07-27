@@ -1,9 +1,9 @@
 name: 'Check for latest axon-bom'
 
+#run every 6 hours to see if there is a new version released.
 on:
-  workflow_dispatch:
-#  schedule:
-#    - cron '0 * * * *'
+  schedule:
+    - cron: '0 0,6,12,18 * * *'
 
 jobs:
   setup-build-push:
@@ -46,6 +46,6 @@ jobs:
           title: Update Axon-BOM to version ${{ steps.versions.outputs.latestPublishedVersion }}
           assignees: idugalic, brunchey
           branch: update-axon-bom-to-ver-${{ steps.versions.outputs.latestPublishedVersion }}
-          label: |
+          labels: |
             check-axon-bom-version
             ${{ steps.versions.outputs.latestPublishedVersion }}
