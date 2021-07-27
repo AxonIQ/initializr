@@ -40,8 +40,8 @@ server:
 app:
   info:
     name: ${spring.application.name}
-    version: @project.version@
-    timestamp: @timestamp@
+    version: "@project.version@"
+    timestamp: "@timestamp@"
 # Basic initializer configuration
 initializr:
   name:
