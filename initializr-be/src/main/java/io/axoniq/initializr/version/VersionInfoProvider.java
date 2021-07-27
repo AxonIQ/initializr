@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "app.info")
 public class VersionInfoProvider {
 
-    private String name = "Cloud Console";
+    private String name = "Initializr";
     private String version = "Unknown";
     private String timestamp = "Unknown";
 
