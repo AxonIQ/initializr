@@ -18,12 +18,15 @@ import io.spring.initializr.web.project.DefaultProjectRequestToDescriptionConver
 import io.spring.initializr.web.project.ProjectGenerationInvoker;
 import io.spring.initializr.web.project.ProjectRequest;
 import io.spring.initializr.web.project.WebProjectRequest;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.TestInstance.*;
-import org.junit.jupiter.api.io.*;
-import org.junit.jupiter.api.parallel.*;
-import org.junit.jupiter.params.*;
-import org.junit.jupiter.params.provider.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -45,8 +48,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Parameterized integration tests for project generation.
  * <p>
- * It will combine all available languages(Kotlin, Java), build systems (Maven, Gradle) and packaging (Jar, War) to
- * generate and build the project. It can take up to 7 minutes to run.
+ * It will combine all available languages(Kotlin, Java), build systems (Maven, Gradle) and packaging (Jar, War) to generate and build the project.
+ * It can take up to 7 minutes to run.
  */
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS)
@@ -83,9 +86,8 @@ class ProjectGenerationIntegrationTests {
 
     ProjectGenerationIntegrationTests(@Autowired ApplicationContext applicationContext,
                                       @Autowired InitializrMetadataProvider metadataProvider) {
-        this.invoker = new ProjectGenerationInvoker<>(
-                applicationContext, new DefaultProjectRequestToDescriptionConverter()
-        );
+        this.invoker = new ProjectGenerationInvoker<>(applicationContext,
+                new DefaultProjectRequestToDescriptionConverter());
         this.metadata = metadataProvider.get();
     }
 
@@ -109,14 +111,12 @@ class ProjectGenerationIntegrationTests {
 
     Stream<Arguments> parameters() {
         List<Version> bootVersions = this.metadata.getBootVersions().getContent().stream()
-                                                  .map((element) -> Version.parse(element.getId()))
-                                                  .collect(Collectors.toList());
+                .map((element) -> Version.parse(element.getId())).collect(Collectors.toList());
         String defaultJvmVersion = this.metadata.getJavaVersions().getContent().stream()
-                                                .filter(DefaultMetadataElement::isDefault).map(MetadataElement::getId)
-                                                .findAny().orElse("11");
+                .filter(DefaultMetadataElement::isDefault).map(MetadataElement::getId).findAny().orElse("11");
         List<Packaging> packagings = Arrays.asList(new JarPackaging(), new WarPackaging());
         List<Language> languages = Arrays.asList(Language.forId(KotlinLanguage.ID, defaultJvmVersion),
-                                                 Language.forId(JavaLanguage.ID, defaultJvmVersion));
+                Language.forId(JavaLanguage.ID, defaultJvmVersion));
         BuildSystem maven = BuildSystem.forId(MavenBuildSystem.ID);
         BuildSystem gradleGroovy = BuildSystem.forIdAndDialect(GradleBuildSystem.ID, GradleBuildSystem.DIALECT_GROOVY);
         BuildSystem gradleKotlin = BuildSystem.forIdAndDialect(GradleBuildSystem.ID, GradleBuildSystem.DIALECT_KOTLIN);
@@ -125,10 +125,8 @@ class ProjectGenerationIntegrationTests {
             for (Packaging packaging : packagings) {
                 for (Language language : languages) {
                     configurations.add(Arguments.arguments(bootVersion, packaging, language, maven));
-                    configurations.add(Arguments.arguments(
-                            bootVersion, packaging, language,
-                            (language.id().equals(KotlinLanguage.ID)) ? gradleKotlin : gradleGroovy
-                    ));
+                    configurations.add(Arguments.arguments(bootVersion, packaging, language,
+                            (language.id().equals(KotlinLanguage.ID)) ? gradleKotlin : gradleGroovy));
                 }
             }
         }
@@ -147,34 +145,14 @@ class ProjectGenerationIntegrationTests {
         request.setGroupId("com.example");
         request.setArtifactId("demo");
         request.setApplicationName("DemoApplication");
-        request.setDependencies(Arrays.asList("axon-starter",
-                                              "axon-test",
-                                              "axon-micrometer",
-                                              "axon-kotlin",
-                                              "axon-reactor-starter",
-                                              "axon-tracing-starter",
-                                              "axon-amqp-starter",
-                                              "axon-jgroups-starter",
-                                              "axon-springcloud-starter",
-                                              "axon-mongo",
-                                              "actuator",
-                                              "configuration-processor",
-                                              "web",
-                                              "thymeleaf",
-                                              "data-jpa",
-                                              "h2",
-                                              "testcontainers",
-                                              "devtools",
-                                              "lombok",
-                                              "prometheus"));
+        request.setDependencies(Arrays.asList("axon-starter", "axon-test", "axon-micrometer", "axon-kotlin", "axon-reactor-starter", "axon-tracing-starter", "axon-amqp-starter", "axon-jgroups-starter", "axon-springcloud-starter", "axon-mongo", "actuator", "configuration-processor", "web", "thymeleaf", "data-jpa", "h2", "testcontainers", "devtools", "lombok", "prometheus"));
         Path project = this.invoker.invokeProjectStructureGeneration(request).getRootDirectory();
         ProcessBuilder processBuilder = createProcessBuilder(buildSystem);
         processBuilder.directory(project.toFile());
         Path output = Files.createTempFile(directory, "output-", ".log");
         processBuilder.redirectError(output.toFile());
         processBuilder.redirectOutput(output.toFile());
-        assertThat(processBuilder.start().waitFor())
-                .describedAs(String.join("\n", Files.readAllLines(output)))
+        assertThat(processBuilder.start().waitFor()).describedAs(String.join("\n", Files.readAllLines(output)))
                 .isEqualTo(0);
     }
 
@@ -214,4 +192,5 @@ class ProjectGenerationIntegrationTests {
         }
         throw new IllegalStateException();
     }
+
 }

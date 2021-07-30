@@ -2,11 +2,6 @@ package io.axoniq.initializr.version;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-/**
- * {@link ConfigurationProperties} object for {@link VersionInfo}.
- *
- * @author Lucas Campos
- */
 @ConfigurationProperties(prefix = "app.info")
 public class VersionInfoProvider {
 

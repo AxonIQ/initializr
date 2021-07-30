@@ -1,10 +1,5 @@
 package io.axoniq.initializr.version;
 
-/**
- * Data object holder for version information.
- *
- * @author Lucas Campos
- */
 public class VersionInfo {
 
     private final String productName;

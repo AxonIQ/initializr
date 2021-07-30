@@ -3,7 +3,7 @@ package io.axoniq.initializr.metrics;
 import io.spring.initializr.actuate.stat.ProjectRequestDocument;
 
 /**
- * Represent the request for Axon project generation.
+ * Represent the request for axon project generation.
  *
  * @author Ivan Dugalic
  */
