@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2021. AxonIQ
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package io.axoniq.initializr.metrics;
 
 import io.spring.initializr.actuate.stat.ProjectRequestDocument;
@@ -39,7 +55,8 @@ public class AxonProjectRequestDocumentFactory {
         document.setClient(this.determineClientInformation(request));
         document.setAxonVersion(event.getMetadata().getDependencies().get("axon-starter").getVersion());
         document.setJavaVersion(request.getJavaVersion());
-        if (StringUtils.hasText(request.getJavaVersion()) && metadata.getJavaVersions().get(request.getJavaVersion()) == null) {
+        if (StringUtils.hasText(request.getJavaVersion())
+                && metadata.getJavaVersions().get(request.getJavaVersion()) == null) {
             document.triggerError().setJavaVersion(true);
         }
 
@@ -49,7 +66,8 @@ public class AxonProjectRequestDocumentFactory {
         }
 
         document.setPackaging(request.getPackaging());
-        if (StringUtils.hasText(request.getPackaging()) && metadata.getPackagings().get(request.getPackaging()) == null) {
+        if (StringUtils.hasText(request.getPackaging())
+                && metadata.getPackagings().get(request.getPackaging()) == null) {
             document.triggerError().setPackaging(true);
         }
 
@@ -59,14 +77,15 @@ public class AxonProjectRequestDocumentFactory {
             document.triggerError().setType(true);
         }
 
-        List<String> dependencies = new ArrayList(request.getDependencies());
-        List<String> validDependencies = dependencies.stream().filter((id) -> {
-            return metadata.getDependencies().get(id) != null;
-        }).collect(Collectors.toList());
+        List<String> dependencies = new ArrayList<>(request.getDependencies());
+        List<String> validDependencies = dependencies.stream()
+                                                     .filter((id) -> metadata.getDependencies().get(id) != null)
+                                                     .collect(Collectors.toList());
+
         document.setDependencies(new ProjectRequestDocument.DependencyInformation(validDependencies));
-        List<String> invalidDependencies = dependencies.stream().filter((id) -> {
-            return !validDependencies.contains(id);
-        }).collect(Collectors.toList());
+        List<String> invalidDependencies = dependencies.stream()
+                                                       .filter((id) -> !validDependencies.contains(id))
+                                                       .collect(Collectors.toList());
         if (!invalidDependencies.isEmpty()) {
             document.triggerError().triggerInvalidDependencies(invalidDependencies);
         }
@@ -90,7 +109,9 @@ public class AxonProjectRequestDocumentFactory {
 
     private ProjectRequestDocument.VersionInformation determineVersionInformation(ProjectRequest request) {
         Version version = Version.safeParse(request.getBootVersion());
-        return version != null && version.getMajor() != null ? new ProjectRequestDocument.VersionInformation(version) : null;
+        return version != null && version.getMajor() != null
+                ? new ProjectRequestDocument.VersionInformation(version)
+                : null;
     }
 
     private ProjectRequestDocument.ClientInformation determineClientInformation(ProjectRequest request) {
@@ -121,6 +142,4 @@ public class AxonProjectRequestDocumentFactory {
         String candidate = (String) request.getParameters().get("cf-ipcountry");
         return StringUtils.hasText(candidate) && !"xx".equalsIgnoreCase(candidate) ? candidate : null;
     }
-
-
 }
