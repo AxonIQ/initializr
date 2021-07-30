@@ -7,15 +7,15 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * A build customizer for Axon projects that provides explicit selection of the `actuator` dependency
- * if one of the observability related dependencies is selected.
+ * A build customizer for Axon projects that provides explicit selection of the `actuator` dependency if one of the
+ * observability related dependencies is selected.
  *
  * @author Иван Дугалић
  */
 public class ObservabilityBuildCustomizer implements BuildCustomizer<Build> {
 
-    private static final List<String> MICROMETER_REGISTRY_IDS = Arrays.asList("datadog", "graphite", "influx",
-            "new-relic", "prometheus", "axon-micrometer");
+    private static final List<String> MICROMETER_REGISTRY_IDS =
+            Arrays.asList("datadog", "graphite", "influx", "new-relic", "prometheus", "axon-micrometer");
 
     @Override
     public void customize(Build build) {
@@ -24,5 +24,4 @@ public class ObservabilityBuildCustomizer implements BuildCustomizer<Build> {
             build.dependencies().add("actuator");
         }
     }
-
 }

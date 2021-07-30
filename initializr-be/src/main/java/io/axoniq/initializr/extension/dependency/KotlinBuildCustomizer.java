@@ -14,7 +14,6 @@ import io.spring.initializr.generator.spring.build.BuildCustomizer;
  */
 public class KotlinBuildCustomizer implements BuildCustomizer<Build> {
 
-
     public static final String AXON_KOTLIN_ARTIFACT = "axon-kotlin";
     public static final String AXON_KOTLIN_GROUP = "org.axonframework.extensions.kotlin";
 

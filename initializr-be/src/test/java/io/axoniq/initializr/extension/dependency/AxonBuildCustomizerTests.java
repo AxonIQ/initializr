@@ -4,7 +4,7 @@ package io.axoniq.initializr.extension.dependency;
 import io.axoniq.initializr.extension.dependency.axon.AxonBuildCustomizer;
 import io.spring.initializr.generator.buildsystem.Build;
 import io.spring.initializr.generator.buildsystem.DependencyContainer;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.mockito.Mockito.*;
 
@@ -15,7 +15,6 @@ public class AxonBuildCustomizerTests {
 
     @Test
     void axonStarterAndTestAreAddedByDefault() {
-
         //arrange
         Build build = mock(Build.class);
         DependencyContainer container = mock(DependencyContainer.class);
@@ -35,7 +34,6 @@ public class AxonBuildCustomizerTests {
 
     @Test
     void axonStarterAndTestAreNotAddedIfAlreadySelected() {
-
         //arrange
         Build build = mock(Build.class);
         DependencyContainer container = mock(DependencyContainer.class);
@@ -52,5 +50,4 @@ public class AxonBuildCustomizerTests {
         verify(container, times(0)).add(AXON_STARTER);
         verify(container, times(0)).add(AXON_TEST);
     }
-
 }

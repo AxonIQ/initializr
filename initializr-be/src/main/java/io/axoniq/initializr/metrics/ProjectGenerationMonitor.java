@@ -32,24 +32,33 @@ public class ProjectGenerationMonitor {
 
     private List<Tag> tagsBuilder(AxonProjectRequestDocument document) {
         List<Tag> tags = new ArrayList<>();
-        if (document.getLanguage() != null)
+        if (document.getLanguage() != null) {
             tags.add(Tag.of("language", document.getLanguage()));
-        if (document.getBuildSystem() != null)
+        }
+        if (document.getBuildSystem() != null) {
             tags.add(Tag.of("buildSystem", document.getBuildSystem()));
-        if (document.getType() != null)
+        }
+        if (document.getType() != null) {
             tags.add(Tag.of("type", document.getType()));
-        if (document.getAxonVersion() != null)
+        }
+        if (document.getAxonVersion() != null) {
             tags.add(Tag.of("axonVersion", document.getAxonVersion()));
-        if (document.getJavaVersion() != null)
+        }
+        if (document.getJavaVersion() != null) {
             tags.add(Tag.of("javaVersion", document.getJavaVersion()));
-        if (document.getVersion() != null && document.getVersion().getId() != null)
+        }
+        if (document.getVersion() != null && document.getVersion().getId() != null) {
             tags.add(Tag.of("springBootVersion", document.getVersion().getId()));
-        if (document.getClient() != null && document.getClient().getId() != null)
+        }
+        if (document.getClient() != null && document.getClient().getId() != null) {
             tags.add(Tag.of("client", document.getClient().getId()));
-        if (document.getClient() != null && document.getClient().getCountry() != null)
+        }
+        if (document.getClient() != null && document.getClient().getCountry() != null) {
             tags.add(Tag.of("clientCountry", document.getClient().getCountry()));
-        if (document.getClient() != null && document.getClient().getIp() != null)
+        }
+        if (document.getClient() != null && document.getClient().getIp() != null) {
             tags.add(Tag.of("clientIP", document.getClient().getIp()));
+        }
         return tags;
     }
 
@@ -63,7 +72,6 @@ public class ProjectGenerationMonitor {
             }
             Counter counter = meterRegistry.counter(GENERATED_PROJECTS_COUNTER, tagsBuilder(document));
             counter.increment();
-
         } catch (Exception ex) {
             logger.warn("Failed to publish metrics", ex);
         }

@@ -3,9 +3,9 @@ package io.axoniq.initializr.extension.dependency.axon;
 import io.spring.initializr.generator.buildsystem.Build;
 import io.spring.initializr.generator.spring.build.BuildCustomizer;
 
-
 /**
- * A build customizer for Axon projects that provides explicit selection of the `axon-starter` and `axon-test` dependency.
+ * A build customizer for Axon projects that provides explicit selection of the `axon-starter` and `axon-test`
+ * dependency.
  *
  * @author Иван Дугалић
  */

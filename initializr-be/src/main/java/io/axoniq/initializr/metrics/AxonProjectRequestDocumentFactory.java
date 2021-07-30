@@ -39,7 +39,8 @@ public class AxonProjectRequestDocumentFactory {
         document.setClient(this.determineClientInformation(request));
         document.setAxonVersion(event.getMetadata().getDependencies().get("axon-starter").getVersion());
         document.setJavaVersion(request.getJavaVersion());
-        if (StringUtils.hasText(request.getJavaVersion()) && metadata.getJavaVersions().get(request.getJavaVersion()) == null) {
+        if (StringUtils.hasText(request.getJavaVersion())
+                && metadata.getJavaVersions().get(request.getJavaVersion()) == null) {
             document.triggerError().setJavaVersion(true);
         }
 
@@ -49,7 +50,8 @@ public class AxonProjectRequestDocumentFactory {
         }
 
         document.setPackaging(request.getPackaging());
-        if (StringUtils.hasText(request.getPackaging()) && metadata.getPackagings().get(request.getPackaging()) == null) {
+        if (StringUtils.hasText(request.getPackaging())
+                && metadata.getPackagings().get(request.getPackaging()) == null) {
             document.triggerError().setPackaging(true);
         }
 
@@ -59,14 +61,15 @@ public class AxonProjectRequestDocumentFactory {
             document.triggerError().setType(true);
         }
 
-        List<String> dependencies = new ArrayList(request.getDependencies());
-        List<String> validDependencies = dependencies.stream().filter((id) -> {
-            return metadata.getDependencies().get(id) != null;
-        }).collect(Collectors.toList());
+        List<String> dependencies = new ArrayList<>(request.getDependencies());
+        List<String> validDependencies = dependencies.stream()
+                                                     .filter((id) -> metadata.getDependencies().get(id) != null)
+                                                     .collect(Collectors.toList());
+
         document.setDependencies(new ProjectRequestDocument.DependencyInformation(validDependencies));
-        List<String> invalidDependencies = dependencies.stream().filter((id) -> {
-            return !validDependencies.contains(id);
-        }).collect(Collectors.toList());
+        List<String> invalidDependencies = dependencies.stream()
+                                                       .filter((id) -> !validDependencies.contains(id))
+                                                       .collect(Collectors.toList());
         if (!invalidDependencies.isEmpty()) {
             document.triggerError().triggerInvalidDependencies(invalidDependencies);
         }
@@ -90,7 +93,9 @@ public class AxonProjectRequestDocumentFactory {
 
     private ProjectRequestDocument.VersionInformation determineVersionInformation(ProjectRequest request) {
         Version version = Version.safeParse(request.getBootVersion());
-        return version != null && version.getMajor() != null ? new ProjectRequestDocument.VersionInformation(version) : null;
+        return version != null && version.getMajor() != null
+                ? new ProjectRequestDocument.VersionInformation(version)
+                : null;
     }
 
     private ProjectRequestDocument.ClientInformation determineClientInformation(ProjectRequest request) {
@@ -121,6 +126,4 @@ public class AxonProjectRequestDocumentFactory {
         String candidate = (String) request.getParameters().get("cf-ipcountry");
         return StringUtils.hasText(candidate) && !"xx".equalsIgnoreCase(candidate) ? candidate : null;
     }
-
-
 }

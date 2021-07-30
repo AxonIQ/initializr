@@ -5,7 +5,8 @@ import io.spring.initializr.generator.buildsystem.DependencyContainer;
 import io.spring.initializr.generator.spring.build.BuildCustomizer;
 
 /**
- * A build customizer for Axon projects that provides explicit selection of the `kafka-clients` if `axon-kafka-starter` is selected.
+ * A build customizer for Axon projects that provides explicit selection of the `kafka-clients` if `axon-kafka-starter`
+ * is selected.
  *
  * @author Иван Дугалић
  */
@@ -13,7 +14,6 @@ public class KafkaBuildCustomizer implements BuildCustomizer<Build> {
 
     public static final String KAFKA_STARTER = "axon-kafka-starter";
     public static final String KAFKA_CLIENTS = "kafka-clients";
-
 
     @Override
     public void customize(Build build) {

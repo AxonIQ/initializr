@@ -10,7 +10,6 @@ import io.spring.initializr.generator.project.ProjectGenerationConfiguration;
 import io.spring.initializr.metadata.InitializrMetadata;
 import org.springframework.context.annotation.Bean;
 
-
 /**
  * {@link ProjectGenerationConfiguration} for customizations relevant to selected dependencies.
  *
@@ -25,7 +24,8 @@ public class DependencyProjectGenerationConfiguration {
     }
 
     @Bean
-    public AxonHelpDocumentCustomizer axonHelpDocumentCustomizer(InitializrMetadata metadata, ProjectDescription description) {
+    public AxonHelpDocumentCustomizer axonHelpDocumentCustomizer(InitializrMetadata metadata,
+                                                                 ProjectDescription description) {
         return new AxonHelpDocumentCustomizer(metadata, description);
     }
 
@@ -66,5 +66,4 @@ public class DependencyProjectGenerationConfiguration {
     public LiquibaseProjectContributor liquibaseProjectContributor() {
         return new LiquibaseProjectContributor();
     }
-
 }
