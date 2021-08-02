@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2021. AxonIQ
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package io.axoniq.initializr.metrics;
 
 import io.micrometer.core.instrument.Counter;
@@ -32,24 +48,33 @@ public class ProjectGenerationMonitor {
 
     private List<Tag> tagsBuilder(AxonProjectRequestDocument document) {
         List<Tag> tags = new ArrayList<>();
-        if (document.getLanguage() != null)
+        if (document.getLanguage() != null) {
             tags.add(Tag.of("language", document.getLanguage()));
-        if (document.getBuildSystem() != null)
+        }
+        if (document.getBuildSystem() != null) {
             tags.add(Tag.of("buildSystem", document.getBuildSystem()));
-        if (document.getType() != null)
+        }
+        if (document.getType() != null) {
             tags.add(Tag.of("type", document.getType()));
-        if (document.getAxonVersion() != null)
+        }
+        if (document.getAxonVersion() != null) {
             tags.add(Tag.of("axonVersion", document.getAxonVersion()));
-        if (document.getJavaVersion() != null)
+        }
+        if (document.getJavaVersion() != null) {
             tags.add(Tag.of("javaVersion", document.getJavaVersion()));
-        if (document.getVersion() != null && document.getVersion().getId() != null)
+        }
+        if (document.getVersion() != null && document.getVersion().getId() != null) {
             tags.add(Tag.of("springBootVersion", document.getVersion().getId()));
-        if (document.getClient() != null && document.getClient().getId() != null)
+        }
+        if (document.getClient() != null && document.getClient().getId() != null) {
             tags.add(Tag.of("client", document.getClient().getId()));
-        if (document.getClient() != null && document.getClient().getCountry() != null)
+        }
+        if (document.getClient() != null && document.getClient().getCountry() != null) {
             tags.add(Tag.of("clientCountry", document.getClient().getCountry()));
-        if (document.getClient() != null && document.getClient().getIp() != null)
+        }
+        if (document.getClient() != null && document.getClient().getIp() != null) {
             tags.add(Tag.of("clientIP", document.getClient().getIp()));
+        }
         return tags;
     }
 
@@ -63,7 +88,6 @@ public class ProjectGenerationMonitor {
             }
             Counter counter = meterRegistry.counter(GENERATED_PROJECTS_COUNTER, tagsBuilder(document));
             counter.increment();
-
         } catch (Exception ex) {
             logger.warn("Failed to publish metrics", ex);
         }
