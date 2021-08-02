@@ -77,7 +77,7 @@ jobs:
           cd k8s/prod/
           curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
           chmod u+x ./kustomize
-          ./kustomize edit set image eu.gcr.io/axoniq-devops/axon-initializr=eu.gcr.io/axoniq-devops/axoniq-initializr:$IMAGE_VERSION
+          ./kustomize edit set image eu.gcr.io/axoniq-devops/axoniq-initializr=eu.gcr.io/axoniq-devops/axoniq-initializr:$IMAGE_VERSION
         env:
           IMAGE_VERSION : ${{ needs.setup-build-push.outputs.image_version }}
 
