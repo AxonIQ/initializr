@@ -54,8 +54,10 @@ initializr:
       value: demo
   javaVersions:
     - id: 11
+      name: 11
       default: true
     - id: 1.8
+      name: 8
       default: false
   languages:
     - name: Java
@@ -156,7 +158,7 @@ initializr:
           links:
             - rel: axon-starter
               href: https://github.com/AxonFramework
-              description: The open-source code repository on GitHub
+              description: The Axon Framework open-source code repository on GitHub
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/
               description: The reference guide on how to use Axon
@@ -194,7 +196,7 @@ initializr:
           links:
             - rel: github-repository
               href: https://github.com/AxonFramework/extension-kotlin
-              description: The open-source code repository on GitHub
+              description: The Axon Kotlin extension open-source code repository on GitHub
             - rel: docs
               href: htps://docs.axoniq.io/reference-guide/extensions/kotlin
               description: The reference guide section on how to use Axon Kotin extension
@@ -207,7 +209,7 @@ initializr:
           links:
             - rel: github-repository
               href: https://github.com/AxonFramework/extension-reactor
-              description: The open-source code repository on GitHub
+              description: The Axon Reactor extension open-source code repository for GitHub
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/extensions/reactor
               description: The reference guide section on how to use Axon Reactor extension
@@ -220,7 +222,7 @@ initializr:
           links:
             - rel: github-repository
               href: https://github.com/AxonFramework/extension-tracing
-              description: The open-source code repository on GitHub
+              description: The Axon Tracing extension open-source code repository on GitHub
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/extensions/tracing
               description: The reference guide section on how to use Axon Tracing extension
@@ -233,7 +235,7 @@ initializr:
           links:
             - rel: github-repository
               href: https://github.com/AxonFramework/extension-amqp
-              description: The open-source code repository on GitHub
+              description: The Axon Spring AMQP extension open-source code repository on GitHub
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/extensions/spring-amqp
               description: The reference guide section on how to use Axon Spring AMQP extension
@@ -246,7 +248,7 @@ initializr:
           links:
             - rel: github-repository
               href: https://github.com/AxonFramework/extension-kafka
-              description: The open-source code repository on GitHub
+              description: The Axon Kafka extension open-source code repository on GitHub
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/extensions/kafka
               description: The reference guide section on how to use Axon Kafka extension
@@ -259,7 +261,7 @@ initializr:
           links:
             - rel: github-repository
               href: https://github.com/AxonFramework/extension-jgroups
-              description: The open-source code repository on GitHub
+              description: The Axon JGroups extension open-source code repository on GitHub
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/extensions/jgroups
               description: The reference guide section on how to use Axon JGroups extension
@@ -272,7 +274,7 @@ initializr:
           links:
             - rel: github-repository
               href: https://github.com/AxonFramework/extension-springcloud
-              description: The open-source code repository on GitHub
+              description: The Axon Spring Cloud extension open-source code repository on GitHub
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/extensions/spring-cloud
               description: The reference guide section on how to use Axon Spring Cloud extension
@@ -285,7 +287,7 @@ initializr:
           links:
             - rel: github-repository
               href: https://github.com/AxonFramework/extension-mongo
-              description: The open-source code repository on GitHub
+              description: The Axon Mongo extension open-source code repository on GitHub
             - rel: docs
               href: https://docs.axoniq.io/reference-guide/extensions/mongo
               description: The reference guide section on how to use Axon Mongo extension
