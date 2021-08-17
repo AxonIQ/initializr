@@ -9,6 +9,7 @@ const octokit = new Octokit({
 });
 
 async function getArtifacts () {
+    console.log(process.env);
     const response = await octokit.rest.actions.listArtifactsForRepo({
         owner: 'AxonIQ',
         repo: 'product-ui'
