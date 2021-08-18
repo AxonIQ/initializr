@@ -23,11 +23,6 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      - name: Create .env file
-        run: |
-          touch .env
-          echo "ACCESS_TOKEN=\"${{ secrets.PA_TOKEN_GITHUB }}\"" >> .env
-
       - name: Maven Build
         run: |
           ./mvnw -B -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 verify
