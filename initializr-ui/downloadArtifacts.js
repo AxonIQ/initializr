@@ -10,7 +10,7 @@ const TARGET_FILE = './build.zip';
 
 const octokit = new Octokit({
     // TODO: for local development, you should provide a valid GitHub Personal Access Token
-    auth: "token " + process.env.GITHUB_TOKEN,
+    auth: process.env.GITHUB_TOKEN,
     userAgent: 'Download Artifact script',
 });
 
