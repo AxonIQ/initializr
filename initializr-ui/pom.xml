@@ -63,6 +63,10 @@
                         </goals>
                         <configuration>
                             <arguments>run build</arguments>
+                            <environmentVariables>
+                                <!-- Var value take from maven properties -->
+                                <GITHUB_TOKEN>${GITHUB_TOKEN}</GITHUB_TOKEN>
+                            </environmentVariables>
                         </configuration>
                     </execution>
                 </executions>
