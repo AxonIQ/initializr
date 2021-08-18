@@ -26,7 +26,7 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo "ACCESS_TOKEN=\"${ secrets.PA_TOKEN_GITHUB}\"" >> .env
+          echo "ACCESS_TOKEN=\"${{ secrets.PA_TOKEN_GITHUB }}\"" >> .env
 
       - name: Maven Build
         run: |
