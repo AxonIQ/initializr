@@ -51,6 +51,8 @@ jobs:
       - name: Publish docker image to eu.gcr.io
         run: |
           ./mvnw -B -U -Pdocker package -DskipTests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     outputs:
       image_version: ${{ steps.vars.outputs.version_from_pom }}
