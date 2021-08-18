@@ -1,25 +1,16 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@octokit/auth-action': ^1.3.3
   '@octokit/rest': ^18.6.7
   fs-extra: ^10.0.0
   node-stream-zip: ^1.13.6
 
 devDependencies:
-  '@octokit/auth-action': 1.3.3
   '@octokit/rest': 18.6.7
   fs-extra: 10.0.0
   node-stream-zip: 1.13.6
 
 packages:
-
-  /@octokit/auth-action/1.3.3:
-    resolution: {integrity: sha512-8v4c/pw6HTxsF7pCgJoox/q4KKov4zkgLxEGGqLOZPSZaHf1LqdLlj5m5x5c1bKNn38uQXNvJKEnKX1qJlGeQQ==}
-    dependencies:
-      '@octokit/auth-token': 2.4.5
-      '@octokit/types': 6.19.0
-    dev: true
 
   /@octokit/auth-token/2.4.5:
     resolution: {integrity: sha512-BpGYsPgJt05M7/L/5FoE1PiAbdxXFZkX/3kDYcsvd1v6UhlnE5e96dTDr0ezX/EFwciQxf3cNV0loipsURU+WA==}

@@ -1,4 +1,3 @@
-const { createActionAuth } = require("@octokit/auth-action");
 const { Octokit } = require("@octokit/rest");
 const fs = require('fs-extra');
 const StreamZip = require('node-stream-zip');
@@ -9,16 +8,13 @@ const ZIP = 'zip';
 const TARGET_DIR = './target/classes/static';
 const TARGET_FILE = './build.zip';
 
-const auth = createActionAuth();
-// const authentication = await auth();
 const octokit = new Octokit({
     // TODO: for local development, you should provide a valid GitHub Personal Access Token
-    auth: auth,
+    auth: "token " + process.env.GITHUB_TOKEN,
     userAgent: 'Download Artifact script',
 });
 
 async function getArtifacts () {
-    console.log(auth);
     const response = await octokit.rest.actions.listArtifactsForRepo({
         owner: OWNER,
         repo: REPO
