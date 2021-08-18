@@ -1,10 +1,10 @@
-require('dotenv').config();
+const process = require('dotenv').config();
 const { Octokit } = require("@octokit/rest");
 const fs = require('fs-extra');
 const StreamZip = require('node-stream-zip');
 
 const octokit = new Octokit({
-    auth: process.env.PA_TOKEN_GITHUB,
+    auth: process.env.ACCESS_TOKEN,
     userAgent: 'Download Artifact script',
 });
 
