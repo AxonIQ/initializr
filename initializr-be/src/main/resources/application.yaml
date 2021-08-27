@@ -74,8 +74,8 @@ initializr:
       id: war
       default: false
   bootVersions:
-    - name: 2.4.5.
-      id: 2.4.5
+    - name: 2.5.4.
+      id: 2.5.4
       default: true
       #    - name: Latest SNAPSHOT
       #      id: 2.4.5.BUILD-SNAPSHOT
@@ -390,7 +390,14 @@ initializr:
           links:
             - rel: reference
               href: https://kafka.apache.org
-              # Security
+        - name: RSocket
+          id: rsocket
+          description: RSocket.io applications with Spring Messaging and Netty.
+          compatibilityRange: 2.2.0.M2
+          facets:
+            - reactive
+            - native
+    # Security
     - name: Security
       content:
         - name: Spring Security
