@@ -16,6 +16,7 @@
 
 package io.axoniq.initializr.extension.dependency;
 
+import io.axoniq.initializr.customcontroller.AxonProjectContributor;
 import io.axoniq.initializr.extension.dependency.axon.AxonBuildCustomizer;
 import io.axoniq.initializr.extension.dependency.axon.AxonHelpDocumentCustomizer;
 import io.spring.initializr.generator.condition.ConditionalOnLanguage;
@@ -82,4 +83,10 @@ public class DependencyProjectGenerationConfiguration {
     public LiquibaseProjectContributor liquibaseProjectContributor() {
         return new LiquibaseProjectContributor();
     }
+
+    @Bean
+    public AxonProjectContributor axonProjectContributor(ProjectDescription description) {
+        return new AxonProjectContributor(description);
+    }
+
 }
