@@ -20,6 +20,9 @@ public class AxonProjectRequestToDescriptionConverter
         AxonProjectDescription description = new AxonProjectDescription();
         new DefaultProjectRequestToDescriptionConverter().convert(request, description, metadata);
         description.setAxonServerContext(request.getAxonServerContext());
+        description.setUsingAxonSaaS(request.isUsingAxonSaaS());
+        description.setUsingAxonServerEE(request.isUsingAxonServerEE());
+        description.setUsingAxonServerSE(request.isUsingAxonServerSE());
         return description;
     }
 

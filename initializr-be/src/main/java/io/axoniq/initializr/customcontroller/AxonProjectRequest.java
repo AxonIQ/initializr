@@ -11,7 +11,13 @@ import io.spring.initializr.web.project.WebProjectRequest;
  */
 public class AxonProjectRequest extends WebProjectRequest {
 
-    private String axonServerContext;
+    private boolean usingAxonSaaS;
+
+    private boolean usingAxonServerSE;
+
+    private boolean usingAxonServerEE;
+
+    private String axonServerContext = "default";
 
     public String getAxonServerContext() {
         return this.axonServerContext;
@@ -21,4 +27,27 @@ public class AxonProjectRequest extends WebProjectRequest {
         this.axonServerContext = axonServerContext;
     }
 
+    public boolean isUsingAxonSaaS() {
+        return usingAxonSaaS;
+    }
+
+    public void setUsingAxonSaaS(boolean usingAxonSaaS) {
+        this.usingAxonSaaS = usingAxonSaaS;
+    }
+
+    public boolean isUsingAxonServerSE() {
+        return usingAxonServerSE;
+    }
+
+    public void setUsingAxonServerSE(boolean usingAxonServerSE) {
+        this.usingAxonServerSE = usingAxonServerSE;
+    }
+
+    public boolean isUsingAxonServerEE() {
+        return usingAxonServerEE;
+    }
+
+    public void setUsingAxonServerEE(boolean usingAxonServerEE) {
+        this.usingAxonServerEE = usingAxonServerEE;
+    }
 }
