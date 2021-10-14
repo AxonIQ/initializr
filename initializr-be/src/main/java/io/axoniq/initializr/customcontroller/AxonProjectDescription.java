@@ -1,21 +1,19 @@
 package io.axoniq.initializr.customcontroller;
 
 import io.spring.initializr.generator.project.MutableProjectDescription;
+import io.spring.initializr.generator.project.ProjectDescription;
+import io.spring.initializr.generator.project.contributor.ProjectContributor;
 
 /**
- * A custom ProjectDescription to convey the additional flags to contributors like context.
- *
+ * A custom {@link ProjectDescription} to convey the additional fields to {@link ProjectContributor}.
+
  * @author Stefan Dragisic
  */
 public class AxonProjectDescription extends MutableProjectDescription {
 
     private String axonServerContext;
 
-    private boolean usingAxonSaaS;
-
-    private boolean usingAxonServerSE;
-
-    private boolean usingAxonServerEE;
+    private String usingAxonServer;
 
     AxonProjectDescription() {
     }
@@ -23,9 +21,7 @@ public class AxonProjectDescription extends MutableProjectDescription {
     AxonProjectDescription(AxonProjectDescription source) {
         super(source);
         this.axonServerContext = source.getAxonServerContext();
-        this.usingAxonServerEE = source.isUsingAxonServerEE();
-        this.usingAxonSaaS = source.isUsingAxonSaaS();
-        this.usingAxonServerSE = source.isUsingAxonServerSE();
+        this.usingAxonServer = source.getUsingAxonServer();
     }
 
     @Override
@@ -33,6 +29,10 @@ public class AxonProjectDescription extends MutableProjectDescription {
         return new AxonProjectDescription(this);
     }
 
+    /**
+     * @return a context name specified by user.
+     * Default context is "default"
+     */
     public String getAxonServerContext() {
         return this.axonServerContext;
     }
@@ -41,28 +41,16 @@ public class AxonProjectDescription extends MutableProjectDescription {
         this.axonServerContext = axonServerContext;
     }
 
-    public boolean isUsingAxonSaaS() {
-        return usingAxonSaaS;
+
+    /**
+     * @return which Axon Server version to include in resources.
+     * Options: EE,SE,CLOUD
+     */
+    public String getUsingAxonServer() {
+        return usingAxonServer;
     }
 
-    public void setUsingAxonSaaS(boolean usingAxonSaaS) {
-        this.usingAxonSaaS = usingAxonSaaS;
+    public void setUsingAxonServer(String usingAxonServer) {
+        this.usingAxonServer = usingAxonServer;
     }
-
-    public boolean isUsingAxonServerSE() {
-        return usingAxonServerSE;
-    }
-
-    public void setUsingAxonServerSE(boolean usingAxonServerSE) {
-        this.usingAxonServerSE = usingAxonServerSE;
-    }
-
-    public boolean isUsingAxonServerEE() {
-        return usingAxonServerEE;
-    }
-
-    public void setUsingAxonServerEE(boolean usingAxonServerEE) {
-        this.usingAxonServerEE = usingAxonServerEE;
-    }
-
 }

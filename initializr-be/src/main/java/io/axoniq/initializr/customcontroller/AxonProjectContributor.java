@@ -19,10 +19,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
 /**
- * A {@link ProjectContributor} that adds properties to an application properties and generates additional resources
- * at the root of the
- * project when the registered description is a {@link AxonProjectDescription} and its
- * custom Axon flags
+ * A {@link ProjectContributor} generates additional project resources based on user request.
  *
  * @author Stefan Dragisic
  */
@@ -32,6 +29,11 @@ public class AxonProjectContributor implements ProjectContributor {
 
     private final ProjectDescription description;
 
+    private final MustacheFactory mf = new DefaultMustacheFactory();
+
+    private AxonProjectDescription projectDescription;
+    private Path projectRoot;
+
     public AxonProjectContributor(
             ProjectDescription description) {
         this.description = description;
@@ -39,68 +41,47 @@ public class AxonProjectContributor implements ProjectContributor {
 
     @Override
     public void contribute(Path projectRoot) throws IOException {
-        if (this.description instanceof AxonProjectDescription
-                && !((AxonProjectDescription) this.description).getAxonServerContext().isEmpty()) {
+            this.projectDescription = (AxonProjectDescription) this.description;
+            this.projectRoot = projectRoot;
 
-            AxonProjectDescription projectDescription = (AxonProjectDescription) this.description;
-
-            if (projectDescription.isUsingAxonSaaS()) {
-                configureForSaaS(projectRoot, projectDescription);
-                return;
+            switch (projectDescription.getUsingAxonServer().toUpperCase()) {
+                case "EE" : configureForAxonServerEE();
+                break;
+                case "SE" : configureForAxonServerSE();
+                break;
+                case "CLOUD" : configureForAxonServerCloud();
+                default:
             }
-
-            if (projectDescription.isUsingAxonServerSE()) {
-                configureForAxonServerSE(projectRoot, projectDescription);
-                return;
-            }
-
-            if (projectDescription.isUsingAxonServerEE()) {
-                configureForAxonServerEE(projectRoot, projectDescription);
-            }
-
-        }
     }
 
-    private void configureForSaaS(Path projectRoot, AxonProjectDescription projectDescription) throws IOException {
+    private void configureForAxonServerCloud() throws IOException {
         renderTemplate("configuration/axon-server/saas/application.properties.mustache",
-                "src/main/resources/application.properties",
-                projectRoot,
-                projectDescription);
+                "src/main/resources/application.properties");
         appendToFile("configuration/axon-server/saas/README.md",
-                "HELP.md",
-                projectRoot);
+                "HELP.md");
     }
 
-    private void configureForAxonServerEE(Path projectRoot, AxonProjectDescription projectDescription) throws IOException {
+    private void configureForAxonServerEE() throws IOException {
         copyFile("configuration/axon-server/ee/docker/axoniq.license",
-                "src/main/docker/axoniq.license",
-                projectRoot);
+                "src/main/docker/axoniq.license");
         copyFile("configuration/axon-server/ee/docker/docker-compose.yml",
-                "src/main/docker/docker-compose.yml",
-                projectRoot);
+                "src/main/docker/docker-compose.yml");
         renderTemplate("configuration/axon-server/ee/docker/cluster-template.yml.mustache",
-                "src/main/docker/cluster-template.yml",
-                projectRoot,
-                projectDescription);
+                "src/main/docker/cluster-template.yml");
         renderTemplate("configuration/axon-server/ee/docker/application.properties.mustache",
-                "src/main/resources/application.properties",
-                projectRoot,
-                projectDescription);
+                "src/main/resources/application.properties");
         appendToFile("configuration/axon-server/ee/docker/README.md",
-                "HELP.md",
-                projectRoot);
+                "HELP.md");
     }
 
-    private void configureForAxonServerSE(Path projectRoot, AxonProjectDescription projectDescription) throws IOException {
+    private void configureForAxonServerSE() throws IOException {
         copyFile("configuration/axon-server/se/docker/docker-compose.yml",
-                "src/main/docker/docker-compose.yml",
-                projectRoot);
+                "src/main/docker/docker-compose.yml");
         appendToFile("configuration/axon-server/se/docker/README.md",
-                "HELP.md",
-                projectRoot);
+                "HELP.md");
     }
 
-    private void copyFile(String source, String destination, Path projectRoot) throws IOException {
+    private void copyFile(String source, String destination) throws IOException {
         Resource resource = new ClassPathResource(source);
         Path destinationPath = projectRoot.resolve(destination);
 
@@ -111,11 +92,8 @@ public class AxonProjectContributor implements ProjectContributor {
         Files.copy(resource.getFile().toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
     }
 
-    private void renderTemplate(String templateSource, String templateDestination, Path projectRoot, AxonProjectDescription projectDescription) throws IOException {
-        MustacheFactory mf = new DefaultMustacheFactory();
-
+    private void renderTemplate(String templateSource, String templateDestination) throws IOException {
         Mustache m = mf.compile(templateSource);
-
         Path output = projectRoot.resolve(templateDestination);
         if (!Files.exists(output)) {
             Files.createDirectories(output.getParent());
@@ -131,7 +109,7 @@ public class AxonProjectContributor implements ProjectContributor {
         }
     }
 
-    private void appendToFile(String sourcePath, String destinationPath, Path projectRoot) throws IOException {
+    private void appendToFile(String sourcePath, String destinationPath) throws IOException {
         Resource resource = new ClassPathResource(sourcePath);
         Path output = projectRoot.resolve(destinationPath);
         FileWriter writer = new FileWriter(output.toFile(), true);

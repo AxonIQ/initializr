@@ -7,7 +7,7 @@ import io.spring.initializr.web.project.ProjectRequestToDescriptionConverter;
 
 /**
  * To make sure your view of ProjectDescription is made available in the ProjectGenerationContext,
- * we provide a custom ProjectRequestToDescriptionConverter should be defined and could reuse
+ * we provide a custom ProjectRequestToDescriptionConverter. It should be defined and could reuse
  * DefaultProjectRequestToDescriptionConverter to apply general rules for standard fields.
  *
  * @author Stefan Dragisic
@@ -20,9 +20,7 @@ public class AxonProjectRequestToDescriptionConverter
         AxonProjectDescription description = new AxonProjectDescription();
         new DefaultProjectRequestToDescriptionConverter().convert(request, description, metadata);
         description.setAxonServerContext(request.getAxonServerContext());
-        description.setUsingAxonSaaS(request.isUsingAxonSaaS());
-        description.setUsingAxonServerEE(request.isUsingAxonServerEE());
-        description.setUsingAxonServerSE(request.isUsingAxonServerSE());
+        description.setUsingAxonServer(request.getUsingAxonServer());
         return description;
     }
 
