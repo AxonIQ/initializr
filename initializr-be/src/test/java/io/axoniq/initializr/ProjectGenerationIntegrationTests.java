@@ -16,6 +16,8 @@
 
 package io.axoniq.initializr;
 
+import io.axoniq.initializr.customcontroller.AxonProjectRequest;
+import io.axoniq.initializr.customcontroller.AxonProjectRequestToDescriptionConverter;
 import io.spring.initializr.generator.buildsystem.BuildSystem;
 import io.spring.initializr.generator.buildsystem.gradle.GradleBuildSystem;
 import io.spring.initializr.generator.buildsystem.maven.MavenBuildSystem;
@@ -93,14 +95,14 @@ class ProjectGenerationIntegrationTests {
         }
     });
 
-    private final ProjectGenerationInvoker<ProjectRequest> invoker;
+    private final ProjectGenerationInvoker<AxonProjectRequest> invoker;
 
     private final InitializrMetadata metadata;
 
     ProjectGenerationIntegrationTests(@Autowired ApplicationContext applicationContext,
                                       @Autowired InitializrMetadataProvider metadataProvider) {
         this.invoker = new ProjectGenerationInvoker<>(
-                applicationContext, new DefaultProjectRequestToDescriptionConverter()
+                applicationContext, new AxonProjectRequestToDescriptionConverter()
         );
         this.metadata = metadataProvider.get();
     }
@@ -155,7 +157,8 @@ class ProjectGenerationIntegrationTests {
     @MethodSource("parameters")
     void projectBuilds(Version bootVersion, Packaging packaging, Language language, BuildSystem buildSystem,
                        @TempDir Path directory) throws IOException, InterruptedException {
-        WebProjectRequest request = new WebProjectRequest();
+       // WebProjectRequest request = new WebProjectRequest();
+        AxonProjectRequest request = new AxonProjectRequest();
         request.setBootVersion(bootVersion.toString());
         request.setLanguage(language.id());
         request.setPackaging(packaging.id());
