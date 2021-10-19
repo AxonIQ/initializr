@@ -1,11 +1,11 @@
-version: '3.1'
+version: '3.8'
 services:
   axonserver-enterprise-1:
     image: axoniq/axonserver-enterprise:4.5.9-dev
     hostname: axonserver-enterprise-1
     environment:
       - AXONIQ_AXONSERVER_CLUSTERTEMPLATE_PATH=/axonserver/cluster-template.yml
-      - AXONIQ_LICENSE=/axonserver/axoniq.license
+      - AXONIQ_AXONSERVER_ENTERPRISE_LICENSE-DIRECTORY=/axonserver
       - SERVER_PORT=8024
       - AXONIQ_AXONSERVER_PORT=8124
       - AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED=true
@@ -28,7 +28,7 @@ services:
     hostname: axonserver-enterprise-2
     environment:
       - AXONIQ_AXONSERVER_CLUSTERTEMPLATE_PATH=/axonserver/cluster-template.yml
-      - AXONIQ_LICENSE=/axonserver/axoniq.license
+      - AXONIQ_AXONSERVER_ENTERPRISE_LICENSE-DIRECTORY=/axonserver
       - SERVER_PORT=8025
       - AXONIQ_AXONSERVER_PORT=8125
       - AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED=true
@@ -51,7 +51,7 @@ services:
     hostname: axonserver-enterprise-3
     environment:
       - AXONIQ_AXONSERVER_CLUSTERTEMPLATE_PATH=/axonserver/cluster-template.yml
-      - AXONIQ_LICENSE=/axonserver/axoniq.license
+      - AXONIQ_AXONSERVER_ENTERPRISE_LICENSE-DIRECTORY=/axonserver
       - SERVER_PORT=8026
       - AXONIQ_AXONSERVER_PORT=8126
       - AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED=true

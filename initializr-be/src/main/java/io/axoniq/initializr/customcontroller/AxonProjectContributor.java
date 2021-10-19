@@ -27,8 +27,6 @@ public class AxonProjectContributor implements ProjectContributor {
 
     private static final Log logger = LogFactory.getLog(AxonProjectContributor.class);
 
-    private final ProjectDescription description;
-
     private final MustacheFactory mf = new DefaultMustacheFactory();
 
     private AxonProjectDescription projectDescription;
@@ -36,12 +34,11 @@ public class AxonProjectContributor implements ProjectContributor {
 
     public AxonProjectContributor(
             ProjectDescription description) {
-        this.description = description;
+        this.projectDescription = (AxonProjectDescription) description;
     }
 
     @Override
     public void contribute(Path projectRoot) throws IOException {
-            this.projectDescription = (AxonProjectDescription) this.description;
             this.projectRoot = projectRoot;
 
             switch (projectDescription.getUsingAxonServer().toUpperCase()) {
