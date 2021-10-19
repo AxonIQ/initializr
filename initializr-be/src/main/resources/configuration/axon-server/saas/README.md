@@ -1,4 +1,4 @@
-### Running in Axon SaaS
+## Running in AxonIQ Cloud
 
 * Get free access to a developer context at [cloud.axoniq.io](https://cloud.axoniq.io/)
 * Create an application binding and paste the token in `src/main/resources/application.properties`
