@@ -1,6 +1,4 @@
-### Running Axon Server SE in docker-compose
-
+### Running Axon Server Standard Edition in Docker
 
 * The `docker/docker-compose.yml` allows you to start Axon Server SE with the "`docker-compose up`" command
-
-[The blog post on how to run Axon Server in Docker](https://axoniq.io/blog-overview/running-axon-server-in-docker)
+* [The blog post on how to run Axon Server in Docker](https://axoniq.io/blog-overview/running-axon-server-in-docker)
