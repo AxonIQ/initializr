@@ -16,15 +16,21 @@
 
 package io.axoniq.initializr;
 
+import io.axoniq.initializr.customcontroller.AxonProjectGenerationController;
+import io.axoniq.initializr.customcontroller.AxonProjectRequest;
+import io.axoniq.initializr.customcontroller.AxonProjectRequestToDescriptionConverter;
 import io.axoniq.initializr.metrics.AxonProjectRequestDocumentFactory;
 import io.axoniq.initializr.metrics.ProjectGenerationMonitor;
 import io.axoniq.initializr.version.VersionInfoProvider;
 import io.micrometer.core.instrument.MeterRegistry;
+import io.spring.initializr.metadata.InitializrMetadataProvider;
+import io.spring.initializr.web.project.ProjectGenerationInvoker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -67,5 +73,13 @@ public class InitializrApplication {
                 registry.addMapping("/**").allowedMethods("*");
             }
         };
+    }
+
+    @Bean
+    public AxonProjectGenerationController projectGenerationController(InitializrMetadataProvider metadataProvider,
+                                                                       ApplicationContext applicationContext) {
+        ProjectGenerationInvoker<AxonProjectRequest> projectGenerationInvoker = new ProjectGenerationInvoker<>(
+                applicationContext, new AxonProjectRequestToDescriptionConverter());
+        return new AxonProjectGenerationController(metadataProvider, projectGenerationInvoker);
     }
 }

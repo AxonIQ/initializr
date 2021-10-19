@@ -16,6 +16,7 @@
 
 package io.axoniq.initializr.extension.dependency;
 
+import io.axoniq.initializr.customcontroller.AxonProjectContributor;
 import io.axoniq.initializr.extension.dependency.axon.AxonBuildCustomizer;
 import io.axoniq.initializr.extension.dependency.axon.AxonHelpDocumentCustomizer;
 import io.spring.initializr.generator.condition.ConditionalOnLanguage;
@@ -25,6 +26,7 @@ import io.spring.initializr.generator.project.ProjectDescription;
 import io.spring.initializr.generator.project.ProjectGenerationConfiguration;
 import io.spring.initializr.metadata.InitializrMetadata;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 
 /**
  * {@link ProjectGenerationConfiguration} for customizations relevant to selected dependencies.
@@ -40,6 +42,7 @@ public class DependencyProjectGenerationConfiguration {
     }
 
     @Bean
+    @Order(1)
     public AxonHelpDocumentCustomizer axonHelpDocumentCustomizer(InitializrMetadata metadata,
                                                                  ProjectDescription description) {
         return new AxonHelpDocumentCustomizer(metadata, description);
@@ -82,4 +85,11 @@ public class DependencyProjectGenerationConfiguration {
     public LiquibaseProjectContributor liquibaseProjectContributor() {
         return new LiquibaseProjectContributor();
     }
+
+    @Bean
+    @Order(1000)
+    public AxonProjectContributor axonProjectContributor(ProjectDescription description) {
+        return new AxonProjectContributor(description);
+    }
+
 }
