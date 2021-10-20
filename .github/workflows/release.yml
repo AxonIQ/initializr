@@ -27,8 +27,8 @@ jobs:
         with:
           token: ${{ secrets.PA_TOKEN_GITHUB }}
       - run: |
-          git config user.name 'brunchey'
-          git config user.email 'ben.runchey@axoniq.io'
+          git config user.name 'AxonIQ devbot'
+          git config user.email 'devbot@axoniq.io'
       - uses: actions/setup-java@v1.4.3
         with:
           java-version: 11
