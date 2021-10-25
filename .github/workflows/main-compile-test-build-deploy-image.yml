@@ -71,8 +71,8 @@ jobs:
           ref: main
 
       - run: |
-          git config user.name 'brunchey'
-          git config user.email 'ben.runchey@axoniq.io'
+          git config user.name 'AxonIQ devbot'
+          git config user.email 'devbot@axoniq.io'
 
       - name: Preapare next release
         if: github.github.head_ref == null

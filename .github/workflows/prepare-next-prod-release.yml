@@ -20,8 +20,8 @@ jobs:
         with:
           ref: ${{ steps.get_tag_name.outputs.TAG }}
       - run: |
-          git config user.name 'brunchey'
-          git config user.email 'ben.runchey@axoniq.io'
+          git config user.name 'AxonIQ devbot'
+          git config user.email 'devbot@axoniq.io'
       - uses: actions/setup-java@v1.4.3
         with:
           java-version: 11
@@ -71,8 +71,8 @@ jobs:
           repository: AxonIQ/initializr-deploy
           ref: main
       - run: |
-          git config user.name 'brunchey'
-          git config user.email 'ben.runchey@axoniq.io'
+          git config user.name 'AxonIQ devbot'
+          git config user.email 'devbot@axoniq.io'
       - name: Preapare next production release
         if: github.github.head_ref == null
         run: |
@@ -85,7 +85,7 @@ jobs:
 
       - name: Push release changes
         run: |
-          git commit -am "[axon-cloud-console] Prepare next production release $IMAGE_VERSION"
+          git commit -am "[initializr-deploy] Prepare next production release $IMAGE_VERSION"
           git push
         env:
           IMAGE_VERSION : ${{ needs.setup-build-push.outputs.image_version }}

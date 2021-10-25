@@ -44,7 +44,7 @@ jobs:
         with:
           commit-message: update axon-bom to version ${{ steps.versions.outputs.latestPublishedVersion }}
           title: Update Axon-BOM to version ${{ steps.versions.outputs.latestPublishedVersion }}
-          assignees: idugalic, brunchey
+          assignees: idugalic, stefanvozd
           branch: update-axon-bom-to-ver-${{ steps.versions.outputs.latestPublishedVersion }}
           labels: |
             check-axon-bom-version
