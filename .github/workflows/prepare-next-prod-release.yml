@@ -52,7 +52,7 @@ jobs:
         run: |
           ./mvnw -B -U -Pdocker package -DskipTests
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEVBOT_GITHUB_TOKEN }}
 
     outputs:
       image_version: ${{ steps.vars.outputs.version_from_pom }}
@@ -67,7 +67,7 @@ jobs:
       - name: Checkout AxonIQ/initializr-deploy repo
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.PA_TOKEN_GITHUB }}
+          token: ${{ secrets.DEVBOT_GITHUB_TOKEN }}
           repository: AxonIQ/initializr-deploy
           ref: main
       - run: |

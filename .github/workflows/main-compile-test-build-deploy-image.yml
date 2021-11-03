@@ -43,7 +43,7 @@ jobs:
         run: |
           ./mvnw -B -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 verify
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEVBOT_GITHUB_TOKEN }}
 
       - name: Publish docker image to eu.gcr.io
         if: github.github.head_ref == null && success()
@@ -51,7 +51,7 @@ jobs:
           ./mvnw -B -U -Pdocker package -DskipTests -Dimage.version=$SHA8
         env:
           SHA8: ${{ steps.vars.outputs.sha_short }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEVBOT_GITHUB_TOKEN }}
 
     outputs:
       image_version: ${{ steps.vars.outputs.sha_short }}
@@ -66,7 +66,7 @@ jobs:
       - name: Checkout AxonIQ/initializr-deploy repo
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.PA_TOKEN_GITHUB }}
+          token: ${{ secrets.DEVBOT_GITHUB_TOKEN }}
           repository: AxonIQ/initializr-deploy
           ref: main
 
