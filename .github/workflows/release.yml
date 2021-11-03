@@ -25,7 +25,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.PA_TOKEN_GITHUB }}
+          token: ${{ secrets.DEVBOT_GITHUB_TOKEN }}
       - run: |
           git config user.name 'AxonIQ devbot'
           git config user.email 'devbot@axoniq.io'
@@ -57,7 +57,7 @@ jobs:
         run: |
           ./mvnw -B -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 verify
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEVBOT_GITHUB_TOKEN }}
 
       - name: Maven release prepare no tests
         run: |
@@ -70,9 +70,9 @@ jobs:
                         -DpreparationGoals=clean \
                         release:prepare
         env:
-          MAVEN_USERNAME: ${{ secrets.SONATYPE_TOKEN_ID }}
-          MAVEN_PASSWORD: ${{ secrets.PA_TOKEN_GITHUB }}
-          GITHUB_TOKEN: ${{ secrets.PA_TOKEN_GITHUB }}
+          MAVEN_USERNAME: ${{ secrets.DEVBOT_GITHUB_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.DEVBOT_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEVBOT_GITHUB_TOKEN }}
           RELEASE_TAG: ${{ github.event.inputs.releaseTag }}
           RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
           DEVELOPMENT_VERSION: ${{ github.event.inputs.developmentVersion }}
