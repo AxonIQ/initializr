@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+      - run: |
+          git config user.name 'AxonIQ devbot'
+          git config user.email 'devbot@axoniq.io'
 
       - name: Install yq package
         run: |
@@ -44,7 +47,8 @@ jobs:
         with:
           commit-message: update axon-bom to version ${{ steps.versions.outputs.latestPublishedVersion }}
           title: Update Axon-BOM to version ${{ steps.versions.outputs.latestPublishedVersion }}
-          assignees: idugalic, stefanvozd
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          reviewers: idugalic, stefanvozd, lfgcampos
           branch: update-axon-bom-to-ver-${{ steps.versions.outputs.latestPublishedVersion }}
           labels: |
             check-axon-bom-version
