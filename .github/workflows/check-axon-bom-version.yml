@@ -48,7 +48,7 @@ jobs:
           commit-message: update axon-bom to version ${{ steps.versions.outputs.latestPublishedVersion }}
           title: Update Axon-BOM to version ${{ steps.versions.outputs.latestPublishedVersion }}
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          reviewers: idugalic, stefanvozd, lfgcampos
+          reviewers: idugalic, schananas, lfgcampos
           branch: update-axon-bom-to-ver-${{ steps.versions.outputs.latestPublishedVersion }}
           labels: |
             check-axon-bom-version
