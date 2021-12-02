@@ -30,7 +30,7 @@
     </parent>
     <groupId>io.axoniq</groupId>
     <artifactId>initializr</artifactId>
-    <version>0.0.16-SNAPSHOT</version>
+    <version>0.0.16</version>
     <name>initializr</name>
     <description>Initializer project for Axon applications</description>
 
@@ -38,7 +38,7 @@
         <connection>scm:git:https://github.com/AxonIQ/initializr.git</connection>
         <developerConnection>scm:git:https://github.com/AxonIQ/initializr.git</developerConnection>
         <url>https://github.com/AxonIQ/initializr</url>
-        <tag>axoniq-initializr-0.0.6</tag>
+        <tag>axoniq-initializr-0.0.16</tag>
     </scm>
 
     <properties>
