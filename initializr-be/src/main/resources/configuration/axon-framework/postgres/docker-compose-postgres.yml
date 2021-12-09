@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  axoncloud-postgresql:
+    image: postgres:12
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgresql-storage:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - axon-net
