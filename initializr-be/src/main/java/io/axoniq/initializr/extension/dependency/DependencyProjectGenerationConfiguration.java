@@ -106,7 +106,11 @@ public class DependencyProjectGenerationConfiguration {
         return new PostgresProjectContributor();
     }
 
-    //quartz contributor db properties
-
+    @Bean
+    @Order(1003)
+    @ConditionalOnRequestedDependency("quartz")
+    public QuartzProjectContributor quartzProjectContributor(ProjectDescription description) {
+        return new QuartzProjectContributor(description);
+    }
 
 }

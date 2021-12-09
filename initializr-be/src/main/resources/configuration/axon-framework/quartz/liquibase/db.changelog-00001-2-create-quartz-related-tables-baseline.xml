@@ -1,0 +1,448 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog logicalFilePath="classpath:/db/changelogs/postgres/db.changelog-00001-2-create-quartz-related-tables-baseline.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-0">
+        <createTable tableName="qrtz_job_details">
+            <column name="sched_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_group" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+            <column name="job_class_name" type="VARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_durable" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_nonconcurrent" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_update_data" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="requests_recovery" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_data" type="BYTEA"/>
+        </createTable>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-1">
+        <createTable tableName="qrtz_triggers">
+            <column name="sched_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_group" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_group" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(250)"/>
+            <column name="next_fire_time" type="BIGINT"/>
+            <column name="prev_fire_time" type="BIGINT"/>
+            <column name="priority" type="INT"/>
+            <column name="trigger_state" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_type" type="VARCHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_time" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="BIGINT"/>
+            <column name="calendar_name" type="VARCHAR(200)"/>
+            <column name="misfire_instr" type="SMALLINT"/>
+            <column name="job_data" type="BYTEA"/>
+        </createTable>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-2">
+        <createTable tableName="qrtz_simple_triggers">
+            <column name="sched_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_group" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repeat_count" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repeat_interval" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="times_triggered" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-3">
+        <createTable tableName="qrtz_cron_triggers">
+            <column name="sched_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_group" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cron_expression" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_zone_id" type="VARCHAR(80)"/>
+        </createTable>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-4">
+        <createTable tableName="qrtz_simprop_triggers">
+            <column name="sched_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_group" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="str_prop_1" type="VARCHAR(512)"/>
+            <column name="str_prop_2" type="VARCHAR(512)"/>
+            <column name="str_prop_3" type="VARCHAR(512)"/>
+            <column name="int_prop_1" type="INT"/>
+            <column name="int_prop_2" type="INT"/>
+            <column name="long_prop_1" type="BIGINT"/>
+            <column name="long_prop_2" type="BIGINT"/>
+            <column name="dec_prop_1" type="NUMERIC(13, 4)"/>
+            <column name="dec_prop_2" type="NUMERIC(13, 4)"/>
+            <column name="bool_prop_1" type="BOOLEAN"/>
+            <column name="bool_prop_2" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-5">
+        <createTable tableName="qrtz_blob_triggers">
+            <column name="sched_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_group" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="blob_data" type="BYTEA"/>
+        </createTable>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-6">
+        <createTable tableName="qrtz_calendars">
+            <column name="sched_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="calendar_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="calendar" type="BYTEA">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-7">
+        <createTable tableName="qrtz_paused_trigger_grps">
+            <column name="sched_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_group" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-8">
+        <createTable tableName="qrtz_fired_triggers">
+            <column name="sched_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="entry_id" type="VARCHAR(95)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trigger_group" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="instance_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fired_time" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sched_time" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="priority" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_name" type="VARCHAR(200)"/>
+            <column name="job_group" type="VARCHAR(200)"/>
+            <column name="is_nonconcurrent" type="BOOLEAN"/>
+            <column name="requests_recovery" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-9">
+        <createTable tableName="qrtz_scheduler_state">
+            <column name="sched_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="instance_name" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_checkin_time" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="checkin_interval" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-10">
+        <createTable tableName="qrtz_locks">
+            <column name="sched_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lock_name" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-11">
+        <addPrimaryKey columnNames="sched_name, job_name, job_group" constraintName="qrtz_job_details_pkey"
+                       tableName="qrtz_job_details"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-12">
+        <addPrimaryKey columnNames="sched_name, trigger_name, trigger_group" constraintName="qrtz_triggers_pkey"
+                       tableName="qrtz_triggers"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-13">
+        <addPrimaryKey columnNames="sched_name, trigger_name, trigger_group" constraintName="qrtz_simple_triggers_pkey"
+                       tableName="qrtz_simple_triggers"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-14">
+        <addPrimaryKey columnNames="sched_name, trigger_name, trigger_group" constraintName="qrtz_cron_triggers_pkey"
+                       tableName="qrtz_cron_triggers"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-15">
+        <addPrimaryKey columnNames="sched_name, trigger_name, trigger_group" constraintName="qrtz_simprop_triggers_pkey"
+                       tableName="qrtz_simprop_triggers"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-16">
+        <addPrimaryKey columnNames="sched_name, trigger_name, trigger_group" constraintName="qrtz_blob_triggers_pkey"
+                       tableName="qrtz_blob_triggers"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-17">
+        <addPrimaryKey columnNames="sched_name, calendar_name" constraintName="qrtz_calendars_pkey"
+                       tableName="qrtz_calendars"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-18">
+        <addPrimaryKey columnNames="sched_name, trigger_group" constraintName="qrtz_paused_trigger_grps_pkey"
+                       tableName="qrtz_paused_trigger_grps"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-19">
+        <addPrimaryKey columnNames="sched_name, entry_id" constraintName="qrtz_fired_triggers_pkey"
+                       tableName="qrtz_fired_triggers"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-20">
+        <addPrimaryKey columnNames="sched_name, instance_name" constraintName="qrtz_scheduler_state_pkey"
+                       tableName="qrtz_scheduler_state"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-21">
+        <addPrimaryKey columnNames="sched_name, lock_name" constraintName="qrtz_locks_pkey" tableName="qrtz_locks"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-22">
+        <addForeignKeyConstraint baseColumnNames="sched_name,trigger_name,trigger_group"
+                                 baseTableName="qrtz_blob_triggers" constraintName="qrtz_blob_triggers_sched_name_fkey"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="sched_name,trigger_name,trigger_group"
+                                 referencedTableName="qrtz_triggers"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-23">
+        <addForeignKeyConstraint baseColumnNames="sched_name,trigger_name,trigger_group"
+                                 baseTableName="qrtz_cron_triggers" constraintName="qrtz_cron_triggers_sched_name_fkey"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="sched_name,trigger_name,trigger_group"
+                                 referencedTableName="qrtz_triggers"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-24">
+        <addForeignKeyConstraint baseColumnNames="sched_name,trigger_name,trigger_group"
+                                 baseTableName="qrtz_simple_triggers"
+                                 constraintName="qrtz_simple_triggers_sched_name_fkey" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="sched_name,trigger_name,trigger_group"
+                                 referencedTableName="qrtz_triggers"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-25">
+        <addForeignKeyConstraint baseColumnNames="sched_name,trigger_name,trigger_group"
+                                 baseTableName="qrtz_simprop_triggers"
+                                 constraintName="qrtz_simprop_triggers_sched_name_fkey" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="sched_name,trigger_name,trigger_group"
+                                 referencedTableName="qrtz_triggers"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-26">
+        <addForeignKeyConstraint baseColumnNames="sched_name,job_name,job_group" baseTableName="qrtz_triggers"
+                                 constraintName="qrtz_triggers_sched_name_fkey" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="sched_name,job_name,job_group"
+                                 referencedTableName="qrtz_job_details"/>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-27">
+        <createIndex indexName="idx_qrtz_ft_inst_job_req_rcvry" tableName="qrtz_fired_triggers">
+            <column name="sched_name"/>
+            <column name="instance_name"/>
+            <column name="requests_recovery"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-28">
+        <createIndex indexName="idx_qrtz_ft_j_g" tableName="qrtz_fired_triggers">
+            <column name="sched_name"/>
+            <column name="job_name"/>
+            <column name="job_group"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-29">
+        <createIndex indexName="idx_qrtz_ft_jg" tableName="qrtz_fired_triggers">
+            <column name="sched_name"/>
+            <column name="job_group"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-30">
+        <createIndex indexName="idx_qrtz_ft_t_g" tableName="qrtz_fired_triggers">
+            <column name="sched_name"/>
+            <column name="trigger_name"/>
+            <column name="trigger_group"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-31">
+        <createIndex indexName="idx_qrtz_ft_tg" tableName="qrtz_fired_triggers">
+            <column name="sched_name"/>
+            <column name="trigger_group"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-32">
+        <createIndex indexName="idx_qrtz_ft_trig_inst_name" tableName="qrtz_fired_triggers">
+            <column name="sched_name"/>
+            <column name="instance_name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-33">
+        <createIndex indexName="idx_qrtz_j_grp" tableName="qrtz_job_details">
+            <column name="sched_name"/>
+            <column name="job_group"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-34">
+        <createIndex indexName="idx_qrtz_j_req_recovery" tableName="qrtz_job_details">
+            <column name="sched_name"/>
+            <column name="requests_recovery"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-35">
+        <createIndex indexName="idx_qrtz_t_c" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="calendar_name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-36">
+        <createIndex indexName="idx_qrtz_t_g" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="trigger_group"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-37">
+        <createIndex indexName="idx_qrtz_t_j" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="job_name"/>
+            <column name="job_group"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-38">
+        <createIndex indexName="idx_qrtz_t_jg" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="job_group"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-39">
+        <createIndex indexName="idx_qrtz_t_n_g_state" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="trigger_group"/>
+            <column name="trigger_state"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-40">
+        <createIndex indexName="idx_qrtz_t_n_state" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="trigger_name"/>
+            <column name="trigger_group"/>
+            <column name="trigger_state"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-41">
+        <createIndex indexName="idx_qrtz_t_next_fire_time" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="next_fire_time"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-42">
+        <createIndex indexName="idx_qrtz_t_nft_misfire" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="misfire_instr"/>
+            <column name="next_fire_time"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-43">
+        <createIndex indexName="idx_qrtz_t_nft_st" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="trigger_state"/>
+            <column name="next_fire_time"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-44">
+        <createIndex indexName="idx_qrtz_t_nft_st_misfire" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="misfire_instr"/>
+            <column name="next_fire_time"/>
+            <column name="trigger_state"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-45">
+        <createIndex indexName="idx_qrtz_t_nft_st_misfire_grp" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="misfire_instr"/>
+            <column name="next_fire_time"/>
+            <column name="trigger_group"/>
+            <column name="trigger_state"/>
+        </createIndex>
+    </changeSet>
+    <changeSet dbms="postgresql" author="AxonIQ Initializr" id="0001-2-46">
+        <createIndex indexName="idx_qrtz_t_state" tableName="qrtz_triggers">
+            <column name="sched_name"/>
+            <column name="trigger_state"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

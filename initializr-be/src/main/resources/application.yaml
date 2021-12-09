@@ -440,6 +440,19 @@ initializr:
           links:
             - rel: reference
               href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-ldap
+    # Quartz
+    - name: Scheduler
+      content:
+        - name: Quartz
+          id: quartz
+          description: Provides a simple, flexible, and powerful job scheduler.
+          facets:
+            - native
+          links:
+            - rel: guide
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#boot-features-quartz
+            - rel: reference
+              href: https://github.com/quartz-scheduler/quartz
     # SQL
     - name: SQL
       content:
