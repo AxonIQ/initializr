@@ -18,16 +18,9 @@ package io.axoniq.initializr.extension.dependency;
 
 import io.axoniq.initializr.FileContributor;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Stream;
 
 /**
  * A {@link ProjectContributor} that creates the adds default H2 properties when H2 is selected.

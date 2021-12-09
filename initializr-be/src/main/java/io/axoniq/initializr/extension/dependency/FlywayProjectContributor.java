@@ -18,13 +18,10 @@ package io.axoniq.initializr.extension.dependency;
 
 import io.axoniq.initializr.FileContributor;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,8 +35,6 @@ import java.util.Date;
  * @author Stefan Dragisic
  */
 public class FlywayProjectContributor extends FileContributor implements ProjectContributor {
-
-    private Path projectRoot;
 
     @Override
     public void contribute(Path projectRoot) throws IOException {
