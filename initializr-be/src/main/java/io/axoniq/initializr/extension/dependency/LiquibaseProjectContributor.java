@@ -26,6 +26,8 @@ import java.nio.file.Path;
  * A {@link ProjectContributor} that creates the "db/changelog" resources directory when Liquibase is selected.
  *
  * @author Ivan Dugalic
+ * @author Lucas Campos
+ * @author Stefan Dragisic
  */
 public class LiquibaseProjectContributor implements ProjectContributor {
 
