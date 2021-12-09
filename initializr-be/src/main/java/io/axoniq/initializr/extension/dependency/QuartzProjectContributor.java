@@ -39,7 +39,6 @@ import java.util.stream.Stream;
  * A {@link ProjectContributor} that creates quartz the "db/migration" resources directory, migration scripts and
  * application properties when Quartz is selected.
  *
- * @author Ivan Dugalic
  * @author Lucas Campos
  * @author Stefan Dragisic
  */
