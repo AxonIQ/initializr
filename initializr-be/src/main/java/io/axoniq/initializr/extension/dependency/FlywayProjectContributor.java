@@ -17,21 +17,52 @@
 package io.axoniq.initializr.extension.dependency;
 
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A {@link ProjectContributor} that creates the "db/migration" resources directory when Flyway is selected.
  *
  * @author Ivan Dugalic
+ * @author Lucas Campos
+ * @author Stefan Dragisic
  */
 public class FlywayProjectContributor implements ProjectContributor {
 
+    private Path projectRoot;
+
     @Override
     public void contribute(Path projectRoot) throws IOException {
+        this.projectRoot = projectRoot;
         Path migrationDirectory = projectRoot.resolve("src/main/resources/db/migration");
         Files.createDirectories(migrationDirectory);
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_hhmmss");
+        String strDate = dateFormat.format(date);
+
+        copyFile("configuration/axon-framework/flyway/create_axon_framework_related_tables_baseline.sql",
+                 "src/main/resources/db/migration/"+ "V" + strDate + "__create_axon_framework_related_tables_baseline.sql");
+
+    }
+
+    private void copyFile(String source, String destination) throws IOException {
+        Resource resource = new ClassPathResource(source);
+        Path destinationPath = projectRoot.resolve(destination);
+
+        if (!Files.exists(destinationPath)) {
+            Files.createDirectories(destinationPath.getParent());
+        }
+
+        Files.copy(resource.getFile().toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
     }
 }
