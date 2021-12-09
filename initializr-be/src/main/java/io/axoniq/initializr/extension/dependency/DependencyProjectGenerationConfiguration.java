@@ -92,4 +92,15 @@ public class DependencyProjectGenerationConfiguration {
         return new AxonProjectContributor(description);
     }
 
+    @Bean
+    @Order(1001)
+    @ConditionalOnRequestedDependency("h2")
+    public H2ProjectContributor H2ProjectContributor() {
+        return new H2ProjectContributor();
+    }
+
+    //quartz contributor db properties
+
+    //postgres contributor ->docker compose & db properties
+
 }
