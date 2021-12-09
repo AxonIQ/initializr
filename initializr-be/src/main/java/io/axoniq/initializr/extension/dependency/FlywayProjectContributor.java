@@ -51,8 +51,8 @@ public class FlywayProjectContributor implements ProjectContributor {
         String strDate = dateFormat.format(date);
 
         copyFile("configuration/axon-framework/flyway/create_axon_framework_related_tables_baseline.sql",
-                 "src/main/resources/db/migration/"+ "V" + strDate + "__create_axon_framework_related_tables_baseline.sql");
-
+                 "src/main/resources/db/migration/" + "V" + strDate
+                         + "__create_axon_framework_related_tables_baseline.sql");
     }
 
     private void copyFile(String source, String destination) throws IOException {

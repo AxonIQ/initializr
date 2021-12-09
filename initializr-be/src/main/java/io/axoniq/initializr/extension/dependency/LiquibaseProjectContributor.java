@@ -42,9 +42,9 @@ public class LiquibaseProjectContributor implements ProjectContributor {
         Path changelogDirectory = this.projectRoot.resolve("src/main/resources/db/changelog");
         Files.createDirectories(changelogDirectory);
 
-        copyFile("configuration/axon-framework/liquibase/db.changelog-00001-0-create-axon-framework-related-tables-baseline.xml",
-                 "src/main/resources/db/migration/db.changelog-00001-0-create-axon-framework-related-tables-baseline.xml");
-
+        copyFile(
+                "configuration/axon-framework/liquibase/db.changelog-00001-0-create-axon-framework-related-tables-baseline.xml",
+                "src/main/resources/db/migration/db.changelog-00001-0-create-axon-framework-related-tables-baseline.xml");
     }
 
     private void copyFile(String source, String destination) throws IOException {

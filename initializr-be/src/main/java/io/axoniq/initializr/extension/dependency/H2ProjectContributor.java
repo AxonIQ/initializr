@@ -16,7 +16,6 @@
 
 package io.axoniq.initializr.extension.dependency;
 
-import io.axoniq.initializr.customcontroller.AxonProjectContributor;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,7 +26,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
 /**
@@ -47,8 +45,7 @@ public class H2ProjectContributor implements ProjectContributor {
         this.projectRoot = projectRoot;
 
         appendToFile("configuration/axon-framework/h2/application.properties",
-                       "src/main/resources/application.properties");
-
+                     "src/main/resources/application.properties");
     }
 
     private void appendToFile(String sourcePath, String destinationPath) throws IOException {
@@ -66,12 +63,9 @@ public class H2ProjectContributor implements ProjectContributor {
                     logger.error(e);
                 }
             });
-
         } catch (IOException e) {
             throw e;
         }
-
         writer.flush();
-
     }
 }

@@ -99,6 +99,13 @@ public class DependencyProjectGenerationConfiguration {
         return new H2ProjectContributor();
     }
 
+    @Bean
+    @Order(1002)
+    @ConditionalOnRequestedDependency("postgresql")
+    public PostgresProjectContributor postgresProjectContributor() {
+        return new PostgresProjectContributor();
+    }
+
     //quartz contributor db properties
 
 
