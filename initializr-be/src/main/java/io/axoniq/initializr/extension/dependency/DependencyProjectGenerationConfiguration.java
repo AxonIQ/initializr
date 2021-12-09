@@ -101,6 +101,5 @@ public class DependencyProjectGenerationConfiguration {
 
     //quartz contributor db properties
 
-    //postgres contributor ->docker compose & db properties
 
 }
