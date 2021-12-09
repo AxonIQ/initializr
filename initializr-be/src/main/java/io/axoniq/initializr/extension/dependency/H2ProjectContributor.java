@@ -16,6 +16,7 @@
 
 package io.axoniq.initializr.extension.dependency;
 
+import io.axoniq.initializr.FileContributor;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,11 +35,7 @@ import java.util.stream.Stream;
  * @author Lucas Campos
  * @author Stefan Dragisic
  */
-public class H2ProjectContributor implements ProjectContributor {
-
-    private static final Log logger = LogFactory.getLog(H2ProjectContributor.class);
-
-    private Path projectRoot;
+public class H2ProjectContributor extends FileContributor implements ProjectContributor {
 
     @Override
     public void contribute(Path projectRoot) throws IOException {
@@ -46,26 +43,5 @@ public class H2ProjectContributor implements ProjectContributor {
 
         appendToFile("configuration/axon-framework/h2/application.properties",
                      "src/main/resources/application.properties");
-    }
-
-    private void appendToFile(String sourcePath, String destinationPath) throws IOException {
-        Resource resource = new ClassPathResource(sourcePath);
-        Path output = projectRoot.resolve(destinationPath);
-        FileWriter writer = new FileWriter(output.toFile(), true);
-        writer.append(System.getProperty("line.separator"));
-        try (Stream<String> stream = Files.lines(resource.getFile().toPath())) {
-
-            stream.forEach(line -> {
-                try {
-                    writer.append(line);
-                    writer.append(System.getProperty("line.separator"));
-                } catch (IOException e) {
-                    logger.error(e);
-                }
-            });
-        } catch (IOException e) {
-            throw e;
-        }
-        writer.flush();
     }
 }

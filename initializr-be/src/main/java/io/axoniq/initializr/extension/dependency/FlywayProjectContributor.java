@@ -16,6 +16,7 @@
 
 package io.axoniq.initializr.extension.dependency;
 
+import io.axoniq.initializr.FileContributor;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -36,7 +37,7 @@ import java.util.Date;
  * @author Lucas Campos
  * @author Stefan Dragisic
  */
-public class FlywayProjectContributor implements ProjectContributor {
+public class FlywayProjectContributor extends FileContributor implements ProjectContributor {
 
     private Path projectRoot;
 
@@ -53,16 +54,5 @@ public class FlywayProjectContributor implements ProjectContributor {
         copyFile("configuration/axon-framework/flyway/create_axon_framework_related_tables_baseline.sql",
                  "src/main/resources/db/migration/" + "V" + strDate
                          + "__create_axon_framework_related_tables_baseline.sql");
-    }
-
-    private void copyFile(String source, String destination) throws IOException {
-        Resource resource = new ClassPathResource(source);
-        Path destinationPath = projectRoot.resolve(destination);
-
-        if (!Files.exists(destinationPath)) {
-            Files.createDirectories(destinationPath.getParent());
-        }
-
-        Files.copy(resource.getFile().toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
     }
 }

@@ -16,14 +16,12 @@
 
 package io.axoniq.initializr.extension.dependency;
 
+import io.axoniq.initializr.FileContributor;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 
 /**
  * A {@link ProjectContributor} that creates the "db/changelog" resources directory when Liquibase is selected.
@@ -32,9 +30,7 @@ import java.nio.file.StandardCopyOption;
  * @author Lucas Campos
  * @author Stefan Dragisic
  */
-public class LiquibaseProjectContributor implements ProjectContributor {
-
-    private Path projectRoot;
+public class LiquibaseProjectContributor extends FileContributor implements ProjectContributor {
 
     @Override
     public void contribute(Path projectRoot) throws IOException {
@@ -45,16 +41,5 @@ public class LiquibaseProjectContributor implements ProjectContributor {
         copyFile(
                 "configuration/axon-framework/liquibase/db.changelog-00001-0-create-axon-framework-related-tables-baseline.xml",
                 "src/main/resources/db/migration/db.changelog-00001-0-create-axon-framework-related-tables-baseline.xml");
-    }
-
-    private void copyFile(String source, String destination) throws IOException {
-        Resource resource = new ClassPathResource(source);
-        Path destinationPath = projectRoot.resolve(destination);
-
-        if (!Files.exists(destinationPath)) {
-            Files.createDirectories(destinationPath.getParent());
-        }
-
-        Files.copy(resource.getFile().toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
     }
 }
