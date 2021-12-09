@@ -44,8 +44,8 @@ public class AxonProjectContributor extends FileContributor implements ProjectCo
     private void configureForAxonServerEE() throws IOException {
         copyFile("configuration/axon-server/ee/docker/axoniq.license",
                 "src/main/docker/axoniq.license");
-        copyFile("configuration/axon-server/ee/docker/docker-compose.yml",
-                "src/main/docker/docker-compose.yml");
+        copyFile("configuration/axon-server/ee/docker/docker-compose-axonserver-ee.yml",
+                "src/main/docker/docker-compose-axonserver-ee.yml");
         renderTemplate("configuration/axon-server/ee/docker/cluster-template.yml.mustache",
                 "src/main/docker/cluster-template.yml");
         renderTemplate("configuration/axon-server/ee/docker/application.properties.mustache",
@@ -55,8 +55,8 @@ public class AxonProjectContributor extends FileContributor implements ProjectCo
     }
 
     private void configureForAxonServerSE() throws IOException {
-        copyFile("configuration/axon-server/se/docker/docker-compose.yml",
-                "src/main/docker/docker-compose.yml");
+        copyFile("configuration/axon-server/se/docker/docker-compose-axonserver-se.yml",
+                "src/main/docker/docker-compose-axonserver-se.yml");
         appendToFile("configuration/axon-server/se/docker/README.md",
                 "HELP.md");
     }
