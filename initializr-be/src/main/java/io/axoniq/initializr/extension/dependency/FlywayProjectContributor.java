@@ -16,7 +16,7 @@
 
 package io.axoniq.initializr.extension.dependency;
 
-import io.axoniq.initializr.FileContributor;
+import io.axoniq.initializr.FileHelper;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ import java.util.Date;
  * @author Lucas Campos
  * @author Stefan Dragisic
  */
-public class FlywayProjectContributor extends FileContributor implements ProjectContributor {
+public class FlywayProjectContributor extends FileHelper implements ProjectContributor {
 
     @Override
     public void contribute(Path projectRoot) throws IOException {

@@ -1,7 +1,7 @@
 package io.axoniq.initializr.customcontroller;
 
 
-import io.axoniq.initializr.FileContributor;
+import io.axoniq.initializr.FileHelper;
 import io.spring.initializr.generator.project.ProjectDescription;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
 
@@ -13,7 +13,7 @@ import java.nio.file.Path;
  *
  * @author Stefan Dragisic
  */
-public class AxonProjectContributor extends FileContributor implements ProjectContributor {
+public class AxonProjectContributor extends FileHelper implements ProjectContributor {
 
     public AxonProjectContributor(
             ProjectDescription description) {

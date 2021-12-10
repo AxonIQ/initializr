@@ -16,7 +16,7 @@
 
 package io.axoniq.initializr.extension.dependency;
 
-import io.axoniq.initializr.FileContributor;
+import io.axoniq.initializr.FileHelper;
 import io.axoniq.initializr.customcontroller.AxonProjectDescription;
 import io.spring.initializr.generator.project.ProjectDescription;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
@@ -35,7 +35,7 @@ import java.util.Date;
  * @author Lucas Campos
  * @author Stefan Dragisic
  */
-public class QuartzProjectContributor extends FileContributor implements ProjectContributor {
+public class QuartzProjectContributor extends FileHelper implements ProjectContributor {
 
     private final AxonProjectDescription projectDescription;
 

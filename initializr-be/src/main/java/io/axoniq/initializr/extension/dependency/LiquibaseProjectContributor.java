@@ -16,7 +16,7 @@
 
 package io.axoniq.initializr.extension.dependency;
 
-import io.axoniq.initializr.FileContributor;
+import io.axoniq.initializr.FileHelper;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
 
 import java.io.IOException;
@@ -30,7 +30,7 @@ import java.nio.file.Path;
  * @author Lucas Campos
  * @author Stefan Dragisic
  */
-public class LiquibaseProjectContributor extends FileContributor implements ProjectContributor {
+public class LiquibaseProjectContributor extends FileHelper implements ProjectContributor {
 
     @Override
     public void contribute(Path projectRoot) throws IOException {
