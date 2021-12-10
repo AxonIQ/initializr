@@ -29,7 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * A {@link ProjectContributor} that creates quartz the "db/migration" resources directory, migration scripts and
+ * A {@link ProjectContributor} that creates the "db/migration" resources directory and migration script (if applicable), and the
  * application properties when Quartz is selected.
  *
  * @author Lucas Campos
@@ -39,8 +39,7 @@ public class QuartzProjectContributor extends FileHelper implements ProjectContr
 
     private final AxonProjectDescription projectDescription;
 
-    public QuartzProjectContributor(
-            ProjectDescription description) {
+    public QuartzProjectContributor(ProjectDescription description) {
         this.projectDescription = (AxonProjectDescription) description;
     }
 
