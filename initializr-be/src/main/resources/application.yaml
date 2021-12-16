@@ -121,7 +121,7 @@ initializr:
         versionProperty: axon.version
         mappings:
           - compatibilityRange: "2.0.0.RELEASE"
-            version: 4.5.7
+            version: 4.5.8
       testcontainers:
         groupId: org.testcontainers
         artifactId: testcontainers-bom
