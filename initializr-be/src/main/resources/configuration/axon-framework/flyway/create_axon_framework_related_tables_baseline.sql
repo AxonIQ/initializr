@@ -1,3 +1,6 @@
+-- this script is compatible with PostgreSQL only
+-- to use in other databases please adapt the script
+
 DROP TABLE IF EXISTS association_value_entry;
 DROP TABLE IF EXISTS token_entry;
 DROP TABLE IF EXISTS saga_entry;
@@ -24,7 +27,7 @@ CREATE TABLE IF NOT EXISTS token_entry
     segment INTEGER NOT NULL,
     owner VARCHAR(255),
     timestamp VARCHAR(255) NOT NULL,
-    token oid,
+    token bytea,
     token_type VARCHAR(255),
     PRIMARY KEY (processor_name, segment)
     );
@@ -34,7 +37,7 @@ CREATE TABLE IF NOT EXISTS saga_entry
     saga_id VARCHAR(255) NOT NULL,
     revision VARCHAR(255),
     saga_type VARCHAR(255),
-    serialized_saga oid,
+    serialized_saga bytea,
     PRIMARY KEY (saga_id)
     );
 

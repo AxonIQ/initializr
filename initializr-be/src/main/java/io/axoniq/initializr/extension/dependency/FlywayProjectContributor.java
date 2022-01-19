@@ -43,7 +43,7 @@ public class FlywayProjectContributor extends FileHelper implements ProjectContr
         Files.createDirectories(migrationDirectory);
 
         Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_hhmmss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_hhmmSSSSSSS");
         String strDate = dateFormat.format(date);
 
         copyFile("configuration/axon-framework/flyway/create_axon_framework_related_tables_baseline.sql",

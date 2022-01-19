@@ -16,7 +16,7 @@
             <column name="timestamp" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="token" type="OID"/>
+            <column name="token" type="BLOB"/>
             <column name="token_type" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
@@ -45,7 +45,7 @@
             </column>
             <column name="revision" type="VARCHAR(255)"/>
             <column name="saga_type" type="VARCHAR(255)"/>
-            <column name="serialized_saga" type="OID"/>
+            <column name="serialized_saga" type="BLOB"/>
         </createTable>
     </changeSet>
     <changeSet author="AxonIQ Initializr" id="00001-1-4">
@@ -69,3 +69,5 @@
         </createIndex>
     </changeSet>
 </databaseChangeLog>
+<!-- this script is compatible with PostgreSQL only
+to use in other databases please adapt the script-->

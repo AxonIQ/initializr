@@ -39,6 +39,10 @@ public class QuartzProjectContributor extends FileHelper implements ProjectContr
 
     private final AxonProjectDescription projectDescription;
 
+    /**
+     * Creates a new {@link QuartzProjectContributor} instance.
+     * @param description to extract the project information
+     */
     public QuartzProjectContributor(
             ProjectDescription description) {
         this.projectDescription = (AxonProjectDescription) description;
@@ -52,7 +56,7 @@ public class QuartzProjectContributor extends FileHelper implements ProjectContr
 
         if (useFlyway) {
             Date date = Calendar.getInstance().getTime();
-            DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_hhmmss");
+            DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_hhmmSSSSSSS");
             String strDate = dateFormat.format(date);
 
             copyFile("configuration/axon-framework/quartz/flyway/create-quartz-related-tables-baseline.sql",

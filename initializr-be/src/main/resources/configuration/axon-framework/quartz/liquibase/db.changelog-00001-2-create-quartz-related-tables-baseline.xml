@@ -446,3 +446,5 @@
         </createIndex>
     </changeSet>
 </databaseChangeLog>
+<!-- this script is compatible with PostgreSQL only
+ to use in other databases please adapt the script-->

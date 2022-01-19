@@ -1,3 +1,6 @@
+-- this script is compatible with PostgreSQL only
+-- to use in other databases please adapt the script
+
 create table if not exists qrtz_job_details
 (
     sched_name varchar(120) not null,
