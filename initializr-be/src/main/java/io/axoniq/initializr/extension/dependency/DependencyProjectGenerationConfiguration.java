@@ -92,4 +92,25 @@ public class DependencyProjectGenerationConfiguration {
         return new AxonProjectContributor(description);
     }
 
+    @Bean
+    @Order(1001)
+    @ConditionalOnRequestedDependency("h2")
+    public H2ProjectContributor H2ProjectContributor() {
+        return new H2ProjectContributor();
+    }
+
+    @Bean
+    @Order(1002)
+    @ConditionalOnRequestedDependency("postgresql")
+    public PostgresProjectContributor postgresProjectContributor() {
+        return new PostgresProjectContributor();
+    }
+
+    @Bean
+    @Order(1003)
+    @ConditionalOnRequestedDependency("quartz")
+    public QuartzProjectContributor quartzProjectContributor(ProjectDescription description) {
+        return new QuartzProjectContributor(description);
+    }
+
 }

@@ -20,26 +20,21 @@ import io.axoniq.initializr.FileHelper;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * A {@link ProjectContributor} that creates the "db/changelog" resources directory when Liquibase is selected.
+ * A {@link ProjectContributor} that creates the adds default H2 properties when H2 is selected.
  *
- * @author Ivan Dugalic
  * @author Lucas Campos
  * @author Stefan Dragisic
  */
-public class LiquibaseProjectContributor extends FileHelper implements ProjectContributor {
+public class H2ProjectContributor extends FileHelper implements ProjectContributor {
 
     @Override
     public void contribute(Path projectRoot) throws IOException {
         this.projectRoot = projectRoot;
-        Path changelogDirectory = this.projectRoot.resolve("src/main/resources/db/changelog");
-        Files.createDirectories(changelogDirectory);
 
-        copyFile(
-                "configuration/axon-framework/liquibase/db.changelog-00001-0-create-axon-framework-related-tables-baseline.xml",
-                "src/main/resources/db/migration/db.changelog-00001-0-create-axon-framework-related-tables-baseline.xml");
+        appendToFile("configuration/axon-framework/h2/application.properties",
+                     "src/main/resources/application.properties");
     }
 }

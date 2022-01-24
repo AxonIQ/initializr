@@ -1,0 +1,73 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog logicalFilePath="classpath:/db/changelogs/postgres/db.changelog-00001-3-initial-db-structure-axon-saga.xml"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="AxonIQ Initializr" id="00001-1-0">
+        <createTable tableName="token_entry">
+            <column name="processor_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="segment" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="owner" type="VARCHAR(255)"/>
+            <column name="timestamp" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="BLOB"/>
+            <column name="token_type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="AxonIQ Initializr" id="00001-1-1">
+        <addPrimaryKey columnNames="processor_name, segment" constraintName="token_entry_pkey" tableName="token_entry"/>
+    </changeSet>
+    <changeSet author="AxonIQ Initializr" id="00001-1-2">
+        <createTable tableName="association_value_entry">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="association_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="association_value" type="VARCHAR(255)"/>
+            <column name="saga_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="saga_type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="AxonIQ Initializr" id="00001-1-3">
+        <createTable tableName="saga_entry">
+            <column name="saga_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="revision" type="VARCHAR(255)"/>
+            <column name="saga_type" type="VARCHAR(255)"/>
+            <column name="serialized_saga" type="BLOB"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="AxonIQ Initializr" id="00001-1-4">
+        <addPrimaryKey columnNames="id" constraintName="association_value_entry_pkey"
+                       tableName="association_value_entry"/>
+    </changeSet>
+    <changeSet author="AxonIQ Initializr" id="00001-1-5">
+        <addPrimaryKey columnNames="saga_id" constraintName="saga_entry_pkey" tableName="saga_entry"/>
+    </changeSet>
+    <changeSet author="AxonIQ Initializr" id="00001-1-6">
+        <createIndex indexName="idx_saga_type" tableName="association_value_entry">
+            <column name="saga_id"/>
+            <column name="saga_type"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="AxonIQ Initializr" id="00001-1-7">
+        <createIndex indexName="idx_association_value" tableName="association_value_entry">
+            <column name="saga_type"/>
+            <column name="association_key"/>
+            <column name="association_value"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
+<!-- this script is compatible with PostgreSQL only
+to use in other databases please adapt the script-->

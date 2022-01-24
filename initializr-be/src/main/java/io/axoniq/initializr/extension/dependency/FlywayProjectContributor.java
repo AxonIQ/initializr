@@ -16,22 +16,38 @@
 
 package io.axoniq.initializr.extension.dependency;
 
+import io.axoniq.initializr.FileHelper;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A {@link ProjectContributor} that creates the "db/migration" resources directory when Flyway is selected.
  *
  * @author Ivan Dugalic
+ * @author Lucas Campos
+ * @author Stefan Dragisic
  */
-public class FlywayProjectContributor implements ProjectContributor {
+public class FlywayProjectContributor extends FileHelper implements ProjectContributor {
 
     @Override
     public void contribute(Path projectRoot) throws IOException {
+        this.projectRoot = projectRoot;
         Path migrationDirectory = projectRoot.resolve("src/main/resources/db/migration");
         Files.createDirectories(migrationDirectory);
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_hhmmSSSSSSS");
+        String strDate = dateFormat.format(date);
+
+        copyFile("configuration/axon-framework/flyway/create_axon_framework_related_tables_baseline.sql",
+                 "src/main/resources/db/migration/" + "V" + strDate
+                         + "__create_axon_framework_related_tables_baseline.sql");
     }
 }
