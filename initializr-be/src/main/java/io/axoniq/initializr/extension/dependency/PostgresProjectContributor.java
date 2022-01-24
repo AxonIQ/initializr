@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 /**
- * A {@link ProjectContributor} that creates a docker-compose file and add a default postgres properties when it is
+ * A {@link ProjectContributor} that creates a docker-compose file and add the default Postgres properties when it is
  * selected.
  *
  * @author Lucas Campos
