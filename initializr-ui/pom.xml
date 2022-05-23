@@ -27,8 +27,8 @@
     <artifactId>initializr-ui</artifactId>
 
     <properties>
-        <frontend-maven-plugin.version>1.12.0</frontend-maven-plugin.version>
-        <frontend-maven-plugin.nodeVersion>v14.16.1</frontend-maven-plugin.nodeVersion>
+        <frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
+        <frontend-maven-plugin.nodeVersion>v16.15.0</frontend-maven-plugin.nodeVersion>
     </properties>
 
     <build>
