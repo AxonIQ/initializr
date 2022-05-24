@@ -32,6 +32,7 @@ import java.util.List;
  * Creates micrometer metrics for each project generated.
  *
  * @author Ivan Dugalic
+ * @author Stefan Dragisic
  */
 public class ProjectGenerationMonitor {
 
