@@ -16,7 +16,7 @@
 
 package io.axoniq.initializr.metrics;
 
-import io.micrometer.core.instrument.Counter;
+import io.axoniq.initializr.customcontroller.AxonProjectRequest;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tag;
 import io.spring.initializr.web.project.ProjectRequestEvent;
@@ -46,7 +46,7 @@ public class ProjectGenerationMonitor {
         this.meterRegistry = meterRegistry;
     }
 
-    private List<Tag> tagsBuilder(AxonProjectRequestDocument document) {
+    private List<Tag> tagsBuilder(AxonProjectRequestDocument document,ProjectRequestEvent event, String dependency) {
         List<Tag> tags = new ArrayList<>();
         if (document.getLanguage() != null) {
             tags.add(Tag.of("language", document.getLanguage()));
@@ -69,12 +69,9 @@ public class ProjectGenerationMonitor {
         if (document.getClient() != null && document.getClient().getId() != null) {
             tags.add(Tag.of("client", document.getClient().getId()));
         }
-        if (document.getClient() != null && document.getClient().getCountry() != null) {
-            tags.add(Tag.of("clientCountry", document.getClient().getCountry()));
-        }
-        if (document.getClient() != null && document.getClient().getIp() != null) {
-            tags.add(Tag.of("clientIP", document.getClient().getIp()));
-        }
+        tags.add(Tag.of("dependency", dependency));
+        String usingAxonServer = ((AxonProjectRequest) event.getProjectRequest()).getUsingAxonServer();
+        tags.add(Tag.of("axonServer", usingAxonServer));
         return tags;
     }
 
@@ -86,8 +83,15 @@ public class ProjectGenerationMonitor {
             if (logger.isDebugEnabled()) {
                 logger.debug("Publishing metrics for" + document);
             }
-            Counter counter = meterRegistry.counter(GENERATED_PROJECTS_COUNTER, tagsBuilder(document));
-            counter.increment();
+
+            event
+                    .getProjectRequest()
+                    .getDependencies()
+                    .forEach(dep -> {
+                        meterRegistry.counter(GENERATED_PROJECTS_COUNTER, tagsBuilder(document, event, dep))
+                                     .increment();
+                    });
+
         } catch (Exception ex) {
             logger.warn("Failed to publish metrics", ex);
         }
